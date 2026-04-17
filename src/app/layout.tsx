@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { LenisProvider } from "@/components/providers/LenisProvider";
+import { MedicalLoader } from "@/components/ui/MedicalLoader";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,7 +36,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary-fixed selection:text-on-primary-fixed bg-surface text-on-surface`}
       >
-        <LenisProvider>{children}</LenisProvider>
+        <MedicalLoader>
+          <LenisProvider>{children}</LenisProvider>
+        </MedicalLoader>
       </body>
     </html>
   );
