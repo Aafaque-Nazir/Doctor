@@ -5,10 +5,10 @@ import { useCallback, useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about", icon: "info" },
+  { label: "About", href: "#about", icon: "person" },
   { label: "Services", href: "#services", icon: "medical_services" },
-  { label: "Team", href: "#team", icon: "groups" },
-  { label: "Facility", href: "#facility", icon: "domain" },
+  { label: "Reviews", href: "#testimonials", icon: "star" },
+  { label: "Facility", href: "#facility", icon: "apartment" },
   { label: "FAQ", href: "#faq", icon: "help" },
 ];
 

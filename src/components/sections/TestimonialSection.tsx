@@ -33,6 +33,24 @@ export function TestimonialSection() {
       name: "Sarah Jenkins",
       role: "Lead Design Architect",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
+    },
+    {
+      text: "I travel extensively for work and rely on a healthcare partner that can act globally. Their concierge team handled my emergency abroad flawlessly. True peace of mind.",
+      name: "Arthur Pendelton",
+      role: "Global Executive",
+      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
+    },
+    {
+      text: "An unparalleled experience from the moment you step in. The attention to detail in the clinical facility perfectly matches the sophistication of their medical approach.",
+      name: "Elena Rostova",
+      role: "Philanthropist",
+      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
+    },
+    {
+      text: "Having a dedicated medical team that anticipates health risks before they become problems is invaluable. They don't just treat you; they engineer your longevity.",
+      name: "Marcus Chen",
+      role: "Technology Founder",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
     }
   ];
 
@@ -84,58 +102,73 @@ export function TestimonialSection() {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-left"
-        >
-          {testimonials.map((test, idx) => (
-            <motion.div 
-              key={idx}
-              variants={cardVariants}
-              className="p-8 md:p-12 bg-surface rounded-[2.5rem] relative group border border-outline-variant hover:border-primary/20 shadow-[0_8px_30px_rgba(15,23,42,0.02)] hover:shadow-[0_25px_60px_rgba(15,23,42,0.06)] transition-all duration-500 hover:-translate-y-1.5 flex flex-col justify-between min-h-[380px]"
-            >
-              {/* Quote Mark Overlay */}
-              <div className="absolute top-6 right-8 opacity-[0.04] group-hover:opacity-[0.08] transition-all duration-700 pointer-events-none select-none">
-                <span className="material-symbols-outlined text-[100px] leading-none text-primary">format_quote</span>
-              </div>
-              
-              {/* Stars */}
-              <div className="flex items-center gap-1.5 text-tertiary mb-6 relative z-10">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <span key={i} className="material-symbols-outlined text-[16px] fill-current">star</span>
-                ))}
-              </div>
+        {/* Infinite Reverse Scroll Carousel */}
+        <div className="w-full relative overflow-hidden py-4 select-none mt-12">
+          {/* Fading Mask Overlays */}
+          <div className="absolute top-0 left-0 w-16 md:w-48 h-full bg-gradient-to-r from-surface-container-lowest to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-16 md:w-48 h-full bg-gradient-to-l from-surface-container-lowest to-transparent z-20 pointer-events-none"></div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes testimonialMarqueeReverse {
+              0% { transform: translateX(-50%); }
+              100% { transform: translateX(0%); }
+            }
+            .animate-testimonial-marquee {
+              animation: testimonialMarqueeReverse 50s linear infinite;
+              display: flex;
+              width: max-content;
+            }
+            .animate-testimonial-marquee:hover {
+              animation-play-state: paused;
+            }
+          `}} />
 
-              {/* Message */}
-              <p className="text-lg md:text-xl font-medium text-on-surface-variant mb-8 leading-relaxed tracking-tight relative z-10 flex-grow">
-                "{test.text}"
-              </p>
-              
-              {/* Profile details */}
-              <div className="flex items-center gap-4 pt-6 border-t border-outline-variant/60 relative z-10 shrink-0">
-                <div className="w-12 h-12 relative rounded-full overflow-hidden border border-outline-variant shadow-sm shrink-0">
-                  <Image
-                    alt={test.name}
-                    className="w-full h-full object-cover"
-                    src={test.avatar}
-                    fill
-                    sizes="48px"
-                  />
+          {/* Marquee Track */}
+          <div className="animate-testimonial-marquee gap-6 md:gap-8">
+            {[...testimonials, ...testimonials].map((test, idx) => (
+              <div 
+                key={idx}
+                className="w-[300px] md:w-[420px] p-6 md:p-8 bg-surface rounded-[2rem] relative group border border-outline-variant hover:border-primary/20 shadow-[0_8px_30px_rgba(15,23,42,0.02)] hover:shadow-[0_25px_60px_rgba(15,23,42,0.06)] transition-all duration-500 flex flex-col justify-between shrink-0"
+              >
+                {/* Quote Mark Overlay */}
+                <div className="absolute top-6 right-6 opacity-[0.04] group-hover:opacity-[0.08] transition-all duration-700 pointer-events-none select-none">
+                  <span className="material-symbols-outlined text-[60px] leading-none text-primary">format_quote</span>
                 </div>
-                <div>
-                  <h4 className="font-bold text-base text-on-surface font-headline leading-tight">{test.name}</h4>
-                  <p className="text-[10px] text-tertiary uppercase tracking-widest font-bold mt-1 font-label">
-                    {test.role}
-                  </p>
+                
+                {/* Stars */}
+                <div className="flex items-center gap-1 text-tertiary mb-4 relative z-10">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <span key={i} className="material-symbols-outlined text-[14px] fill-current">star</span>
+                  ))}
+                </div>
+
+                {/* Message */}
+                <p className="text-sm md:text-base font-medium text-on-surface-variant mb-6 leading-relaxed tracking-tight relative z-10 flex-grow">
+                  "{test.text}"
+                </p>
+                
+                {/* Profile details */}
+                <div className="flex items-center gap-3 pt-5 border-t border-outline-variant/60 relative z-10 shrink-0">
+                  <div className="w-10 h-10 relative rounded-full overflow-hidden border border-outline-variant shadow-sm shrink-0">
+                    <Image
+                      alt={test.name}
+                      className="w-full h-full object-cover"
+                      src={test.avatar}
+                      fill
+                      sizes="40px"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm text-on-surface font-headline leading-tight">{test.name}</h4>
+                    <p className="text-[9px] text-tertiary uppercase tracking-widest font-bold mt-0.5 font-label">
+                      {test.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
