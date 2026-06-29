@@ -71,23 +71,23 @@ export function AboutSection() {
           >
             <div className="space-y-4">
               <span className="inline-block py-1.5 px-4 rounded-full bg-tertiary/10 text-tertiary font-label text-sm font-bold tracking-widest uppercase">
-                Clinical Directorship
+                Medical Director
               </span>
               <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tighter leading-tight">
                 Dr. Jonathan <br />
                 <span className="text-tertiary">Reynolds, MD</span>
               </h2>
               <p className="text-secondary font-bold uppercase tracking-widest text-xs font-label">
-                Chief Medical Officer & Lead Diagnostician
+                Lead Physician & Founder
               </p>
             </div>
 
             <div className="space-y-6 text-on-surface-variant font-medium leading-relaxed text-lg">
               <p>
-                With over two decades of dedicated private practice, Dr. Reynolds has established ClinicalCurator as the premier destination for highly personalized, advanced healthcare. His philosophy is rooted in the belief that true medicine goes beyond treating symptoms—it’s about understanding the complete biological ecosystem of the individual.
+                With over two decades in private practice, Dr. Reynolds has built a clinic focused on highly personalized, advanced healthcare. His philosophy is simple: good medicine doesn't just treat symptoms, it treats the whole person.
               </p>
               <p>
-                Trained at the world's most prestigious institutions, his multi-disciplinary approach ensures that every patient receives a tailored strategy, blending cutting-edge diagnostics with profound empathetic care.
+                Trained at top medical institutions, he ensures that every patient receives a personalized care plan, combining advanced medical testing with genuine, compassionate care.
               </p>
             </div>
 
@@ -112,7 +112,7 @@ export function AboutSection() {
                 </div>
                 <div className="text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2 font-label">
                   <span className="material-symbols-outlined text-tertiary text-lg">clinical_notes</span>
-                  Consierge Lead
+                  Private Care Lead
                 </div>
               </div>
             </div>

@@ -21,7 +21,7 @@ export function Footer() {
               ClinicalCurator<span className="text-primary">.</span>
             </span>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs font-medium">
-              Precision medicine designed for the modern individual. Setting the benchmark for advanced, highly-personalized clinical care.
+              Exceptional medicine designed for you. Providing the highest standard of personalized medical care.
             </p>
             <div className="flex items-center gap-4 pt-4">
               <a href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all duration-300 text-white/80 hover:text-white hover:-translate-y-1 group">
@@ -38,7 +38,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-8 lg:pl-10">
-            <h4 className="font-headline font-bold text-lg tracking-wide uppercase text-white/90">Patient Portal</h4>
+            <h4 className="font-headline font-bold text-lg tracking-wide uppercase text-white/90">Quick Links</h4>
             <ul className="space-y-4 text-sm text-white/60 font-medium">
               <li><Link href="#services" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Specialized Services</Link></li>
               <li><Link href="#testimonials" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Global Recognition</Link></li>

@@ -15,8 +15,19 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "ClinicalCurator | Precision in Care",
-  description: "The Future of Personalized Care.",
+  title: "ClinicalCurator | Elite Precision Medicine",
+  description: "Advanced, highly-personalized clinical care and concierge medicine designed for the modern individual.",
+  openGraph: {
+    title: "ClinicalCurator | Elite Precision Medicine",
+    description: "Setting the benchmark for advanced, highly-personalized clinical care.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ClinicalCurator",
+    description: "The future of personalized concierge medicine.",
+  }
 };
 
 export default function RootLayout({

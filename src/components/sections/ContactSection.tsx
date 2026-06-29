@@ -40,15 +40,15 @@ export function ContactSection() {
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16 text-left">
           <div className="max-w-2xl space-y-4">
             <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
-              VIP Care Intake
+              Patient Registration
             </span>
             <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
               Begin Your <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Clinical Journey</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Journey</span>
             </h2>
           </div>
           <p className="text-on-surface-variant font-medium max-w-sm md:text-right leading-relaxed text-base">
-            Initiate connection with our concierge board. We provide discrete consultations and structured care management.
+            Reach out to our team today. We provide private consultations and highly personalized medical care.
           </p>
         </div>
 
@@ -101,9 +101,9 @@ export function ContactSection() {
                 <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary border border-primary/5">
                   <span className="material-symbols-outlined text-[22px]">call</span>
                 </div>
-                <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5 font-label">Concierge Desk</p>
+                <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5 font-label">Front Desk</p>
                 <p className="font-headline text-xl font-black text-on-surface">+1 (555) 888-0000</p>
-                <p className="text-[10px] text-on-surface-variant font-medium mt-1 font-label">Direct Patient Line</p>
+                <p className="text-[10px] text-on-surface-variant font-medium mt-1 font-label">Patient Support Line</p>
               </motion.div>
 
               <motion.div 
@@ -142,8 +142,8 @@ export function ContactSection() {
                   className="space-y-6 text-left"
                 >
                   <div className="space-y-1">
-                    <h3 className="font-headline text-2xl font-black text-on-surface tracking-tight">Request Private Appointment</h3>
-                    <p className="text-xs text-on-surface-variant font-medium font-label">Please complete the metrics below. Our medical registrar will contact you within 2 hours.</p>
+                    <h3 className="font-headline text-2xl font-black text-on-surface tracking-tight">Request An Appointment</h3>
+                    <p className="text-xs text-on-surface-variant font-medium font-label">Please complete the form below. Our team will contact you within 2 hours.</p>
                   </div>
 
                   <div className="space-y-4 pt-4">
@@ -175,24 +175,24 @@ export function ContactSection() {
 
                     {/* Service Dropdown */}
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase font-label">Preferred Care Specialty</label>
+                      <label className="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase font-label">Preferred Service</label>
                       <select 
                         required
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="w-full bg-surface-container-low border border-outline-variant/60 focus:border-primary/50 rounded-xl px-5 py-3.5 text-on-surface text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
                       >
-                        <option value="" disabled>Select specialization...</option>
-                        <option value="Diagnostics">Executive Medical & Diagnostics</option>
-                        <option value="Neurology">Advanced Neurological Care</option>
-                        <option value="Longevity">Longevity & Hormone Optimization</option>
-                        <option value="Lab">Precision Lab Assay Panels</option>
+                        <option value="" disabled>Select a service...</option>
+                        <option value="Diagnostics">General Checkup & Diagnostics</option>
+                        <option value="Neurology">Brain & Memory Health</option>
+                        <option value="Longevity">Health & Wellness</option>
+                        <option value="Lab">Lab Testing</option>
                       </select>
                     </div>
 
                     {/* Message */}
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase font-label">Clinical Notes / Message (Optional)</label>
+                      <label className="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase font-label">Message (Optional)</label>
                       <textarea 
                         rows={4}
                         placeholder="Provide details of your symptoms or request..."
@@ -233,9 +233,9 @@ export function ContactSection() {
                     <span className="material-symbols-outlined text-[40px]">check_circle</span>
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-headline text-3xl font-black text-on-surface tracking-tight">Intake Registered</h3>
+                    <h3 className="font-headline text-3xl font-black text-on-surface tracking-tight">Request Received</h3>
                     <p className="text-on-surface-variant font-medium text-sm max-w-sm mx-auto leading-relaxed">
-                      Thank you. Your request is registered in our concierge registry. Our clinical registrar will contact you shortly on your provided coordinates.
+                      Thank you. Your request has been received. Our team will contact you shortly at the provided details.
                     </p>
                   </div>
                   <button

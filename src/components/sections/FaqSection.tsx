@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     question: "Do you accept my insurance?",
-    answer: "We operate as an out-of-network provider for most major PPO plans. We compile and issue detailed medical superbills for direct submission to your insurance carrier for reimbursement. HMOs and Medicaid are not accepted."
+    answer: "We operate as an out-of-network provider for most major PPO plans. We provide detailed medical receipts that you can submit directly to your insurance carrier for reimbursement. HMOs and Medicaid are not accepted."
   },
   {
     question: "What should I bring to my initial consultation?",
@@ -14,15 +14,15 @@ const faqs = [
   },
   {
     question: "Are telehealth consultations available?",
-    answer: "Yes. We offer secure, HIPAA-compliant virtual consultations for diagnostic reviews, routine follow-ups, and minor acute inquiries. The initial comprehensive physiological assessment must be completed on-site."
+    answer: "Yes. We offer secure, virtual consultations for diagnostic reviews, routine follow-ups, and minor inquiries. The initial comprehensive physical exam must be completed in-person at our clinic."
   },
   {
-    question: "How do I access the Concierge Patient Portal?",
-    answer: "Upon registration, you will receive an encrypted email link to establish your credentials. The portal enables 24/7 access to lab telemetry, direct physician messaging, and prescription refill requests."
+    question: "How do I access the Patient Portal?",
+    answer: "Upon registration, you will receive an encrypted email link to establish your credentials. The portal gives you 24/7 access to your lab results, direct messaging with your doctor, and quick prescription refills."
   },
   {
     question: "What is your emergency medical protocol?",
-    answer: "For life-threatening emergencies, dial 911 or visit the nearest emergency room immediately. Concierge patients have direct access to our 24/7 clinical provider hotline for urgent, non-life-threatening medical guidance."
+    answer: "For life-threatening emergencies, dial 911 or visit the nearest emergency room immediately. Our patients have direct access to our 24/7 on-call doctor for urgent, non-life-threatening medical advice."
   }
 ];
 
@@ -77,7 +77,7 @@ export function FaqSection() {
                 onClick={scrollToContact}
                 className="text-xs font-bold font-label uppercase tracking-widest text-primary border-b border-primary/20 pb-1 hover:text-tertiary hover:border-tertiary transition-colors flex items-center gap-2 cursor-pointer"
               >
-                Contact Care Desk
+                Contact Support
                 <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
               </button>
             </div>

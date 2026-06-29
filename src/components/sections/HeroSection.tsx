@@ -103,7 +103,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: baseDelay, ease: "easeOut" }}
                 className="text-xs font-bold tracking-widest text-tertiary uppercase font-label"
               >
-                Exclusive Concierge Medicine & Diagnostics
+                Private Medical Care & Diagnostics
               </motion.p>
               
               <motion.h1
@@ -112,9 +112,9 @@ export function HeroSection() {
                 transition={{ duration: 0.8, delay: baseDelay + 0.1, ease: "easeOut" }}
                 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05]"
               >
-                Clinical Care, <br />
+                Medical Care, <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                  Redefined.
+                  Elevated.
                 </span>
               </motion.h1>
             </div>
@@ -125,7 +125,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: baseDelay + 0.2, ease: "easeOut" }}
               className="text-lg md:text-xl text-white/70 max-w-xl leading-relaxed font-medium"
             >
-              Experience a private medical practice designed around your unique biology. We combine cutting-edge science with concierge service to preserve your lifelong health.
+              Experience a private medical practice focused entirely on you. We combine advanced medical care with premium service to keep you healthy for life.
             </motion.p>
 
             <motion.div
@@ -159,15 +159,15 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
                 <span className="material-symbols-outlined text-tertiary text-lg">verified_user</span>
-                Privately Managed
+                Private Care
               </div>
               <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
                 <span className="material-symbols-outlined text-tertiary text-lg">shield</span>
-                Zero-wait Policy
+                Zero Wait Times
               </div>
               <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
                 <span className="material-symbols-outlined text-tertiary text-lg">science</span>
-                Advanced Diagnostics
+                Advanced Testing
               </div>
             </motion.div>
           </div>
@@ -181,7 +181,7 @@ export function HeroSection() {
           >
             <div className="space-y-1">
               <p className="text-[10px] font-bold tracking-widest text-tertiary uppercase font-label">Practice Overview</p>
-              <h3 className="font-headline text-2xl font-black text-white leading-tight">Key Indicators of Trust</h3>
+              <h3 className="font-headline text-2xl font-black text-white leading-tight">Why Patients Trust Us</h3>
             </div>
 
             <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-2">

@@ -23,13 +23,13 @@ const cardVariants: Variants = {
 export function TestimonialSection() {
   const testimonials = [
     {
-      text: "The diagnostic precision at ClinicalCurator is absolutely unmatched. I finally feel like my biological data is being used to build a proactive health strategy rather than just reacting to symptoms.",
+      text: "The level of care at ClinicalCurator is absolutely unmatched. I finally feel like my doctors are working proactively to keep me healthy, rather than just reacting when I get sick.",
       name: "Dr. Julian Vance",
       role: "Medical Researcher",
       avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80",
     },
     {
-      text: "Quiet, meticulously organized, and exceptionally efficient. The clinical directors took the time to explain the molecular insights behind every recommendation. It is an entirely different level of care.",
+      text: "Quiet, meticulously organized, and exceptionally efficient. The doctors took the time to explain the reasoning behind every recommendation in plain English. It is an entirely different level of care.",
       name: "Sarah Jenkins",
       role: "Lead Design Architect",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
@@ -47,7 +47,7 @@ export function TestimonialSection() {
       avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
     },
     {
-      text: "Having a dedicated medical team that anticipates health risks before they become problems is invaluable. They don't just treat you; they engineer your longevity.",
+      text: "Having a dedicated medical team that catches health risks before they become problems is invaluable. They don't just treat you; they help you live a longer, healthier life.",
       name: "Marcus Chen",
       role: "Technology Founder",
       avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
@@ -70,7 +70,7 @@ export function TestimonialSection() {
         {/* Header / Press Marquee */}
         <div className="text-center mb-20">
           <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase mb-10">
-            Endorsements & Recognition
+            Patient Reviews & Press
           </span>
           
           <style dangerouslySetInnerHTML={{__html: `

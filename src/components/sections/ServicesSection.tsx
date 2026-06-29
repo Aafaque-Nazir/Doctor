@@ -50,14 +50,14 @@ export function ServicesSection() {
         {/* Header */}
         <div className="max-w-3xl mb-20 space-y-4 text-left">
           <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
-            Clinical Specializations
+            Our Medical Services
           </span>
           <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-on-surface leading-tight">
-            Precision Care, <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Scientifically Tailored</span>
+            Exceptional Care, <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Personally Tailored</span>
           </h2>
           <p className="text-on-surface-variant font-medium text-lg leading-relaxed pt-2">
-            A comprehensive spectrum of private medical practices focused on biological optimization, preventative screening, and custom longevity pathways.
+            A wide range of private medical services focused on keeping you healthy, preventing illness, and improving your daily well-being.
           </p>
         </div>
 
@@ -87,10 +87,10 @@ export function ServicesSection() {
 
             <div className="relative z-10 pt-12 md:pt-16">
               <h3 className="font-headline text-2xl md:text-3xl lg:text-4xl font-black mb-4 tracking-tight text-on-surface">
-                Internal Medicine & Diagnostics
+                Internal Medicine & Testing
               </h3>
               <p className="text-on-surface-variant text-base md:text-lg max-w-xl mb-8 leading-relaxed font-medium">
-                Utilizing state-of-the-art AI-assisted screenings and biological markers to identify metabolic, genomic, and cardiac profiles before clinical symptoms present.
+                Using advanced screening and medical testing to identify health issues early, long before you ever feel any symptoms.
               </p>
               <button
                 onClick={scrollToContact}
@@ -115,10 +115,10 @@ export function ServicesSection() {
 
             <div className="relative z-10 pt-16">
               <h3 className="font-headline text-2xl lg:text-3xl font-black mb-3 leading-tight tracking-tight">
-                Neurological Health
+                Brain & Memory Health
               </h3>
               <p className="text-white/70 text-base leading-relaxed font-medium mb-8">
-                Comprehensive cognitive mapping, memory preservation, and preventative neural health strategies engineered for peak cerebral longevity.
+                Complete care for your brain, focusing on memory health, mental clarity, and preventing age-related decline.
               </p>
               <button 
                 onClick={scrollToContact}
@@ -141,10 +141,10 @@ export function ServicesSection() {
 
             <div className="relative z-10 pt-16">
               <h3 className="font-headline text-2xl lg:text-3xl font-black mb-3 leading-tight text-on-surface tracking-tight">
-                Wellness & Longevity
+                Health & Wellness
               </h3>
               <p className="text-on-surface-variant text-base leading-relaxed font-medium mb-8">
-                Bio-identical cellular optimization, executive fitness mapping, and personalized dietary engineering to sustain high performance.
+                Personalized fitness and nutrition plans designed to keep you feeling energized, healthy, and performing at your best.
               </p>
               <button 
                 onClick={scrollToContact}
@@ -175,10 +175,10 @@ export function ServicesSection() {
             <div className="flex-grow flex flex-col justify-between h-full py-2 pr-4 text-left">
               <div>
                 <h3 className="font-headline text-2xl lg:text-3xl font-black mb-3 text-on-surface tracking-tight">
-                  Precision Lab Diagnostics
+                  Advanced Lab Testing
                 </h3>
                 <p className="text-on-surface-variant text-base leading-relaxed font-medium mb-6">
-                  On-site molecular analysis, genetic panels, and blood chemistry telemetry providing immediate data points for precise treatment path adjustment.
+                  Fast, on-site blood testing and lab analysis that gives us the exact information needed to adjust your treatment immediately.
                 </p>
               </div>
               <div className="flex items-center gap-6">
