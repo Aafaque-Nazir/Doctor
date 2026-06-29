@@ -2,7 +2,13 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-[#001524] text-white pt-24 pb-8 overflow-hidden relative">
+    <footer className="bg-[#001524] text-white pt-24 pb-8 overflow-visible relative">
+      {/* Simple Elegant Wavy SVG Transition */}
+      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-20 pointer-events-none">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
+          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#fafafa]"></path>
+        </svg>
+      </div>
       {/* Abstract Background Elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tertiary/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
