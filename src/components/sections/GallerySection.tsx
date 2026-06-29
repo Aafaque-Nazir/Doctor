@@ -1,55 +1,97 @@
+"use client";
+
 import Image from "next/image";
 
 export function GallerySection() {
   const images = [
-    { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80", alt: "Modern Reception" },
-    { src: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80", alt: "Consultation Room" },
-    { src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80", alt: "Advanced Equipment" },
-    { src: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80", alt: "Laboratory" },
+    { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80", alt: "Executive Reception" },
+    { src: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80", alt: "Consultation Suite" },
+    { src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80", alt: "Advanced Imaging" },
+    { src: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80", alt: "Molecular Diagnostics Lab" },
+    { src: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&q=80", alt: "Patient Recovery Suite" },
+    { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80", alt: "VIP Consultation Office" },
   ];
 
+  // Duplicate images for infinite seamless loop
+  const duplicatedImages = [...images, ...images, ...images];
+
   return (
-    <section id="facility" className="py-24 bg-surface-container-lowest">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        
-        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+    <section id="facility" className="py-24 lg:py-32 bg-surface relative overflow-hidden">
+      {/* Decorative top border line */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-outline-variant/60 to-transparent"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 mb-16">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6 text-left">
           <div className="space-y-4 max-w-2xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
-              The Facility
+            <span className="inline-block py-1.5 px-4 rounded-full bg-tertiary/10 text-tertiary font-label text-sm font-bold tracking-widest uppercase">
+              The Environment
             </span>
-            <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface tracking-tight">
-              A Healing Environment
+            <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
+              A Harmonious <br className="hidden md:block"/>
+              Healing Space
             </h2>
           </div>
-          <p className="text-on-surface-variant font-medium max-w-sm md:text-right">
-            Designed to reduce clinical anxiety and promote tranquility, our state-of-the-art facility reflects our commitment to premium care.
+          <p className="text-on-surface-variant text-lg font-medium max-w-md md:text-right leading-relaxed">
+            Designed to eliminate clinical stress. Our facility combines high-end architectural acoustics and natural textures to foster cognitive comfort.
           </p>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {images.map((img, i) => (
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes galleryMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+        .animate-gallery-marquee {
+          animation: galleryMarquee 60s linear infinite;
+          display: flex;
+          width: max-content;
+        }
+        .animate-gallery-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}} />
+
+      {/* Infinite Horizontal Scroll Carousel */}
+      <div className="w-full relative overflow-hidden py-4 select-none">
+        {/* Fading Mask Overlays */}
+        <div className="absolute top-0 left-0 w-16 md:w-48 h-full bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-16 md:w-48 h-full bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none"></div>
+        
+        {/* Marquee Track */}
+        <div className="animate-gallery-marquee flex gap-6">
+          {duplicatedImages.map((img, i) => (
             <div 
               key={i} 
-              className={`relative rounded-2xl overflow-hidden group shadow-lg ${
-                i === 0 || i === 3 ? "lg:col-span-2 h-[300px] md:h-[400px]" : "h-[300px] md:h-[400px]"
-              }`}
+              className="relative w-[220px] md:w-[360px] h-[160px] md:h-[250px] rounded-[1.5rem] overflow-hidden group shadow-[0_15px_40px_rgba(15,23,42,0.04)] border border-outline-variant/65 flex-shrink-0"
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover transition-transform duration-[2s] ease-[0.16, 1, 0.3, 1] group-hover:scale-105"
+                sizes="(max-width: 768px) 220px, 360px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-white font-headline font-bold text-lg tracking-wide drop-shadow-md">
+              
+              {/* Overlay styling for ultra premium editorial shadow */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700 mix-blend-multiply"></div>
+              
+              {/* Text Hover block reveal */}
+              <div className="absolute bottom-6 left-6 right-6 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 text-left">
+                <div className="w-7 h-7 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+                  <span className="material-symbols-outlined text-white text-[14px]">add</span>
+                </div>
+                <p className="text-white font-headline font-black text-lg md:text-xl tracking-tight drop-shadow-md">
                   {img.alt}
+                </p>
+                <p className="text-tertiary text-[9px] font-bold font-label uppercase tracking-widest mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                  Concierge Facility
                 </p>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

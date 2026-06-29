@@ -1,57 +1,83 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-surface relative overflow-hidden">
-      {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+    <section id="about" className="py-24 lg:py-32 bg-surface-container-lowest relative overflow-hidden">
+      {/* Decorative Gradients */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tertiary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none translate-y-1/3 -translate-x-1/4"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           
-          {/* Image Side */}
-          <div className="relative group">
-            <div className="relative h-[500px] md:h-[600px] w-full rounded-[2rem] overflow-hidden shadow-2xl">
+          {/* Left Column: Asymmetric Image Frame (5 Cols) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative group"
+          >
+            <div className="relative h-[480px] md:h-[600px] w-full rounded-[2.5rem] overflow-hidden shadow-[0_30px_80px_rgba(15,23,42,0.1)] border border-outline-variant/30">
               <Image
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80"
-                alt="Head Doctor"
+                src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80"
+                alt="Dr. Jonathan Reynolds, MD"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-[center_15%] transition-transform duration-[1.5s] ease-out group-hover:scale-103"
+                sizes="(max-width: 1024px) 100vw, 40px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent mix-blend-multiply"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent mix-blend-multiply opacity-60"></div>
             </div>
-            {/* Floating Experience Badge */}
-            <div className="absolute -bottom-8 -right-4 md:-right-8 bg-surface-container shadow-xl rounded-2xl p-6 border border-outline-variant animate-fade-in-up">
+            
+            {/* Overlapping Glassmorphic Badge */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute -bottom-6 -right-4 md:-right-6 bg-surface/85 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-3xl p-6 border border-white/10"
+            >
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-[32px]">workspace_premium</span>
+                <div className="w-14 h-14 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+                  <span className="material-symbols-outlined text-[30px]">workspace_premium</span>
                 </div>
                 <div>
-                  <p className="font-headline font-black text-3xl text-on-surface">20+</p>
-                  <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Years of<br/>Excellence</p>
+                  <p className="font-headline font-black text-3xl text-on-surface leading-none">25+</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1.5 font-label leading-tight">
+                    Years of<br/>Clinical Leadership
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Content Side */}
-          <div className="space-y-8 mt-8 lg:mt-0">
+          {/* Right Column: Editorial Details (7 Cols) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 space-y-8 text-left lg:pl-10"
+          >
             <div className="space-y-4">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
-                Meet The Director
+              <span className="inline-block py-1.5 px-4 rounded-full bg-tertiary/10 text-tertiary font-label text-sm font-bold tracking-widest uppercase">
+                Clinical Directorship
               </span>
-              <h2 className="font-headline text-4xl md:text-5xl font-black text-on-surface tracking-tight leading-tight">
-                Dr. Jonathan <br className="hidden md:block"/>
-                <span className="text-primary">Reynolds, MD</span>
+              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tighter leading-tight">
+                Dr. Jonathan <br />
+                <span className="text-tertiary">Reynolds, MD</span>
               </h2>
-              <p className="text-on-surface-variant font-medium uppercase tracking-widest text-xs">
+              <p className="text-secondary font-bold uppercase tracking-widest text-xs font-label">
                 Chief Medical Officer & Lead Diagnostician
               </p>
             </div>
 
-            <div className="space-y-5 text-on-surface-variant/80 font-medium leading-relaxed">
+            <div className="space-y-6 text-on-surface-variant font-medium leading-relaxed text-lg">
               <p>
-                With over two decades of dedicated medical practice, Dr. Reynolds has established ClinicalCurator as the premier destination for highly personalized, advanced healthcare. His philosophy is rooted in the belief that true medicine goes beyond treating symptoms—it’s about understanding the complete biological ecosystem of the individual.
+                With over two decades of dedicated private practice, Dr. Reynolds has established ClinicalCurator as the premier destination for highly personalized, advanced healthcare. His philosophy is rooted in the belief that true medicine goes beyond treating symptoms—it’s about understanding the complete biological ecosystem of the individual.
               </p>
               <p>
                 Trained at the world's most prestigious institutions, his multi-disciplinary approach ensures that every patient receives a tailored strategy, blending cutting-edge diagnostics with profound empathetic care.
@@ -59,24 +85,32 @@ export function AboutSection() {
             </div>
 
             {/* Signature & Credentials */}
-            <div className="pt-6 border-t border-outline-variant flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="font-headline text-3xl font-black text-on-surface/40 italic">
+            <div className="pt-8 border-t border-outline-variant/60 flex flex-col sm:flex-row items-start sm:items-center gap-8">
+              <div className="font-headline text-4xl font-black text-on-surface-variant/30 italic select-none">
                 J. Reynolds
               </div>
               <div className="hidden sm:block w-px h-12 bg-outline-variant"></div>
-              <div className="flex gap-4">
-                <div className="text-xs font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary text-base">verified</span>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                <div className="text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2 font-label">
+                  <span className="material-symbols-outlined text-tertiary text-lg">verified</span>
                   Board Certified
                 </div>
-                <div className="text-xs font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary text-base">school</span>
-                  Harvard Med
+                <div className="text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2 font-label">
+                  <span className="material-symbols-outlined text-tertiary text-lg">school</span>
+                  Harvard Medicine
+                </div>
+                <div className="text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2 font-label">
+                  <span className="material-symbols-outlined text-tertiary text-lg">workspace_premium</span>
+                  Internal Med Fellow
+                </div>
+                <div className="text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2 font-label">
+                  <span className="material-symbols-outlined text-tertiary text-lg">clinical_notes</span>
+                  Consierge Lead
                 </div>
               </div>
             </div>
             
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

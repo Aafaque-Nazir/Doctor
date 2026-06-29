@@ -34,7 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary-fixed selection:text-on-primary-fixed bg-surface text-on-surface`}
+        className={`${inter.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary selection:text-on-primary bg-surface text-on-surface`}
       >
         <MedicalLoader>
           <LenisProvider>{children}</LenisProvider>
