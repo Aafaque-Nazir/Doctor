@@ -161,13 +161,13 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[90] w-full h-[100dvh] bg-[#001524]/98 backdrop-blur-3xl flex flex-col justify-between pt-28 pb-10 px-8 md:hidden overflow-hidden"
+            className="fixed inset-0 z-[90] w-full h-[100dvh] bg-[#001524]/98 backdrop-blur-3xl flex flex-col pt-24 pb-8 px-6 md:hidden overflow-y-auto overscroll-contain"
           >
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-tertiary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-tertiary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 fixed"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 fixed"></div>
 
-            <div className="flex flex-col space-y-6 mt-8 relative z-10 w-full">
+            <div className="flex flex-col space-y-4 mt-6 relative z-10 w-full">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -179,18 +179,18 @@ export function Header() {
                   <Link
                     href={link.href}
                     onClick={(e) => scrollTo(e, link.href)}
-                    className={`flex items-center gap-6 group py-3 border-b border-white/10 ${
+                    className={`flex items-center gap-5 group py-3 border-b border-white/10 ${
                       activeSection === link.href ? "text-tertiary" : "text-white"
                     }`}
                   >
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors duration-300 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300 ${
                       activeSection === link.href ? "bg-tertiary text-white" : "bg-white/5 text-white/50 group-hover:bg-tertiary/20 group-hover:text-tertiary"
                     }`}>
-                      <span className="material-symbols-outlined text-[24px]">
+                      <span className="material-symbols-outlined text-[20px]">
                         {link.icon}
                       </span>
                     </div>
-                    <span className="font-headline text-3xl font-black tracking-tight group-hover:text-tertiary transition-colors">
+                    <span className="font-headline text-[24px] font-black tracking-tight group-hover:text-tertiary transition-colors">
                       {link.label}
                     </span>
                     <span className="material-symbols-outlined ml-auto text-white/20 group-hover:text-tertiary group-hover:translate-x-2 transition-all">
@@ -206,7 +206,7 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="mt-12 relative z-10 w-full space-y-6"
+              className="mt-auto pt-10 pb-4 relative z-10 w-full space-y-4"
             >
               <div className="bg-white/5 rounded-3xl p-6 border border-white/10 flex items-center justify-between">
                 <div>
