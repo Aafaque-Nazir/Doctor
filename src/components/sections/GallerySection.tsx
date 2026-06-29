@@ -6,39 +6,38 @@ export function GallerySection() {
   const images = [
     { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80", alt: "Executive Reception" },
     { src: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80", alt: "Consultation Suite" },
-    { src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80", alt: "Advanced Imaging" },
-    { src: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80", alt: "Molecular Diagnostics Lab" },
+    { src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80", alt: "Advanced Imaging Center" },
+    { src: "https://images.unsplash.com/photo-1551076805-e1869043e561?auto=format&fit=crop&q=80", alt: "Molecular Diagnostics Lab" },
     { src: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&q=80", alt: "Patient Recovery Suite" },
     { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80", alt: "VIP Consultation Office" },
+    { src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80", alt: "Private Phlebotomy Suite" },
+    { src: "https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80", alt: "Neurology Department" },
+    { src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80", alt: "MRI Scanning Facility" },
+    { src: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80", alt: "Wellness & Longevity Center" }
   ];
 
   // Duplicate images for infinite seamless loop
   const duplicatedImages = [...images, ...images, ...images];
 
   return (
-    <section id="facility" className="py-24 lg:py-32 bg-surface relative overflow-hidden">
-      {/* Simple Elegant Wavy SVG Transition */}
-      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-0 pointer-events-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#ffffff]"></path>
-        </svg>
-      </div>
+    <section id="facility" className="py-20 md:py-32 bg-surface relative overflow-hidden">
       {/* Decorative top border line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-outline-variant/60 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-outline/10"></div>
       
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 mb-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10 mb-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 text-left">
           <div className="space-y-4 max-w-2xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-tertiary/10 text-tertiary font-label text-sm font-bold tracking-widest uppercase">
+            <span className="flex items-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+              <span className="w-8 h-px bg-tertiary/50"></span>
               The Environment
             </span>
-            <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
-              A Harmonious <br className="hidden md:block"/>
-              Healing Space
+            <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tracking-tighter leading-tight">
+              A Harmonious <br />
+              <span className="text-primary italic font-light tracking-tight">Healing Space.</span>
             </h2>
           </div>
-          <p className="text-on-surface-variant text-lg font-medium max-w-md md:text-right leading-relaxed">
+          <p className="text-on-surface-variant text-base sm:text-lg font-medium max-w-md leading-relaxed">
             Designed to eliminate clinical stress. Our facility combines high-end architectural acoustics and natural textures to foster cognitive comfort.
           </p>
         </div>
@@ -70,7 +69,7 @@ export function GallerySection() {
           {duplicatedImages.map((img, i) => (
             <div 
               key={i} 
-              className="relative w-[220px] md:w-[360px] h-[160px] md:h-[250px] rounded-[1.5rem] overflow-hidden group shadow-[0_15px_40px_rgba(15,23,42,0.04)] border border-outline-variant/65 flex-shrink-0"
+              className="relative w-[220px] md:w-[360px] h-[160px] md:h-[250px] rounded-2xl overflow-hidden group shadow-[0_10px_30px_rgba(10,25,47,0.03)] border border-outline/10 flex-shrink-0"
             >
               <Image
                 src={img.src}

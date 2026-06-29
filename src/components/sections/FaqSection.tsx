@@ -6,23 +6,35 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     question: "Do you accept my insurance?",
-    answer: "We operate as an out-of-network provider for most major PPO plans. We provide detailed medical receipts that you can submit directly to your insurance carrier for reimbursement. HMOs and Medicaid are not accepted."
+    answer: "We operate as an out-of-network provider for most major PPO plans. Our concierge team provides detailed, codified medical receipts (superbills) that you can submit directly to your insurance carrier for reimbursement. HMOs, Medicare, and Medicaid are not accepted for concierge services."
+  },
+  {
+    question: "What exactly is included in the Concierge Membership?",
+    answer: "Membership includes 24/7 direct cellular access to your dedicated physician, unhurried same-day or next-day appointments, comprehensive annual cardiovascular and neurocognitive baselining, and complete coordination of specialist care globally."
   },
   {
     question: "What should I bring to my initial consultation?",
-    answer: "Please bring a government-issued photo ID, your active insurance card, and copies of any recent medical records, lab assays, or imaging reports from the last 12 months."
+    answer: "Please bring a government-issued photo ID, your active insurance card (for out-of-network claims), and copies of any recent medical records, genomic data, lab assays, or imaging reports from the last 24 months."
   },
   {
     question: "Are telehealth consultations available?",
-    answer: "Yes. We offer secure, virtual consultations for diagnostic reviews, routine follow-ups, and minor inquiries. The initial comprehensive physical exam must be completed in-person at our clinic."
+    answer: "Yes, we offer secure, military-grade encrypted virtual consultations for diagnostic reviews, routine follow-ups, and minor inquiries. However, the initial comprehensive physical examination and baseline testing must be completed in-person at our clinic."
   },
   {
-    question: "How do I access the Patient Portal?",
-    answer: "Upon registration, you will receive an encrypted email link to establish your credentials. The portal gives you 24/7 access to your lab results, direct messaging with your doctor, and quick prescription refills."
+    question: "How do you approach preventative care?",
+    answer: "Our preventative model is strictly data-driven. We utilize whole-body MRI, extensive multi-cancer early detection (MCED) blood testing, metabolic profiling, and advanced lipidology to identify disease markers years before clinical symptoms manifest."
+  },
+  {
+    question: "How do I access the Patient Portal and my results?",
+    answer: "Upon registration, you will receive an encrypted biometric-enabled link to establish your credentials. The proprietary portal gives you 24/7 access to your longitudinal lab results, high-resolution imaging, and direct secure messaging with your medical team."
+  },
+  {
+    question: "Do you coordinate care when I am traveling internationally?",
+    answer: "Absolutely. Our concierge team handles all global medical coordination. Should you require medical attention abroad, we liaise directly with vetted international specialists and arrange emergency medical evacuation if necessary."
   },
   {
     question: "What is your emergency medical protocol?",
-    answer: "For life-threatening emergencies, dial 911 or visit the nearest emergency room immediately. Our patients have direct access to our 24/7 on-call doctor for urgent, non-life-threatening medical advice."
+    answer: "For immediate, life-threatening emergencies, dial 911 or visit the nearest emergency room. For urgent but non-life-threatening clinical issues, our concierge patients have direct access to our 24/7 on-call physician for immediate medical guidance and triage."
   }
 ];
 
@@ -36,37 +48,29 @@ export function FaqSection() {
   const scrollToContact = () => {
     const el = document.querySelector("#contact");
     if (el) {
-      const lenis = (window as any).__lenis;
-      if (lenis) {
-        lenis.scrollTo(el, { offset: -80, duration: 1.4 });
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-surface-container-lowest relative overflow-hidden">
-      {/* Simple Elegant Wavy SVG Transition */}
-      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-0 pointer-events-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#fafafa]"></path>
-        </svg>
-      </div>
-      {/* Decorative top border glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
+    <section id="faq" className="py-20 md:py-32 bg-surface relative overflow-hidden">
+      {/* Decorative top border line */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-outline/10"></div>
+      {/* Decorative background glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
       
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
           
           {/* Left Column: Heading and Support (5 Cols) */}
           <div className="lg:col-span-5 space-y-6 text-left lg:sticky lg:top-32">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
+            <span className="flex items-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+              <span className="w-8 h-px bg-tertiary/50"></span>
               Frequently Asked
             </span>
-            <h2 className="font-headline text-4xl md:text-5xl font-black text-on-surface tracking-tight leading-tight">
+            <h2 className="font-headline text-4xl sm:text-5xl font-black text-on-surface tracking-tighter leading-tight">
               Answering Your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Questions</span>
+              <span className="text-primary italic font-light tracking-tight">Questions.</span>
             </h2>
             <p className="text-on-surface-variant font-medium text-base leading-relaxed">
               If your query is not detailed here, please feel free to reach out to our concierge relations team directly for immediate assistance.
@@ -91,7 +95,7 @@ export function FaqSection() {
                 <div 
                   key={index} 
                   className={`border rounded-2xl transition-all duration-300 overflow-hidden text-left ${
-                    isOpen ? "border-tertiary/40 bg-surface shadow-[0_10px_30px_rgba(15,23,42,0.02)]" : "border-outline-variant bg-surface"
+                    isOpen ? "border-tertiary/40 bg-surface-container-lowest shadow-[0_10px_30px_rgba(10,25,47,0.03)]" : "border-outline/10 bg-surface-container-lowest"
                   }`}
                 >
                   <button

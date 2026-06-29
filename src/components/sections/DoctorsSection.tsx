@@ -35,13 +35,13 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
@@ -51,21 +51,22 @@ const cardVariants: Variants = {
 
 export function DoctorsSection() {
   return (
-    <section id="team" className="py-24 md:py-32 bg-surface-container-lowest relative overflow-hidden">
+    <section id="team" className="py-20 md:py-32 bg-surface relative overflow-hidden">
       {/* Premium Background Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
       
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mb-16 md:mb-24 space-y-5 text-left">
+          <span className="flex items-center gap-3 text-primary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+            <span className="w-8 h-px bg-primary/50"></span>
             Medical Excellence
           </span>
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
-            Our World-Class <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Specialists</span>
+          <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tracking-tighter leading-tight">
+            Our World-Class <br />
+            <span className="text-primary italic font-light tracking-tight">Specialists.</span>
           </h2>
-          <p className="text-on-surface-variant font-medium text-lg leading-relaxed pt-2">
-            Led by globally recognized experts, our clinical team combines profound academic knowledge with deep, personalized patient care.
+          <p className="text-on-surface-variant font-medium text-base sm:text-lg leading-relaxed max-w-xl">
+            Led by highly experienced experts, our medical team combines top-tier academic knowledge with caring, personalized attention for every patient.
           </p>
         </div>
 
@@ -80,50 +81,48 @@ export function DoctorsSection() {
             <motion.div 
               key={doc.id}
               variants={cardVariants}
-              className="group relative bg-surface rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(15,23,42,0.04)] border border-outline-variant hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-2 flex flex-col min-h-[580px]"
+              className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_10px_35px_rgba(10,25,47,0.03)] border border-outline/10 hover:shadow-[0_20px_50px_rgba(10,25,47,0.07)] transition-all duration-500 hover:-translate-y-1.5 flex flex-col min-h-[480px] md:min-h-[550px]"
             >
               {/* Image Container */}
-              <div className="relative h-[340px] w-full overflow-hidden">
+              <div className="relative h-[280px] sm:h-[320px] w-full overflow-hidden">
                 <Image
                   src={doc.image}
                   alt={doc.name}
                   fill
-                  className="object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-[center_20%] transition-transform duration-[1s] ease-out group-hover:scale-103"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/10 to-transparent opacity-85 mix-blend-multiply"></div>
                 
-                {/* Overlay Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end z-10 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="flex gap-2 flex-wrap">
-                    {doc.credentials.map((cred, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-widest uppercase rounded-full">
-                        {cred}
-                      </span>
-                    ))}
-                  </div>
+                {/* Overlay Credentials */}
+                <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 flex-wrap opacity-90">
+                  {doc.credentials.map((cred, idx) => (
+                    <span key={idx} className="px-2.5 py-1 bg-primary/80 backdrop-blur-md border border-white/10 text-white text-[9px] font-bold tracking-widest uppercase rounded">
+                      {cred}
+                    </span>
+                  ))}
                 </div>
               </div>
 
               {/* Text Content */}
-              <div className="p-8 flex flex-col flex-1 bg-surface z-20 relative">
-                <p className="text-secondary font-bold text-sm tracking-widest uppercase mb-2">
+              <div className="p-8 flex flex-col flex-1 relative">
+                <p className="text-tertiary font-bold text-xs tracking-wider uppercase mb-2">
                   {doc.specialty}
                 </p>
                 <h3 className="font-headline text-2xl font-black text-on-surface mb-1">
                   {doc.name}
                 </h3>
-                <p className="text-on-surface-variant font-medium">
+                <p className="text-on-surface-variant text-sm font-medium">
                   {doc.role}
                 </p>
                 
-                {/* Hover Divider & Link */}
-                <div className="mt-auto pt-6 border-t border-outline-variant flex items-center justify-between">
-                  <span className="text-sm font-bold text-on-surface uppercase tracking-widest group-hover:text-primary transition-colors">
-                    View Profile
+                {/* Profile Link */}
+                <div className="mt-auto pt-6 border-t border-outline/10 flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-primary uppercase tracking-widest group-hover:text-tertiary transition-colors">
+                    View Full Profile
                   </span>
-                  <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  <div className="w-9 h-9 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <span className="material-symbols-outlined text-[18px]">east</span>
                   </div>
                 </div>
               </div>

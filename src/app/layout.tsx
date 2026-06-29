@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { MedicalLoader } from "@/components/ui/MedicalLoader";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const manrope = Manrope({
@@ -38,14 +39,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="light [&.dark]:dark">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Material Symbols */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary selection:text-on-primary bg-surface text-on-surface`}
+        className={`${fraunces.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary selection:text-on-primary bg-surface text-on-surface`}
       >
         <MedicalLoader>
           <LenisProvider>{children}</LenisProvider>

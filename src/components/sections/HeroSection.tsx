@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 interface CounterProps {
@@ -20,9 +21,7 @@ function Counter({ value, duration = 2, delay = 0, decimals = 0, suffix = "" }: 
   useEffect(() => {
     if (!isInView) return;
     
-    let timer: NodeJS.Timeout;
-    
-    timer = setTimeout(() => {
+    const timer: NodeJS.Timeout = setTimeout(() => {
       let startTime: number | null = null;
       const startValue = 0;
       
@@ -56,65 +55,53 @@ function Counter({ value, duration = 2, delay = 0, decimals = 0, suffix = "" }: 
 }
 
 export function HeroSection() {
-  const scrollToContact = useCallback(() => {
-    const el = document.querySelector("#contact");
-    if (el) {
-      const lenis = (window as any).__lenis;
-      if (lenis) {
-        lenis.scrollTo(el, { offset: -80, duration: 1.4 });
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, []);
-
-  // The MedicalLoader takes ~2.8s before revealing the page. 
-  // We add this base delay to hero animations so they happen *after* the loader fades out.
   const baseDelay = 2.8;
 
   return (
-    <section className="relative w-full min-h-[100vh] lg:h-[100vh] lg:min-h-[750px] lg:max-h-[1100px] flex flex-col justify-start lg:justify-center overflow-hidden bg-primary">
-      {/* Premium Deep Background Image */}
+    <section className="relative w-full min-h-[100vh] lg:h-[100vh] lg:min-h-[800px] flex flex-col justify-center overflow-hidden bg-surface">
+      {/* Background with Navy Blue Accents */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
+          src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
           alt="Premium clinical facility"
           fill
-          className="object-cover scale-105"
+          sizes="100vw"
+          className="object-cover opacity-[0.15] mix-blend-luminosity grayscale"
           priority
         />
-        {/* Very dark blue overlay for high contrast text */}
-        <div className="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
-        {/* Soft radial and linear gradients for designer-level framing */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/95 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+        {/* Navy Blue Glow Element */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none -translate-y-1/4 translate-x-1/4"></div>
       </div>
 
-      {/* Content wrapper */}
-      <div className="px-6 lg:px-12 max-w-7xl mx-auto w-full relative z-10 pt-32 pb-20 lg:pt-32 lg:pb-20 mt-auto mb-auto">
+      <div className="px-4 md:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10 pt-32 pb-20 mt-auto mb-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Headline and Actions */}
-          <div className="lg:col-span-7 space-y-8 text-left">
-            <div className="space-y-4">
-              <motion.p
+          <div className="lg:col-span-7 text-left space-y-8 lg:pr-8">
+            <div className="space-y-5">
+              <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: baseDelay, ease: "easeOut" }}
-                className="text-xs font-bold tracking-widest text-tertiary uppercase font-label"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10"
               >
-                Private Medical Care & Diagnostics
-              </motion.p>
+                <span className="w-2 h-2 rounded-full bg-primary"></span>
+                <span className="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase font-label">
+                  Accepting New Patients
+                </span>
+              </motion.div>
               
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: baseDelay + 0.1, ease: "easeOut" }}
-                className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05]"
+                className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black text-on-surface tracking-tighter leading-[1.05]"
               >
-                Medical Care, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-                  Elevated.
+                Expert Medical Care, <br />
+                <span className="text-primary">
+                  When You Need It.
                 </span>
               </motion.h1>
             </div>
@@ -123,31 +110,49 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: baseDelay + 0.2, ease: "easeOut" }}
-              className="text-lg md:text-xl text-white/70 max-w-xl leading-relaxed font-medium"
+              className="text-base sm:text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed font-medium"
             >
-              Experience a private medical practice focused entirely on you. We combine advanced medical care with premium service to keep you healthy for life.
+              Experience a dedicated medical practice focused on your health and well-being. We provide comprehensive consultations, accurate diagnostics, and personalized treatment plans.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: baseDelay + 0.3, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-center gap-4 pt-2"
+              className="flex flex-col sm:flex-row items-center gap-4 pt-4"
             >
-              <button
-                onClick={scrollToContact}
-                className="w-full sm:w-auto bg-tertiary text-white px-8 py-4 rounded-full font-label text-xs font-bold tracking-widest uppercase shadow-[0_10px_35px_rgba(180,133,69,0.35)] hover:bg-tertiary/90 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+              <Link
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const lenis = (window as unknown as Window & { __lenis?: { scrollTo: (target: string) => void } }).__lenis;
+                  if (lenis) {
+                    lenis.scrollTo("#contact");
+                  } else {
+                    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-label text-xs font-bold tracking-widest uppercase shadow-[0_15px_30px_rgba(10,25,47,0.25)] hover:bg-primary-container hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
               >
                 Book Appointment
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </button>
-              <a
-                href="tel:+15558880000"
-                className="w-full sm:w-auto bg-white/5 backdrop-blur-md border border-white/10 text-white px-8 py-4 rounded-full font-label text-xs font-bold tracking-widest uppercase hover:bg-white/15 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
+              </Link>
+              
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const lenis = (window as unknown as Window & { __lenis?: { scrollTo: (target: string) => void } }).__lenis;
+                  if (lenis) {
+                    lenis.scrollTo("#services");
+                  } else {
+                    document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="w-full sm:w-auto bg-surface text-primary border border-primary/20 px-8 py-4 rounded-xl font-label text-xs font-bold tracking-widest uppercase hover:bg-primary/5 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <span className="material-symbols-outlined text-tertiary text-[18px]">emergency</span>
-                Emergency Line
-              </a>
+                View Our Services
+              </Link>
             </motion.div>
 
             {/* Premium Trust Badges */}
@@ -155,81 +160,80 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: baseDelay + 0.5 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-xl"
+              className="flex flex-wrap items-center gap-6 pt-8 max-w-xl"
             >
-              <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
-                <span className="material-symbols-outlined text-tertiary text-lg">verified_user</span>
-                Private Care
+              <div className="flex items-center gap-2 text-on-surface-variant text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
+                <span className="material-symbols-outlined text-primary text-lg">verified_user</span>
+                Certified Doctors
               </div>
-              <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
-                <span className="material-symbols-outlined text-tertiary text-lg">shield</span>
-                Zero Wait Times
+              <div className="w-1 h-1 rounded-full bg-outline"></div>
+              <div className="flex items-center gap-2 text-on-surface-variant text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
+                <span className="material-symbols-outlined text-primary text-lg">schedule</span>
+                No Wait Times
               </div>
-              <div className="flex items-center gap-2 text-white/50 text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label">
-                <span className="material-symbols-outlined text-tertiary text-lg">science</span>
-                Advanced Testing
+              <div className="w-1 h-1 rounded-full bg-outline hidden sm:block"></div>
+              <div className="flex items-center gap-2 text-on-surface-variant text-[10px] sm:text-xs font-bold tracking-wider uppercase font-label w-full sm:w-auto">
+                <span className="material-symbols-outlined text-primary text-lg">science</span>
+                In-House Lab
               </div>
             </motion.div>
           </div>
 
-          {/* Right Column: Elegant Translucent Statistics Panel */}
+          {/* Right Column: Floating Interactive Cards */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: baseDelay + 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 md:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.3)] space-y-8"
+            className="lg:col-span-5 relative h-full min-h-[400px] hidden md:block"
           >
-            <div className="space-y-1">
-              <p className="text-[10px] font-bold tracking-widest text-tertiary uppercase font-label">Practice Overview</p>
-              <h3 className="font-headline text-2xl font-black text-white leading-tight">Why Patients Trust Us</h3>
+            {/* Background Shape */}
+            <div className="absolute inset-0 bg-primary rounded-br-[100px] rounded-tl-[100px] opacity-5 transform rotate-3 scale-95 origin-center"></div>
+            <div className="absolute inset-0 bg-primary/10 rounded-br-[100px] rounded-tl-[100px] transform -rotate-2 scale-100 origin-center"></div>
+
+            {/* Main Floating Image */}
+            <div className="absolute inset-4 rounded-br-[80px] rounded-tl-[80px] overflow-hidden shadow-[0_20px_50px_rgba(10,25,47,0.15)] z-10">
+              <Image
+                src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80"
+                alt="Modern Medical Consultation"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-2">
-              <div className="space-y-1">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-headline font-black text-white">
-                  <Counter value={25} suffix="+" delay={baseDelay + 0.5} />
-                </p>
-                <p className="text-[9px] sm:text-[10px] font-bold tracking-widest text-white/50 uppercase font-label leading-normal">
-                  Expert Physicians
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-headline font-black text-white">
-                  <Counter value={99.8} decimals={1} suffix="%" delay={baseDelay + 0.6} />
-                </p>
-                <p className="text-[9px] sm:text-[10px] font-bold tracking-widest text-white/50 uppercase font-label leading-normal">
-                  Diagnostic Accuracy
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-headline font-black text-white">
-                  <Counter value={10} suffix="k+" delay={baseDelay + 0.7} />
-                </p>
-                <p className="text-[9px] sm:text-[10px] font-bold tracking-widest text-white/50 uppercase font-label leading-normal">
-                  Patients Served
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-headline font-black text-white">
-                  <Counter value={100} suffix="%" delay={baseDelay + 0.8} />
-                </p>
-                <p className="text-[9px] sm:text-[10px] font-bold tracking-widest text-white/50 uppercase font-label leading-normal">
-                  Patient Discretion
-                </p>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
-                <span className="material-symbols-outlined text-[24px]">workspace_premium</span>
+            {/* Floating Glass Widget 1: Rating */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: baseDelay + 0.8, duration: 0.6 }}
+              className="absolute -left-12 top-20 bg-surface/90 backdrop-blur-xl border border-white/50 p-4 rounded-2xl shadow-[0_15px_35px_rgba(10,25,47,0.1)] z-20 flex items-center gap-4"
+            >
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-inner">
+                <span className="material-symbols-outlined text-[24px]">star</span>
               </div>
               <div>
-                <p className="text-xs font-bold text-white uppercase tracking-wider font-label">Director Certified</p>
-                <p className="text-[10px] font-medium text-white/50 mt-0.5 font-label">Harvard & Johns Hopkins Fellows</p>
+                <p className="font-headline font-black text-xl text-on-surface leading-none">
+                  <Counter value={4.9} decimals={1} delay={baseDelay + 1} /> / 5
+                </p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1 font-label">Patient Rating</p>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
+            {/* Floating Glass Widget 2: Fast Response */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: baseDelay + 1, duration: 0.6 }}
+              className="absolute -right-8 bottom-24 bg-primary text-white p-5 rounded-3xl shadow-[0_20px_40px_rgba(10,25,47,0.25)] z-20 max-w-[200px]"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-2 h-2 rounded-full bg-white"></div>
+                <span className="text-[9px] font-bold uppercase tracking-widest font-label text-white/70">Availability</span>
+              </div>
+              <p className="font-headline font-bold text-lg leading-tight">Walk-ins & Same-Day Visits Welcome.</p>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

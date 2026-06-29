@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-[#001524] text-white pt-24 pb-8 overflow-visible relative">
+    <footer className="bg-[#001524] text-white pt-24 pb-8 overflow-hidden relative">
       {/* Simple Elegant Wavy SVG Transition */}
-      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-20 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-20 pointer-events-none">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
           <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#fafafa]"></path>
         </svg>
@@ -40,10 +40,9 @@ export function Footer() {
           <div className="space-y-8 lg:pl-10">
             <h4 className="font-headline font-bold text-lg tracking-wide uppercase text-white/90">Quick Links</h4>
             <ul className="space-y-4 text-sm text-white/60 font-medium">
-              <li><Link href="#services" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Specialized Services</Link></li>
-              <li><Link href="#testimonials" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Global Recognition</Link></li>
-              <li><Link href="#contact" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Book Consultation</Link></li>
-              <li><Link href="#" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Telehealth Login</Link></li>
+              <li><Link href="/services" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Specialized Services</Link></li>
+              <li><Link href="/about" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">About Our Clinic</Link></li>
+              <li><Link href="/contact" className="hover:text-primary hover:translate-x-1 inline-block transition-all duration-300">Book Consultation</Link></li>
             </ul>
           </div>
 

@@ -27,32 +27,30 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-surface relative">
-      {/* Simple Elegant Wavy SVG Transition */}
-      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-0 pointer-events-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#ffffff]"></path>
-        </svg>
-      </div>
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="contact" className="py-20 md:py-32 bg-surface relative">
+      {/* Decorative top border line */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-outline/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16 text-left">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12 md:mb-16 text-left">
           <div className="max-w-2xl space-y-4">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase">
+            <span className="flex items-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
+              <span className="w-8 h-px bg-tertiary/50"></span>
               Patient Registration
             </span>
-            <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
-              Begin Your <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Journey</span>
+            <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tracking-tighter leading-tight">
+              Begin Your <br />
+              <span className="text-primary italic font-light tracking-tight">Journey.</span>
             </h2>
           </div>
-          <p className="text-on-surface-variant font-medium max-w-sm md:text-right leading-relaxed text-base">
+          <p className="text-on-surface-variant font-medium max-w-sm leading-relaxed text-base">
             Reach out to our team today. We provide private consultations and highly personalized medical care.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column: Practice Details (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
@@ -62,13 +60,13 @@ export function ContactSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-primary text-white rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(15,23,42,0.12)] relative overflow-hidden flex flex-col justify-between text-left"
+              className="bg-primary text-white rounded-2xl p-8 md:p-10 shadow-[0_20px_50px_rgba(10,25,47,0.15)] relative overflow-hidden flex flex-col justify-between text-left"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[60px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
               
               <div>
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-8 border border-white/20">
-                  <span className="material-symbols-outlined text-[28px] text-tertiary">location_on</span>
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8 border border-white/15">
+                  <span className="material-symbols-outlined text-[24px] text-tertiary">location_on</span>
                 </div>
                 
                 <h3 className="font-headline text-2xl lg:text-3xl font-black mb-4 tracking-tight">Main Facility</h3>
@@ -96,7 +94,7 @@ export function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-surface-container-lowest rounded-[2rem] p-8 border border-outline-variant shadow-[0_8px_30px_rgba(15,23,42,0.02)]"
+                className="bg-surface-container-lowest rounded-2xl p-8 border border-outline/10 shadow-[0_10px_30px_rgba(10,25,47,0.02)]"
               >
                 <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary border border-primary/5">
                   <span className="material-symbols-outlined text-[22px]">call</span>
@@ -111,7 +109,7 @@ export function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-surface-container-lowest rounded-[2rem] p-8 border border-outline-variant shadow-[0_8px_30px_rgba(15,23,42,0.02)]"
+                className="bg-surface-container-lowest rounded-2xl p-8 border border-outline/10 shadow-[0_10px_30px_rgba(10,25,47,0.02)]"
               >
                 <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary border border-primary/5">
                   <span className="material-symbols-outlined text-[22px]">schedule</span>
@@ -130,7 +128,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(15,23,42,0.03)] flex flex-col justify-center relative overflow-hidden"
+            className="lg:col-span-7 bg-surface-container-lowest border border-outline/10 rounded-2xl p-8 md:p-12 shadow-[0_20px_50px_rgba(10,25,47,0.03)] flex flex-col justify-center relative overflow-hidden"
           >
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
@@ -156,7 +154,7 @@ export function ContactSection() {
                         placeholder="Johnathan Doe"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-surface-container-low border border-outline-variant/60 focus:border-primary/50 rounded-xl px-5 py-3.5 text-on-surface placeholder-on-surface-variant/40 text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
+                        className="w-full bg-surface border border-outline/15 focus:border-primary/50 rounded-lg px-5 py-3.5 text-on-surface placeholder-on-surface-variant/30 text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
                       />
                     </div>
 
@@ -169,7 +167,7 @@ export function ContactSection() {
                         placeholder="john@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-surface-container-low border border-outline-variant/60 focus:border-primary/50 rounded-xl px-5 py-3.5 text-on-surface placeholder-on-surface-variant/40 text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
+                        className="w-full bg-surface border border-outline/15 focus:border-primary/50 rounded-lg px-5 py-3.5 text-on-surface placeholder-on-surface-variant/30 text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
                       />
                     </div>
 
@@ -180,7 +178,7 @@ export function ContactSection() {
                         required
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full bg-surface-container-low border border-outline-variant/60 focus:border-primary/50 rounded-xl px-5 py-3.5 text-on-surface text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
+                        className="w-full bg-surface border border-outline/15 focus:border-primary/50 rounded-lg px-5 py-3.5 text-on-surface text-sm font-medium focus:outline-none focus:ring-0 transition-colors"
                       >
                         <option value="" disabled>Select a service...</option>
                         <option value="Diagnostics">General Checkup & Diagnostics</option>
@@ -198,7 +196,7 @@ export function ContactSection() {
                         placeholder="Provide details of your symptoms or request..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-surface-container-low border border-outline-variant/60 focus:border-primary/50 rounded-xl px-5 py-3.5 text-on-surface placeholder-on-surface-variant/40 text-sm font-medium focus:outline-none focus:ring-0 transition-colors resize-none"
+                        className="w-full bg-surface border border-outline/15 focus:border-primary/50 rounded-lg px-5 py-3.5 text-on-surface placeholder-on-surface-variant/30 text-sm font-medium focus:outline-none focus:ring-0 transition-colors resize-none"
                       />
                     </div>
                   </div>

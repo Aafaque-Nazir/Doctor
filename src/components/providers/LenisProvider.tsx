@@ -18,11 +18,11 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     requestAnimationFrame(raf);
 
     // Expose lenis globally so anchor clicks can use it
-    (window as any).__lenis = lenis;
+    (window as unknown as Window & { __lenis: unknown }).__lenis = lenis;
 
     return () => {
       lenis.destroy();
-      delete (window as any).__lenis;
+      delete (window as unknown as Window & { __lenis?: unknown }).__lenis;
     };
   }, []);
 

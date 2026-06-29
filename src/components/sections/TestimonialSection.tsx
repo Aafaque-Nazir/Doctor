@@ -1,24 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-  }
-};
 
 export function TestimonialSection() {
   const testimonials = [
@@ -55,22 +37,18 @@ export function TestimonialSection() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 px-6 bg-surface-container-lowest overflow-hidden relative">
-      {/* Simple Elegant Wavy SVG Transition */}
-      <div className="absolute top-0 left-0 w-full overflow-visible leading-[0] z-0 pointer-events-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] md:w-full h-[30px] md:h-[60px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.05)]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className="fill-[#fafafa]"></path>
-        </svg>
-      </div>
+    <section id="testimonials" className="py-20 md:py-32 px-4 md:px-6 lg:px-8 bg-surface overflow-hidden relative">
       {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header / Press Marquee */}
-        <div className="text-center mb-20">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-label text-sm font-bold tracking-widest uppercase mb-10">
+        <div className="text-center mb-16">
+          <span className="flex items-center justify-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase mb-8">
+            <span className="w-8 h-px bg-tertiary/50"></span>
             Patient Reviews & Press
+            <span className="w-8 h-px bg-tertiary/50"></span>
           </span>
           
           <style dangerouslySetInnerHTML={{__html: `
@@ -134,10 +112,10 @@ export function TestimonialSection() {
             {[...testimonials, ...testimonials].map((test, idx) => (
               <div 
                 key={idx}
-                className="w-[300px] md:w-[420px] p-6 md:p-8 bg-surface rounded-[2rem] relative group border border-outline-variant hover:border-primary/20 shadow-[0_8px_30px_rgba(15,23,42,0.02)] hover:shadow-[0_25px_60px_rgba(15,23,42,0.06)] transition-all duration-500 flex flex-col justify-between shrink-0"
+                className="w-[300px] md:w-[420px] p-6 md:p-8 bg-surface-container-lowest rounded-2xl relative group border border-outline/10 hover:border-primary/20 shadow-[0_10px_35px_rgba(10,25,47,0.03)] hover:shadow-[0_25px_60px_rgba(10,25,47,0.08)] transition-all duration-500 flex flex-col justify-between shrink-0"
               >
                 {/* Quote Mark Overlay */}
-                <div className="absolute top-6 right-6 opacity-[0.04] group-hover:opacity-[0.08] transition-all duration-700 pointer-events-none select-none">
+                <div className="absolute top-6 right-6 opacity-[0.03] group-hover:opacity-[0.06] transition-all duration-700 pointer-events-none select-none">
                   <span className="material-symbols-outlined text-[60px] leading-none text-primary">format_quote</span>
                 </div>
                 
@@ -150,12 +128,12 @@ export function TestimonialSection() {
 
                 {/* Message */}
                 <p className="text-sm md:text-base font-medium text-on-surface-variant mb-6 leading-relaxed tracking-tight relative z-10 flex-grow">
-                  "{test.text}"
+                  &ldquo;{test.text}&rdquo;
                 </p>
                 
                 {/* Profile details */}
-                <div className="flex items-center gap-3 pt-5 border-t border-outline-variant/60 relative z-10 shrink-0">
-                  <div className="w-10 h-10 relative rounded-full overflow-hidden border border-outline-variant shadow-sm shrink-0">
+                <div className="flex items-center gap-3 pt-5 border-t border-outline/10 relative z-10 shrink-0">
+                  <div className="w-10 h-10 relative rounded-full overflow-hidden border border-outline/10 shadow-sm shrink-0">
                     <Image
                       alt={test.name}
                       className="w-full h-full object-cover"
