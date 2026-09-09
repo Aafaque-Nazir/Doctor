@@ -1,158 +1,88 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "I was super nervous about getting veneers because I didn't want bulky, fake-looking teeth. Dr. Sterling listened to exactly what I wanted and made them look completely natural. I finally smile in photos without feeling self-conscious.",
+    author: "Elena Rostova",
+    detail: "Porcelain Veneers",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
+  },
+  {
+    quote:
+      "Had terrible tooth pain early on a Friday morning. They got me into a chair within an hour. The numbing didn't hurt at all, and they fixed the issue right away. Honestly the easiest, least stressful dental visit I've ever had.",
+    author: "Marcus Chen",
+    detail: "Emergency Toothache Relief",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
+  },
+  {
+    quote:
+      "I've hated going to the dentist my whole life. The team here put on Netflix, gave me headphones, and checked in on me every few minutes to make sure I was okay. Did my entire Invisalign treatment here without any stress.",
+    author: "Sarah Jenkins",
+    detail: "Invisalign & Routine Cleanings",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
+  },
+];
 
 export function TestimonialSection() {
-  const testimonials = [
-    {
-      text: "The level of care at ClinicalCurator is absolutely unmatched. I finally feel like my doctors are working proactively to keep me healthy, rather than just reacting when I get sick.",
-      name: "Dr. Julian Vance",
-      role: "Medical Researcher",
-      avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80",
-    },
-    {
-      text: "Quiet, meticulously organized, and exceptionally efficient. The doctors took the time to explain the reasoning behind every recommendation in plain English. It is an entirely different level of care.",
-      name: "Sarah Jenkins",
-      role: "Lead Design Architect",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
-    },
-    {
-      text: "I travel extensively for work and rely on a healthcare partner that can act globally. Their concierge team handled my emergency abroad flawlessly. True peace of mind.",
-      name: "Arthur Pendelton",
-      role: "Global Executive",
-      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
-    },
-    {
-      text: "An unparalleled experience from the moment you step in. The attention to detail in the clinical facility perfectly matches the sophistication of their medical approach.",
-      name: "Elena Rostova",
-      role: "Philanthropist",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
-    },
-    {
-      text: "Having a dedicated medical team that catches health risks before they become problems is invaluable. They don't just treat you; they help you live a longer, healthier life.",
-      name: "Marcus Chen",
-      role: "Technology Founder",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
-    }
-  ];
-
   return (
-    <section id="testimonials" className="py-20 md:py-32 px-4 md:px-6 lg:px-8 bg-surface overflow-hidden relative">
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
-      
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="testimonials" className="py-20 md:py-28 bg-slate-50/50 border-b border-slate-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header / Press Marquee */}
-        <div className="text-center mb-16">
-          <span className="flex items-center justify-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase mb-8">
-            <span className="w-8 h-px bg-tertiary/50"></span>
-            Patient Reviews & Press
-            <span className="w-8 h-px bg-tertiary/50"></span>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+          <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
+            Patient Stories
           </span>
-          
-          <style dangerouslySetInnerHTML={{__html: `
-            @keyframes marquee {
-              0% { transform: translateX(0%); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-marquee {
-              animation: marquee 35s linear infinite;
-              display: flex;
-              width: max-content;
-            }
-            .animate-marquee:hover {
-              animation-play-state: paused;
-            }
-          `}} />
-
-          {/* Marquee Wrapper */}
-          <div className="overflow-hidden w-full relative group py-2 border-y border-outline-variant/30 bg-surface-container-low/40 rounded-2xl">
-            {/* Fading Edges */}
-            <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="animate-marquee opacity-30 group-hover:opacity-60 transition-opacity duration-700 grayscale">
-              {[...Array(2)].map((_, index) => (
-                <div key={index} className="flex items-center gap-16 md:gap-32 pr-16 md:pr-32 shrink-0">
-                  <span className="font-headline text-lg md:text-xl font-black italic tracking-wide">HEALTHLINE</span>
-                  <span className="font-headline text-lg md:text-xl font-black tracking-tighter">MedCenter</span>
-                  <span className="font-headline text-lg md:text-xl font-bold">BIOTECH.</span>
-                  <span className="font-headline text-lg md:text-xl font-black">NATURE</span>
-                  <span className="font-headline text-lg md:text-xl font-bold uppercase tracking-widest">GLOBAL HEALTH</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
+            Hear from our patients.
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Real feedback from people who used to hate going to the dentist.
+          </p>
         </div>
 
-        {/* Infinite Reverse Scroll Carousel */}
-        <div className="w-full relative overflow-hidden py-4 select-none mt-12">
-          {/* Fading Mask Overlays */}
-          <div className="absolute top-0 left-0 w-16 md:w-48 h-full bg-gradient-to-r from-surface-container-lowest to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-16 md:w-48 h-full bg-gradient-to-l from-surface-container-lowest to-transparent z-20 pointer-events-none"></div>
-          
-          <style dangerouslySetInnerHTML={{__html: `
-            @keyframes testimonialMarqueeReverse {
-              0% { transform: translateX(-50%); }
-              100% { transform: translateX(0%); }
-            }
-            .animate-testimonial-marquee {
-              animation: testimonialMarqueeReverse 50s linear infinite;
-              display: flex;
-              width: max-content;
-            }
-            .animate-testimonial-marquee:hover {
-              animation-play-state: paused;
-            }
-          `}} />
+        {/* 3-Column Testimonial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {TESTIMONIALS.map((t, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="p-7 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between space-y-6"
+            >
+              <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                &ldquo;{t.quote}&rdquo;
+              </p>
 
-          {/* Marquee Track */}
-          <div className="animate-testimonial-marquee gap-6 md:gap-8">
-            {[...testimonials, ...testimonials].map((test, idx) => (
-              <div 
-                key={idx}
-                className="w-[300px] md:w-[420px] p-6 md:p-8 bg-surface-container-lowest rounded-2xl relative group border border-outline/10 hover:border-primary/20 shadow-[0_10px_35px_rgba(10,25,47,0.03)] hover:shadow-[0_25px_60px_rgba(10,25,47,0.08)] transition-all duration-500 flex flex-col justify-between shrink-0"
-              >
-                {/* Quote Mark Overlay */}
-                <div className="absolute top-6 right-6 opacity-[0.03] group-hover:opacity-[0.06] transition-all duration-700 pointer-events-none select-none">
-                  <span className="material-symbols-outlined text-[60px] leading-none text-primary">format_quote</span>
+              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                  <Image
+                    src={t.avatar}
+                    alt={t.author}
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
                 </div>
-                
-                {/* Stars */}
-                <div className="flex items-center gap-1 text-tertiary mb-4 relative z-10">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <span key={i} className="material-symbols-outlined text-[14px] fill-current">star</span>
-                  ))}
-                </div>
-
-                {/* Message */}
-                <p className="text-sm md:text-base font-medium text-on-surface-variant mb-6 leading-relaxed tracking-tight relative z-10 flex-grow">
-                  &ldquo;{test.text}&rdquo;
-                </p>
-                
-                {/* Profile details */}
-                <div className="flex items-center gap-3 pt-5 border-t border-outline/10 relative z-10 shrink-0">
-                  <div className="w-10 h-10 relative rounded-full overflow-hidden border border-outline/10 shadow-sm shrink-0">
-                    <Image
-                      alt={test.name}
-                      className="w-full h-full object-cover"
-                      src={test.avatar}
-                      fill
-                      sizes="40px"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-on-surface font-headline leading-tight">{test.name}</h4>
-                    <p className="text-[9px] text-tertiary uppercase tracking-widest font-bold mt-0.5 font-label">
-                      {test.role}
-                    </p>
-                  </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 tracking-tight leading-tight">
+                    {t.author}
+                  </h4>
+                  <p className="text-xs text-slate-500 font-medium">
+                    {t.detail}
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );

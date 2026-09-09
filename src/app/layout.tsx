@@ -1,34 +1,32 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import { LenisProvider } from "@/components/providers/LenisProvider";
-import { MedicalLoader } from "@/components/ui/MedicalLoader";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
-});
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "ClinicalCurator | Elite Precision Medicine",
-  description: "Advanced, highly-personalized clinical care and concierge medicine designed for the modern individual.",
+  title: "Aura Dental & Smile Studio | Modern, Pain-Free Dentistry",
+  description: "Experience gentle, aesthetic dentistry in New York. Specializing in porcelain veneers, Invisalign clear aligners, pain-free hygiene cleanings, and same-day dental emergencies.",
+  keywords: [
+    "Dentist New York",
+    "Cosmetic Dentistry",
+    "Porcelain Veneers",
+    "Invisalign Provider",
+    "Dental Implants",
+    "Pain-Free Dentist",
+    "Emergency Dental Care",
+  ],
   openGraph: {
-    title: "ClinicalCurator | Elite Precision Medicine",
-    description: "Setting the benchmark for advanced, highly-personalized clinical care.",
+    title: "Aura Dental & Smile Studio | Modern, Pain-Free Dentistry",
+    description: "Gentle aesthetic dentistry, porcelain veneers, Invisalign, and comprehensive family dental care.",
     type: "website",
     locale: "en_US",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ClinicalCurator",
-    description: "The future of personalized concierge medicine.",
-  }
 };
 
 export default function RootLayout({
@@ -37,23 +35,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light [&.dark]:dark">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Material Symbols */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..500,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
       <body
-        className={`${fraunces.variable} ${manrope.variable} antialiased min-h-screen flex flex-col font-body selection:bg-primary selection:text-on-primary bg-surface text-on-surface`}
+        suppressHydrationWarning
+        className={`${manrope.variable} font-body antialiased min-h-screen flex flex-col bg-surface text-on-surface`}
       >
-        <MedicalLoader>
-          <LenisProvider>{children}</LenisProvider>
-        </MedicalLoader>
+        <LenisProvider>{children}</LenisProvider>
       </body>
     </html>
   );

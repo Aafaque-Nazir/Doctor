@@ -3,11 +3,11 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { SmileGallerySection } from "@/components/sections/SmileGallerySection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
 import { DoctorsSection } from "@/components/sections/DoctorsSection";
-import { GallerySection } from "@/components/sections/GallerySection";
 import { FaqSection } from "@/components/sections/FaqSection";
 
 export default function Home() {
@@ -18,9 +18,9 @@ export default function Home() {
         <HeroSection />
         <WhyChooseUsSection />
         <ServicesSection />
+        <SmileGallerySection />
         <AboutSection />
         <DoctorsSection />
-        <GallerySection />
         <TestimonialSection />
         <FaqSection />
         <ContactSection />

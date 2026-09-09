@@ -2,40 +2,39 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-const faqs = [
+const FAQS = [
   {
-    question: "Do you accept my insurance?",
-    answer: "We operate as an out-of-network provider for most major PPO plans. Our concierge team provides detailed, codified medical receipts (superbills) that you can submit directly to your insurance carrier for reimbursement. HMOs, Medicare, and Medicaid are not accepted for concierge services."
+    question: "Will the treatment hurt?",
+    answer:
+      "No. We use modern, gentle numbing techniques that kick in smoothly without the sharp pinch of old-school needles. If you ever feel any discomfort or need a breather, just raise your hand and we stop immediately.",
   },
   {
-    question: "What exactly is included in the Concierge Membership?",
-    answer: "Membership includes 24/7 direct cellular access to your dedicated physician, unhurried same-day or next-day appointments, comprehensive annual cardiovascular and neurocognitive baselining, and complete coordination of specialist care globally."
+    question: "Do you take insurance? How much will it cost?",
+    answer:
+      "Yes, we accept all major PPO dental plans (Delta Dental, Cigna, MetLife, Aetna, Guardian, etc.) and file claims for you. We check your benefits before any work starts so you never get a surprise bill. For cosmetic treatments, we offer 0% interest monthly payment options.",
   },
   {
-    question: "What should I bring to my initial consultation?",
-    answer: "Please bring a government-issued photo ID, your active insurance card (for out-of-network claims), and copies of any recent medical records, genomic data, lab assays, or imaging reports from the last 24 months."
+    question: "What should I do if I have a toothache or dental emergency?",
+    answer:
+      "Call us right away at (555) 888-3368. We keep slots open every day specifically for broken teeth, bad toothaches, or lost fillings so we can see you and get you out of pain the same day.",
   },
   {
-    question: "Are telehealth consultations available?",
-    answer: "Yes, we offer secure, military-grade encrypted virtual consultations for diagnostic reviews, routine follow-ups, and minor inquiries. However, the initial comprehensive physical examination and baseline testing must be completed in-person at our clinic."
+    question: "How long does Invisalign take?",
+    answer:
+      "Most people finish in 6 to 12 months. On your first visit, we do a quick 3D scan of your teeth and show you a 3D preview on screen of what your smile will look like before you decide to start.",
   },
   {
-    question: "How do you approach preventative care?",
-    answer: "Our preventative model is strictly data-driven. We utilize whole-body MRI, extensive multi-cancer early detection (MCED) blood testing, metabolic profiling, and advanced lipidology to identify disease markers years before clinical symptoms manifest."
+    question: "I get really nervous at the dentist. Can you help?",
+    answer:
+      "Definitely. Many of our patients feel the exact same way. We have headphones, TV screens on the ceiling, warm blankets, and laughing gas to help you stay calm and comfortable the whole time.",
   },
   {
-    question: "How do I access the Patient Portal and my results?",
-    answer: "Upon registration, you will receive an encrypted biometric-enabled link to establish your credentials. The proprietary portal gives you 24/7 access to your longitudinal lab results, high-resolution imaging, and direct secure messaging with your medical team."
+    question: "How long do veneers last, and do they look fake?",
+    answer:
+      "When done well, porcelain veneers last 15 to 20 years or more. We custom-color and shape each one to match your facial features and natural teeth, so they look clean and bright—never thick, chalky, or fake.",
   },
-  {
-    question: "Do you coordinate care when I am traveling internationally?",
-    answer: "Absolutely. Our concierge team handles all global medical coordination. Should you require medical attention abroad, we liaise directly with vetted international specialists and arrange emergency medical evacuation if necessary."
-  },
-  {
-    question: "What is your emergency medical protocol?",
-    answer: "For immediate, life-threatening emergencies, dial 911 or visit the nearest emergency room. For urgent but non-life-threatening clinical issues, our concierge patients have direct access to our 24/7 on-call physician for immediate medical guidance and triage."
-  }
 ];
 
 export function FaqSection() {
@@ -45,83 +44,72 @@ export function FaqSection() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const scrollToContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section id="faq" className="py-20 md:py-32 bg-surface relative overflow-hidden">
-      {/* Decorative top border line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-outline/10"></div>
-      {/* Decorative background glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
+    <section id="faq" className="py-20 md:py-28 bg-white border-b border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Heading and Support (5 Cols) */}
-          <div className="lg:col-span-5 space-y-6 text-left lg:sticky lg:top-32">
-            <span className="flex items-center gap-3 text-tertiary font-label text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">
-              <span className="w-8 h-px bg-tertiary/50"></span>
-              Frequently Asked
+          {/* Left Column: Heading & Contact Hint */}
+          <div className="lg:col-span-4 space-y-4 text-left lg:sticky lg:top-28">
+            <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
+              Common Questions
             </span>
-            <h2 className="font-headline text-4xl sm:text-5xl font-black text-on-surface tracking-tighter leading-tight">
-              Answering Your <br />
-              <span className="text-primary italic font-light tracking-tight">Questions.</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+              Simple answers to what you might be wondering.
             </h2>
-            <p className="text-on-surface-variant font-medium text-base leading-relaxed">
-              If your query is not detailed here, please feel free to reach out to our concierge relations team directly for immediate assistance.
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Have a question about insurance, pricing, or procedures? We are always happy to help.
             </p>
-            <div className="pt-4 border-t border-outline-variant/60">
-              <p className="text-xs font-bold font-label uppercase tracking-widest text-on-surface-variant mb-3">Still have questions?</p>
-              <button 
-                onClick={scrollToContact}
-                className="text-xs font-bold font-label uppercase tracking-widest text-primary border-b border-primary/20 pb-1 hover:text-tertiary hover:border-tertiary transition-colors flex items-center gap-2 cursor-pointer"
+            <div className="pt-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-900 hover:text-sky-700 transition-colors"
               >
-                Contact Support
-                <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </button>
+                Ask Us a Question
+                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </Link>
             </div>
           </div>
 
-          {/* Right Column: Accordion System (7 Cols) */}
-          <div className="lg:col-span-7 w-full space-y-4">
-            {faqs.map((faq, index) => {
+          {/* Right Column: Accordion Items */}
+          <div className="lg:col-span-8 space-y-3">
+            {FAQS.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div 
-                  key={index} 
-                  className={`border rounded-2xl transition-all duration-300 overflow-hidden text-left ${
-                    isOpen ? "border-tertiary/40 bg-surface-container-lowest shadow-[0_10px_30px_rgba(10,25,47,0.03)]" : "border-outline/10 bg-surface-container-lowest"
+                <div
+                  key={index}
+                  className={`border rounded-xl transition-colors duration-200 overflow-hidden ${
+                    isOpen ? "border-slate-300 bg-slate-50/50" : "border-slate-200 bg-white"
                   }`}
                 >
                   <button
+                    type="button"
                     onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                    className="w-full flex items-center justify-between p-5 text-left transition-colors"
+                    aria-expanded={isOpen}
                   >
-                    <span className={`font-headline font-bold text-base md:text-lg tracking-tight ${isOpen ? "text-tertiary" : "text-on-surface"}`}>
+                    <span className="text-base font-bold text-slate-900 pr-4">
                       {faq.question}
                     </span>
-                    <span className={`material-symbols-outlined transition-transform duration-300 ${isOpen ? "rotate-180 text-tertiary" : "text-on-surface-variant"}`}>
-                      keyboard_arrow_down
+                    <span
+                      className={`material-symbols-outlined text-[20px] text-slate-500 transition-transform duration-200 shrink-0 ${
+                        isOpen ? "rotate-180 text-slate-900" : ""
+                      }`}
+                    >
+                      expand_more
                     </span>
                   </button>
-                  
+
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                       >
-                        <div className="px-6 pb-6 border-t border-outline-variant/30 pt-4">
-                          <p className="text-on-surface-variant font-medium leading-relaxed text-sm md:text-base">
-                            {faq.answer}
-                          </p>
+                        <div className="px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-200/60">
+                          {faq.answer}
                         </div>
                       </motion.div>
                     )}

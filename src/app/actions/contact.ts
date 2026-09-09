@@ -47,11 +47,11 @@ export async function submitContact(
         "Clinical Notes": notes || "No additional notes provided.",
 
         // FormSubmit config for clean email
-        _subject: `🏥 New Consultation Request — ${fullName}`,
+        _subject: `🦷 New Dental Appointment Request — ${fullName}`,
         _template: "table",
         _captcha: "false",
         _autoresponse:
-          `Dear ${fullName},\n\nThank you for reaching out to ClinicalCurator. We have received your consultation request and our scheduling team will contact you within 4 clinical hours.\n\nHere's a summary of your request:\n• Concern: ${concern ?? "General Consultation"}\n• Phone: ${phone}\n\nWarm regards,\nClinicalCurator Team\nPrecision in Care`,
+          `Dear ${fullName},\n\nThank you for reaching out to Aura Dental & Smile Studio. We have received your appointment request and our patient coordinator will contact you within 4 business hours to confirm your schedule.\n\nHere's a summary of your request:\n• Treatment: ${concern ?? "Dental Consultation"}\n• Phone: ${phone}\n\nWarm regards,\nAura Dental & Smile Studio\nGentle, Aesthetic Dentistry`,
         _replyto: email,
       }),
     });
