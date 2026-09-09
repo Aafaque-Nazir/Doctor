@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingSuccessModal } from "@/components/modals/BookingSuccessModal";
+import { submitExpressCallback } from "@/app/actions/contact";
 
 const INQUIRY_TOPICS = [
   { id: "emergency", label: "Toothache Emergency", icon: "emergency" },
@@ -27,16 +28,26 @@ export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await submitExpressCallback({
+        name: formData.name,
+        phone: formData.phone,
+        topic: selectedTopic,
+        preferredMethod: formData.preferredMethod as "call" | "sms",
+        timeframe: formData.timeframe,
+      });
+    } catch (err) {
+      console.error("Error submitting callback:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setIsModalOpen(true);
-    }, 600);
+    }
   };
 
   return (

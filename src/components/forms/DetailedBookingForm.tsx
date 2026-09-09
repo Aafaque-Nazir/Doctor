@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingSuccessModal } from "@/components/modals/BookingSuccessModal";
+import { submitChairBooking } from "@/app/actions/contact";
 
 interface ServiceOption {
   id: string;
@@ -107,10 +108,14 @@ export function DetailedBookingForm() {
     doctor: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await submitChairBooking(formData);
+    } catch (err) {
+      console.error("Error submitting appointment:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setSubmittedDetails({
@@ -120,7 +125,7 @@ export function DetailedBookingForm() {
         doctor: formData.doctor,
       });
       setIsModalOpen(true);
-    }, 800);
+    }
   };
 
   const inputClass =
