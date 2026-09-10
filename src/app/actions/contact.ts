@@ -1,14 +1,14 @@
 "use server";
 
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
 export type FormState = {
   success: boolean;
   message?: string;
   error?: string;
 };
-
-const TARGET_EMAIL =
-  process.env.CONTACT_FORM_RECIPIENT_EMAIL || "aafaquenazir4@gmail.com";
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${TARGET_EMAIL}`;
 
 export interface ChairBookingPayload {
   firstName: string;
@@ -36,11 +36,31 @@ export interface ExpressCallbackPayload {
   timeframe: string;
 }
 
+// ---------------------------------------------------------------------------
+// Config — reads from environment only
+// ---------------------------------------------------------------------------
+
+function getFormSubmitUrl(): string {
+  const email = process.env.CONTACT_FORM_RECIPIENT_EMAIL;
+  if (!email) {
+    throw new Error(
+      "CONTACT_FORM_RECIPIENT_EMAIL is not set. Add it to .env.local."
+    );
+  }
+  return `https://formsubmit.co/ajax/${email}`;
+}
+
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL;
+
+// ---------------------------------------------------------------------------
+// Display-label maps
+// ---------------------------------------------------------------------------
+
 const DOCTOR_MAP: Record<string, string> = {
-  "dr-sterling": "Dr. Marcus Sterling, DDS (Cosmetic & Veneers Lead)",
-  "dr-vance": "Dr. Elena Vance, DMD (Orthodontics & Invisalign Lead)",
-  "dr-ross": "Dr. Julian Ross, DDS (Implantology & Surgery Lead)",
-  "": "First Available Specialist (Fastest Scheduling)",
+  "dr-sterling": "Dr. Marcus Sterling, DDS — Cosmetic & Veneers",
+  "dr-vance": "Dr. Elena Vance, DMD — Orthodontics & Invisalign",
+  "dr-ross": "Dr. Julian Ross, DDS — Implantology & Surgery",
+  "": "First Available Specialist",
 };
 
 const TIME_SLOT_MAP: Record<string, string> = {
@@ -50,19 +70,65 @@ const TIME_SLOT_MAP: Record<string, string> = {
 };
 
 const INSURANCE_MAP: Record<string, string> = {
-  ppo: "Dental PPO Insurance (In-Network Benefits)",
-  membership: "Aura Dental In-House Studio Membership",
-  "self-pay": "Self-Pay & 0% Financing Plans",
+  ppo: "Dental PPO (In-Network)",
+  membership: "Aura Studio Membership",
+  "self-pay": "Self-Pay / 0% Financing",
 };
 
-/**
- * Server Action for Full Dental Chair Reservation (/book and /contact)
- */
+// ---------------------------------------------------------------------------
+// Shared fetch helper
+// ---------------------------------------------------------------------------
+
+interface FormSubmitResponse {
+  success?: string | boolean;
+  message?: string;
+}
+
+async function sendToFormSubmit(
+  body: Record<string, unknown>
+): Promise<FormSubmitResponse | null> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+  if (SITE_ORIGIN) {
+    headers.Origin = SITE_ORIGIN;
+    headers.Referer = `${SITE_ORIGIN}/`;
+  }
+
+  const res = await fetch(getFormSubmitUrl(), {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+  });
+
+  const data = (await res.json().catch(() => null)) as FormSubmitResponse | null;
+
+  const failed =
+    !res.ok ||
+    (data && (data.success === "false" || data.success === false));
+
+  if (failed) {
+    console.warn(
+      "[FormSubmit]",
+      res.status,
+      data?.message ?? "Unknown error — check activation / spam"
+    );
+  }
+
+  return data;
+}
+
+// ---------------------------------------------------------------------------
+// Server Action — Chair Booking  (/book, /contact)
+// ---------------------------------------------------------------------------
+
 export async function submitChairBooking(
   data: ChairBookingPayload
 ): Promise<FormState> {
   try {
     const fullName = `${data.firstName} ${data.lastName}`.trim();
+
     if (!fullName || fullName.length < 2) {
       return { success: false, error: "Please provide a valid full name." };
     }
@@ -73,70 +139,108 @@ export async function submitChairBooking(
       return { success: false, error: "Please provide a valid email address." };
     }
 
-    const doctorName = DOCTOR_MAP[data.doctor ?? ""] || "First Available Specialist";
-    const timeSlotLabel = TIME_SLOT_MAP[data.timeSlot] || data.timeSlot;
-    const insuranceLabel = INSURANCE_MAP[data.insuranceType ?? "ppo"] || data.insuranceType;
+    const doctor = DOCTOR_MAP[data.doctor ?? ""] ?? "First Available Specialist";
+    const timeSlot = TIME_SLOT_MAP[data.timeSlot] ?? data.timeSlot;
+    const insurance = INSURANCE_MAP[data.insuranceType ?? "ppo"] ?? data.insuranceType;
 
-    const amenityList: string[] = [];
-    if (data.amenities?.headphones) amenityList.push("Noise-canceling headphones & Netflix glasses");
-    if (data.amenities?.anxietyFriendly) amenityList.push("Dental anxiety patient (Gentle numbing & extra care)");
-    const amenitiesFormatted = amenityList.length > 0 ? amenityList.join(", ") : "Standard Studio Care";
+    const comforts: string[] = [];
+    if (data.amenities?.headphones) comforts.push("Noise-canceling headphones & Netflix");
+    if (data.amenities?.anxietyFriendly) comforts.push("Anxiety-friendly gentle care");
+    const comfortLabel = comforts.length > 0 ? comforts.join(" · ") : "Standard care";
 
-    const emailBody = {
-      "🏥 Clinic & Studio": "Aura Dental & Smile Studio (Flatiron, New York)",
-      "📋 Reservation Type": "🦷 Full Dental Chair Reservation",
-      "👤 Patient Name": fullName,
-      "📞 Contact Phone": data.phone,
-      "📧 Email Address": data.email,
-      "✨ Requested Service": data.service,
-      "👨‍⚕️ Treating Specialist": doctorName,
-      "📅 Preferred Date": data.date,
-      "⏰ Chair Time Window": timeSlotLabel,
-      "💳 Insurance / Payment": insuranceLabel,
-      "🎧 Comfort Amenities": amenitiesFormatted,
-      "📝 Clinical Notes / Symptoms": data.notes && data.notes.trim() ? data.notes : "None specified",
-      "⚡ Priority Status": "High — Online Chair Reservation",
-      "📍 Studio Address": "124 Precision Avenue, Suite 400, New York, NY 10001",
+    await sendToFormSubmit({
+      // ── Clinic notification email (what arrives in YOUR inbox) ──────
+      "Reservation Type":     "🦷 Dental Chair Reservation",
+      "━━━ PATIENT INFO ━━━": "───────────────────────",
+      "Patient Name":         fullName,
+      "Phone":                data.phone,
+      "Email":                data.email,
+      "━━━ APPOINTMENT ━━━":  "───────────────────────",
+      "Service Requested":    data.service,
+      "Treating Specialist":  doctor,
+      "Preferred Date":       data.date,
+      "Time Window":          timeSlot,
+      "━━━ BILLING ━━━":      "───────────────────────",
+      "Insurance / Payment":  insurance,
+      "Carrier":              data.insuranceCarrier?.trim() || "Not specified",
+      "━━━ PREFERENCES ━━━":  "───────────────────────",
+      "Comfort Amenities":    comfortLabel,
+      "Patient Notes":        data.notes?.trim() || "None",
+      "Source":               "Online Booking — aura-dental.com",
 
-      // FormSubmit Configuration
-      _subject: `🦷 [Aura Dental] New Chair Reservation: ${fullName} — ${data.service}`,
+      // ── FormSubmit configuration ───────────────────────────────────
+      _subject: `🦷 New Booking: ${fullName} — ${data.service} (${data.date})`,
       _template: "table",
       _captcha: "false",
       _replyto: data.email,
-      _autoresponse: `Dear ${fullName},\n\nThank you for booking your appointment with Aura Dental & Smile Studio! We have safely received your chair reservation request.\n\nAppointment Details:\n• Treatment: ${data.service}\n• Specialist: ${doctorName}\n• Date & Window: ${data.date} (${timeSlotLabel})\n• Studio: 124 Precision Avenue, Suite 400, New York, NY 10001\n\nWhat happens next:\nOur patient care coordinator will call or SMS you within 15–30 minutes to confirm your exact chair time and verify insurance benefits.\n\nNeed urgent assistance?\nCall our emergency direct line at +1 (555) 888-3368.\n\nWarm regards,\nAura Dental & Smile Studio`,
-    };
-
-    const response = await fetch(FORMSUBMIT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(emailBody),
+      _autoresponse: [
+        `Hello ${data.firstName},`,
+        ``,
+        `Your appointment request with Aura Dental & Smile Studio has been received successfully.`,
+        ``,
+        `Here are the details we have on file:`,
+        ``,
+        `───────────────────────────────────────`,
+        `  APPOINTMENT SUMMARY`,
+        `───────────────────────────────────────`,
+        ``,
+        `  Service:        ${data.service}`,
+        `  Specialist:     ${doctor}`,
+        `  Date:           ${data.date}`,
+        `  Time Window:    ${timeSlot}`,
+        `  Payment Plan:   ${insurance}`,
+        comforts.length > 0 ? `  Comfort Add-ons: ${comfortLabel}` : ``,
+        data.notes?.trim() ? `  Your Notes:     ${data.notes.trim()}` : ``,
+        ``,
+        `───────────────────────────────────────`,
+        `  WHAT HAPPENS NEXT`,
+        `───────────────────────────────────────`,
+        ``,
+        `  1. Our patient concierge will call or text you within`,
+        `     15–30 minutes to confirm your exact chair time.`,
+        ``,
+        `  2. We'll verify your insurance coverage and share a`,
+        `     cost estimate before your visit.`,
+        ``,
+        `  3. On the day of your appointment, check in at the`,
+        `     front desk 10 minutes early for a smooth start.`,
+        ``,
+        `───────────────────────────────────────`,
+        `  CONTACT US`,
+        `───────────────────────────────────────`,
+        ``,
+        `  Phone:    +1 (555) 888-3368`,
+        `  Address:  124 Precision Ave, Suite 400`,
+        `            New York, NY 10001`,
+        `  Hours:    Mon–Sat, 8:00 AM – 6:00 PM`,
+        ``,
+        `If you need to reschedule or have questions, reply to`,
+        `this email or call us — we're happy to help.`,
+        ``,
+        `Warm regards,`,
+        `The Aura Dental & Smile Studio Team`,
+      ]
+        .filter((line) => line !== undefined)
+        .join("\n"),
     });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error("FormSubmit HTTP error:", response.status, errText);
-      // Even if FormSubmit has a temporary rate limit or activation check, we don't break the user flow
-    }
 
     return {
       success: true,
-      message: "Your chair reservation has been safely recorded and forwarded.",
+      message: "Your reservation has been received. We'll be in touch shortly!",
     };
   } catch (error) {
-    console.error("Error submitting chair booking:", error);
+    console.error("submitChairBooking error:", error);
     return {
       success: false,
-      error: "Could not send appointment request. Please call us directly.",
+      error: "Could not send your request. Please call us directly.",
     };
   }
 }
 
-/**
- * Server Action for Homepage 15-Minute Priority Callback (/ #contact)
- */
+// ---------------------------------------------------------------------------
+// Server Action — Express Callback  (homepage #contact)
+// ---------------------------------------------------------------------------
+
 export async function submitExpressCallback(
   data: ExpressCallbackPayload
 ): Promise<FormState> {
@@ -148,71 +252,48 @@ export async function submitExpressCallback(
       return { success: false, error: "Please enter a valid phone number." };
     }
 
-    const emailBody = {
-      "🏥 Clinic & Studio": "Aura Dental & Smile Studio (Flatiron, New York)",
-      "📋 Request Type": "⚡ 15-Minute Priority Callback",
-      "👤 Patient Name": data.name,
-      "📞 Phone Number": data.phone,
-      "🎯 Procedure / Inquiry Topic": data.topic,
-      "💬 Preferred Response Method": data.preferredMethod === "sms" ? "SMS / Text Message" : "Phone Call",
-      "⏰ Best Time to Reach": data.timeframe === "asap" ? "Right away (Within 15 minutes)" : data.timeframe,
-      "⚡ Response SLA": "15-Minute Response Window Guaranteed",
-      "📍 Source": "Homepage Priority Concierge Desk",
+    const firstName = data.name.trim().split(" ")[0];
+    const method =
+      data.preferredMethod === "sms" ? "SMS / Text Message" : "Phone Call";
+    const timing =
+      data.timeframe === "asap"
+        ? "ASAP (within 15 minutes)"
+        : data.timeframe === "morning"
+          ? "This Morning (8 AM – 12 PM)"
+          : data.timeframe === "afternoon"
+            ? "This Afternoon (12 PM – 4 PM)"
+            : data.timeframe === "evening"
+              ? "This Evening (after 5 PM)"
+              : data.timeframe;
 
-      // FormSubmit Configuration
-      _subject: `⚡ [Aura Dental] 15-Min Callback Request: ${data.name} — ${data.topic}`,
+    await sendToFormSubmit({
+      // ── Clinic notification email ──────────────────────────────────
+      "Request Type":           "⚡ Priority Callback Request",
+      "━━━ PATIENT INFO ━━━":   "───────────────────────",
+      "Name":                   data.name,
+      "Phone":                  data.phone,
+      "━━━ DETAILS ━━━":        "───────────────────────",
+      "Topic / Concern":        data.topic,
+      "Preferred Contact":      method,
+      "Best Time to Reach":     timing,
+      "Response Commitment":    "15-minute callback window",
+      "Source":                 "Homepage Priority Concierge — aura-dental.com",
+
+      // ── FormSubmit config ──────────────────────────────────────────
+      _subject: `⚡ Callback Needed: ${data.name} — ${data.topic}`,
       _template: "table",
       _captcha: "false",
-    };
-
-    const response = await fetch(FORMSUBMIT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(emailBody),
     });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error("FormSubmit express callback HTTP error:", response.status, errText);
-    }
 
     return {
       success: true,
-      message: "Your callback request has been received.",
+      message: `Thanks ${firstName}! We'll ${data.preferredMethod === "sms" ? "text" : "call"} you about "${data.topic}" shortly.`,
     };
   } catch (error) {
-    console.error("Error submitting express callback:", error);
+    console.error("submitExpressCallback error:", error);
     return {
       success: false,
-      error: "Could not submit callback request. Please try again.",
+      error: "Could not submit your request. Please try again.",
     };
   }
-}
-
-/**
- * Backwards compatible export for existing components
- */
-export async function submitContact(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  const fullName = String(formData.get("fullName") || "");
-  const email = String(formData.get("email") || "");
-  const phone = String(formData.get("phone") || "");
-  const concern = String(formData.get("concern") || "General Dental Visit");
-  const notes = String(formData.get("notes") || "");
-
-  return submitChairBooking({
-    firstName: fullName.split(" ")[0] || fullName,
-    lastName: fullName.split(" ").slice(1).join(" ") || "",
-    email,
-    phone,
-    service: concern,
-    date: new Date().toISOString().split("T")[0],
-    timeSlot: "morning",
-    notes,
-  });
 }
