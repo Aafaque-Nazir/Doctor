@@ -5,7 +5,7 @@ import Image from "next/image";
 import { DoctorsSection } from "@/components/sections/DoctorsSection";
 
 export const metadata = {
-  title: "About Our Practice | Aura Dental Suite NYC",
+  title: "About Our Clinic | Aura Dental NYC",
   description: "Learn about Aura Dental's commitment to gentle, stress-free dental care, modern 3D digital scans, and natural results.",
 };
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
 
                 <div className="space-y-3 text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
                   <p>
-                    We started Aura Dental because visiting the dentist shouldn't feel stressful, cold, or intimidating. We created a welcoming clinic where patients are greeted warmly, treated with kindness, and never judged or rushed.
+                    We started Aura Dental because visiting the dentist shouldn&apos;t feel stressful, cold, or intimidating. We created a welcoming clinic where patients are greeted warmly, treated with kindness, and never judged or rushed.
                   </p>
                   <p>
                     We replaced gaggy putty molds with fast, comfortable 3D scans. We use gentle numbing so you feel zero pain, and our treatment rooms have streaming TV and noise-canceling headphones so you can relax.
@@ -63,14 +63,14 @@ export default function AboutPage() {
               </div>
 
               {/* Clinic Image Frame */}
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-5 group cursor-default">
                 <div className="relative aspect-[4/4] sm:aspect-[4/5] max-h-[380px] w-full rounded-2xl overflow-hidden border border-zinc-300 bg-zinc-100 shadow-md">
                   <Image
                     src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
                     alt="Modern dental clinic lounge"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full bg-zinc-950 text-white text-[9px] font-bold tracking-wider uppercase border border-zinc-800 shadow-sm">

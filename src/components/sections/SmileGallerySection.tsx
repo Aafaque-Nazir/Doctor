@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CaseStudy {
   id: string;
@@ -262,42 +263,53 @@ export function SmileGallerySection() {
 
             {/* Details Panel */}
             <div className="lg:col-span-5 space-y-4 text-left">
-              <div className="space-y-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-zinc-700">
-                  {activeCase.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight leading-snug">
-                  {activeCase.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
-                  {activeCase.desc}
-                </p>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCase.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-4"
+                >
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-zinc-700">
+                      {activeCase.category}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight leading-snug">
+                      {activeCase.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
+                      {activeCase.desc}
+                    </p>
+                  </div>
 
-              {/* Clinical Details */}
-              <div className="grid grid-cols-2 gap-3 py-3 border-y border-zinc-300 text-xs">
-                <div>
-                  <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Treatment</p>
-                  <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.treatment}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Timeline</p>
-                  <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.duration}</p>
-                </div>
-              </div>
+                  {/* Clinical Details */}
+                  <div className="grid grid-cols-2 gap-3 py-3 border-y border-zinc-300 text-xs">
+                    <div>
+                      <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Treatment</p>
+                      <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.treatment}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Timeline</p>
+                      <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.duration}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
               {/* Action Buttons: Minimalist Pills */}
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <Link
                   href="/book"
-                  className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold tracking-wider uppercase hover:bg-zinc-800 transition-all shadow-sm"
+                  className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold tracking-wider uppercase hover:bg-zinc-800 active:scale-[0.98] transition-all shadow-sm cursor-pointer"
                 >
                   <span>Book Consultation</span>
                   <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                 </Link>
                 <Link
                   href="/services/cosmetic-dentistry"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:bg-zinc-950 hover:text-white transition-all shadow-xs"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:bg-zinc-950 hover:text-white active:scale-[0.98] transition-all shadow-xs cursor-pointer"
                 >
                   <span>Case Details</span>
                 </Link>
@@ -317,10 +329,10 @@ export function SmileGallerySection() {
                 setActiveTab(idx);
                 setSliderPos(50);
               }}
-              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+              className={`p-2.5 rounded-xl border text-left transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-[0.99] ${
                 activeTab === idx
                   ? "bg-white border-2 border-zinc-950 ring-2 ring-zinc-950/10 shadow-sm"
-                  : "bg-white border border-zinc-300 hover:border-zinc-500"
+                  : "bg-white border border-zinc-300 hover:border-zinc-950 hover:shadow-sm"
               }`}
             >
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-zinc-200 mb-1.5">
@@ -333,7 +345,7 @@ export function SmileGallerySection() {
                 />
               </div>
               <p className="text-xs font-bold text-zinc-950 truncate">{item.category}</p>
-              <p className="text-[10px] text-zinc-700 font-medium truncate">{item.treatment}</p>
+              <p className="text-[10px] text-zinc-700 font-semibold truncate">{item.treatment}</p>
             </button>
           ))}
         </div>

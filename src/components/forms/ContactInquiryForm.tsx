@@ -5,7 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { submitExpressCallback } from "@/app/actions/contact";
 import Link from "next/link";
 
+const INQUIRY_OPTIONS = [
+  "General Question",
+  "Toothache / Root Canal (RCT)",
+  "Teeth Cleaning & Scaling",
+  "Dental Implants",
+  "Clear Aligners & Braces",
+  "Wisdom Tooth Removal",
+  "Cavity Fillings & Repair",
+  "Dental Crowns & Bridges",
+  "Teeth Whitening",
+  "Porcelain Veneers",
+  "Kids Dentistry",
+  "Dentures",
+  "Dental Insurance & Pricing",
+];
+
 export function ContactInquiryForm() {
+  const [treatment, setTreatment] = useState(INQUIRY_OPTIONS[0]);
   const [name, setName] = useState("");
   const [phoneOrEmail, setPhoneOrEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -26,7 +43,7 @@ export function ContactInquiryForm() {
       await submitExpressCallback({
         name: name.trim(),
         phone: phoneOrEmail.trim(),
-        topic: message.trim(),
+        topic: `[${treatment}] ${message.trim()}`,
         preferredMethod: phoneOrEmail.includes("@") ? "sms" : "call",
         timeframe: "asap",
         botTrap,
@@ -69,6 +86,23 @@ export function ContactInquiryForm() {
             </div>
 
             <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold text-zinc-950 mb-1">
+                  Treatment / Inquiry Subject *
+                </label>
+                <select
+                  value={treatment}
+                  onChange={(e) => setTreatment(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-xs sm:text-sm text-zinc-950 font-medium focus:outline-none focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950 transition-colors bg-white cursor-pointer"
+                >
+                  {INQUIRY_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label className="block text-xs font-bold text-zinc-950 mb-1">
                   Your Full Name *

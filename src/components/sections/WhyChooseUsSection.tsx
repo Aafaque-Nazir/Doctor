@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const REASONS = [
   {
@@ -42,19 +43,23 @@ export function WhyChooseUsSection() {
           </div>
           <div className="max-w-sm">
             <p className="text-zinc-700 text-xs sm:text-sm leading-relaxed font-normal">
-              We combine modern dental technology with a calm, patient-first approach. Every appointment is unhurried and clearly explained.
+              We combine modern dental technology with a calm, patient-first approach. Every appointment is relaxed, never rushed, and clearly explained.
             </p>
           </div>
         </div>
 
         {/* 4 Architectural Columns with Hairline Dividers */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
-          {REASONS.map((item) => (
-            <div
+          {REASONS.map((item, idx) => (
+            <motion.div
               key={item.num}
-              className="text-left space-y-3 pt-4 border-t-2 border-zinc-300 group"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="text-left space-y-3 pt-4 border-t-2 border-zinc-300 group hover:border-zinc-950 transition-colors duration-300 cursor-default"
             >
-              <span className="text-[12px] font-mono font-bold text-zinc-900 group-hover:text-zinc-950 transition-colors">
+              <span className="text-[12px] font-mono font-bold text-zinc-900 group-hover:text-zinc-950 transition-colors block">
                 {item.num}
               </span>
               <div className="space-y-1.5">
@@ -65,7 +70,7 @@ export function WhyChooseUsSection() {
                   {item.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -81,7 +86,7 @@ export function WhyChooseUsSection() {
           </div>
           <Link
             href="/book"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:border-zinc-950 hover:bg-zinc-950 hover:text-white transition-all shrink-0 shadow-xs"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:border-zinc-950 hover:bg-zinc-950 hover:text-white active:scale-[0.98] transition-all shrink-0 shadow-xs cursor-pointer"
           >
             <span>Book an Appointment</span>
             <span className="material-symbols-outlined text-[15px]">arrow_forward</span>

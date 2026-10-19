@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FAQS = [
   {
@@ -15,24 +16,24 @@ const FAQS = [
       "Yes, we accept all major PPO dental plans (Delta Dental, Cigna, MetLife, Aetna, Guardian, etc.) and file claims on your behalf. We check your benefits before any work starts so you never receive an unexpected bill. For elective cosmetic care, we provide interest-free monthly financing.",
   },
   {
-    question: "What should I do if I experience sudden toothache or an emergency?",
+    question: "What should I do if I have a sudden toothache or dental emergency?",
     answer:
-      "Call us directly at (555) 888-3368. We keep open emergency appointments each day specifically for broken teeth, acute toothaches, or lost fillings so we can relieve your pain promptly.",
+      "Call us directly at (555) 888-3368. We keep emergency appointments open every day for broken teeth, toothaches, or lost fillings so we can relieve your pain right away.",
   },
   {
-    question: "What is the typical timeframe for Invisalign® aligners?",
+    question: "How long does Invisalign® treatment usually take?",
     answer:
-      "Most patients complete treatment in 6 to 12 months. On your first visit, we take a 3D digital scan of your bite and review a simulation of your future smile on screen before making any decisions.",
+      "Most patients finish in 6 to 12 months. On your first visit, we take a quick 3D scan of your teeth and show you a preview of your future smile on screen before you decide.",
   },
   {
-    question: "I experience severe dental anxiety. How can you accommodate me?",
+    question: "I get very nervous at the dentist. How do you help?",
     answer:
-      "Dental anxiety is very common, and we design your entire experience around it. We offer noise-canceling headphones, ceiling screens with streaming entertainment, warm blankets, and nitrous oxide to help you feel peaceful throughout.",
+      "Dental anxiety is very common, and we take it seriously. We offer noise-canceling headphones, TV screens on the ceiling, warm blankets, and gentle numbing to keep you calm and comfortable.",
   },
   {
-    question: "How long do porcelain veneers last, and do they look artificial?",
+    question: "How long do porcelain veneers last, and do they look fake?",
     answer:
-      "With routine oral hygiene, custom ceramic veneers last 15 to 20 years or longer. Each veneer is hand-layered to mirror the natural translucency, texture, and contours of healthy enamel—never thick or chalky.",
+      "With normal brushing and flossing, porcelain veneers typically last 15 to 20 years. Each veneer is custom-crafted to look, shine, and feel just like natural teeth—never chalky or thick.",
   },
 ];
 
@@ -62,10 +63,10 @@ export function FaqSection() {
             <div className="pt-1">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors group cursor-pointer"
               >
                 <span>Direct Inquiries</span>
-                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
               </Link>
             </div>
           </div>
@@ -91,7 +92,7 @@ export function FaqSection() {
                       {faq.question}
                     </span>
                     <span
-                      className={`material-symbols-outlined text-[20px] transition-transform duration-200 shrink-0 ${
+                      className={`material-symbols-outlined text-[20px] transition-transform duration-300 ease-out shrink-0 ${
                         isOpen ? "rotate-180 text-zinc-950 font-bold" : "text-zinc-700"
                       }`}
                     >
@@ -99,11 +100,22 @@ export function FaqSection() {
                     </span>
                   </button>
 
-                  {isOpen && (
-                    <div className="px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal border-t border-zinc-200">
-                      {faq.answer}
-                    </div>
-                  )}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal border-t border-zinc-200">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}

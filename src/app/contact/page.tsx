@@ -6,7 +6,7 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Contact & Location | Aura Dental Suite NYC",
+  title: "Contact & Location | Aura Dental NYC",
   description: "Find our Midtown Manhattan clinic address, office hours, and contact desk. Send us a direct note or inquire about dental insurance.",
 };
 

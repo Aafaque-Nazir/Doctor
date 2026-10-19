@@ -5,8 +5,8 @@ import { StepwiseBookingForm } from "@/components/forms/StepwiseBookingForm";
 import { FaqSection } from "@/components/sections/FaqSection";
 
 export const metadata = {
-  title: "Book an Appointment | Aura Dental Suite NYC",
-  description: "Schedule your dental visit online. Choose your service, date, and preferred time window in 3 effortless steps with upfront insurance verification.",
+  title: "Book an Appointment | Aura Dental NYC",
+  description: "Schedule your dental visit online. Choose your service, date, and preferred time in 3 easy steps with upfront insurance check.",
 };
 
 export default function BookAppointmentPage() {

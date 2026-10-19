@@ -83,7 +83,11 @@ export function Header() {
               >
                 {link.label}
                 {active && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-zinc-950 rounded-full" />
+                  <motion.span
+                    layoutId="activeNavIndicator"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-zinc-950 rounded-full"
+                  />
                 )}
               </Link>
             );
@@ -100,7 +104,7 @@ export function Header() {
           </a>
           <Link
             href="/book"
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-semibold tracking-wider uppercase hover:bg-zinc-800 transition-all duration-200 shadow-xs"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-semibold tracking-wider uppercase hover:bg-zinc-800 active:scale-[0.97] transition-all duration-200 shadow-xs cursor-pointer"
           >
             Book Appointment
           </Link>

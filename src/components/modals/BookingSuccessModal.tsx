@@ -172,15 +172,15 @@ export function BookingSuccessModal({
                 <div className="flex items-center justify-between pt-1">
                   <span className="text-zinc-700 font-bold">Status:</span>
                   <span className="text-[11px] font-bold text-zinc-950">
-                    Confirmed & Queued
+                    Request Received
                   </span>
                 </div>
               </div>
 
-              {/* What to Expect Next - Clean Minimalist Protocol */}
+              {/* What to Expect Next */}
               <div className="space-y-3 text-xs text-zinc-800">
                 <p className="font-bold text-zinc-950 uppercase tracking-wider text-[11px]">
-                  Next Steps
+                  What Happens Next
                 </p>
                 <div className="space-y-2 text-xs">
                   <div className="flex items-start gap-2.5">
@@ -188,7 +188,7 @@ export function BookingSuccessModal({
                       1
                     </span>
                     <p>
-                      <strong className="text-zinc-950 font-bold">Verification:</strong> Our team checks your dental insurance network benefits in advance.
+                      <strong className="text-zinc-950 font-bold">Insurance Check:</strong> We check your dental coverage in advance so there are no surprises.
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5">
@@ -196,7 +196,7 @@ export function BookingSuccessModal({
                       2
                     </span>
                     <p>
-                      <strong className="text-zinc-950 font-bold">Confirmation:</strong> You will receive a direct call or text with your confirmed arrival window.
+                      <strong className="text-zinc-950 font-bold">Confirmation:</strong> Our front desk will call or text you with your exact appointment time.
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5">
@@ -204,7 +204,7 @@ export function BookingSuccessModal({
                       3
                     </span>
                     <p>
-                      <strong className="text-zinc-950 font-bold">Arrival:</strong> Suite 400, 124 Precision Ave. Noise-canceling headphones & calm care await.
+                      <strong className="text-zinc-950 font-bold">Visit Us:</strong> 124 Precision Ave, Suite 400, Flatiron, New York.
                     </p>
                   </div>
                 </div>

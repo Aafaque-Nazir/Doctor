@@ -14,9 +14,9 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5"
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 group cursor-default"
           >
             <div className="relative aspect-[4/4] sm:aspect-[4/5] max-h-[380px] w-full rounded-2xl overflow-hidden border border-zinc-300 bg-zinc-100 shadow-md">
               <Image
@@ -24,7 +24,7 @@ export function AboutSection() {
                 alt="Dr. Marcus Sterling, DDS"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-top"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
             <div className="mt-2.5 flex items-baseline justify-between text-xs text-zinc-700">
@@ -37,8 +37,8 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-5 text-left"
           >
             <div className="space-y-1.5">
@@ -52,28 +52,28 @@ export function AboutSection() {
 
             <div className="space-y-3 text-zinc-700 text-sm sm:text-base leading-relaxed font-normal">
               <p>
-                Aura Dental was founded on a simple principle: receiving healthcare should never feel stressful, rushed, or intimidating. Many individuals postpone care for years solely because of a past painful experience.
+                We started Aura Dental on a simple belief: dental visits should never feel stressful, rushed, or uncomfortable. Many people put off seeing a dentist for years because of past bad experiences.
               </p>
               <p>
-                In our clinic, you remain entirely in control. We review 3D imaging together on screen, answer every question candidly, and confirm you are completely numb before any procedure begins.
+                Here, you are always in control. We show your 3D scans on screen, explain every option clearly, and make sure you are completely numb and comfortable before we ever start.
               </p>
             </div>
 
             {/* Clean Credentials Grid */}
             <div className="pt-4 border-t border-zinc-300 grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div>
+              <div className="hover:bg-zinc-50 p-2 rounded-xl transition-colors">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Affiliation</p>
                 <p className="text-xs font-bold text-zinc-950 mt-0.5">ADA Member</p>
               </div>
-              <div>
+              <div className="hover:bg-zinc-50 p-2 rounded-xl transition-colors">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Education</p>
                 <p className="text-xs font-bold text-zinc-950 mt-0.5">NYU Dentistry</p>
               </div>
-              <div>
+              <div className="hover:bg-zinc-50 p-2 rounded-xl transition-colors">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Focus</p>
                 <p className="text-xs font-bold text-zinc-950 mt-0.5">Veneers & Aligners</p>
               </div>
-              <div>
+              <div className="hover:bg-zinc-50 p-2 rounded-xl transition-colors">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Experience</p>
                 <p className="text-xs font-bold text-zinc-950 mt-0.5">18+ Years In Practice</p>
               </div>
@@ -83,10 +83,10 @@ export function AboutSection() {
             <div className="pt-1">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors group/link cursor-pointer"
               >
                 <span>Meet Our Dental Team</span>
-                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-[15px] group-hover/link:translate-x-1 transition-transform duration-200">arrow_forward</span>
               </Link>
             </div>
 

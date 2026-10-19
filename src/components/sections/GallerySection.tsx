@@ -7,7 +7,7 @@ const SPACES = [
   {
     title: "Private Consultation Rooms",
     category: "Treatment Rooms",
-    desc: "Quiet rooms for complete privacy and unhurried conversations with your doctor.",
+    desc: "Quiet rooms for privacy and relaxed conversations with your doctor.",
     image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80",
   },
   {
@@ -57,17 +57,17 @@ export function GallerySection() {
               key={idx}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="group flex flex-col space-y-3 text-left"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="group flex flex-col space-y-3 text-left cursor-default"
             >
-              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-zinc-300 bg-zinc-100 shadow-sm">
+              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-zinc-300 bg-zinc-100 shadow-sm group-hover:border-zinc-950 group-hover:-translate-y-1 group-hover:shadow-md transition-all duration-300 ease-out">
                 <Image
                   src={space.image}
                   alt={space.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
               <div className="space-y-1">

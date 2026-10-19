@@ -7,15 +7,18 @@ import { BookingSuccessModal } from "@/components/modals/BookingSuccessModal";
 import { submitExpressCallback } from "@/app/actions/contact";
 
 const INQUIRY_TOPICS = [
-  { id: "emergency", label: "Toothache / Urgent" },
-  { id: "veneers", label: "Porcelain Veneers" },
-  { id: "invisalign", label: "Invisalign Aligners" },
-  { id: "cleaning", label: "Routine Cleaning" },
-  { id: "pricing", label: "Insurance & Costs" },
+  { id: "root-canal", label: "Toothache / Root Canal" },
+  { id: "cleaning", label: "Teeth Cleaning & Scaling" },
+  { id: "implants", label: "Dental Implants" },
+  { id: "aligners", label: "Clear Aligners & Braces" },
+  { id: "wisdom-tooth", label: "Wisdom Tooth Pain" },
+  { id: "cavity", label: "Cavity & Broken Tooth" },
+  { id: "pricing", label: "Insurance & Prices" },
+  { id: "general", label: "General Question" },
 ];
 
 export function ContactSection() {
-  const [selectedTopic, setSelectedTopic] = useState("Porcelain Veneers");
+  const [selectedTopic, setSelectedTopic] = useState("Teeth Cleaning & Scaling");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -58,7 +61,7 @@ export function ContactSection() {
         {/* Section Header */}
         <div className="max-w-lg mb-8 md:mb-10 space-y-1.5 text-left">
           <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
-            Contact & Inquiries
+            Contact Us
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-tight text-zinc-950 leading-snug">
             Speak directly with our front desk team.
@@ -95,7 +98,7 @@ export function ContactSection() {
               </div>
 
               <div className="pt-3 border-t border-zinc-300 space-y-1 text-xs text-zinc-700">
-                <p className="text-[10px] font-bold tracking-wider uppercase text-zinc-700">Hours of Practice</p>
+                <p className="text-[10px] font-bold tracking-wider uppercase text-zinc-700">Clinic Hours</p>
                 <div className="flex justify-between py-1 border-b border-zinc-200">
                   <span className="font-medium text-zinc-700">Mon – Thu</span>
                   <span className="font-bold text-zinc-950">8:00 AM – 6:00 PM</span>
@@ -170,7 +173,7 @@ export function ContactSection() {
                             key={topic.id}
                             type="button"
                             onClick={() => setSelectedTopic(topic.label)}
-                            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer ${
                               selectedTopic === topic.label
                                 ? "bg-zinc-950 text-white shadow-xs"
                                 : "bg-white text-zinc-800 hover:text-zinc-950 border border-zinc-300 hover:border-zinc-500 font-semibold"
@@ -225,9 +228,9 @@ export function ContactSection() {
                           <button
                             type="button"
                             onClick={() => setFormData({ ...formData, preferredMethod: "call" })}
-                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border flex items-center justify-center gap-1 cursor-pointer transition-all ${
+                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border flex items-center justify-center gap-1 cursor-pointer transition-all duration-150 active:scale-95 ${
                               formData.preferredMethod === "call"
-                                ? "bg-zinc-950 text-white border-zinc-950"
+                                ? "bg-zinc-950 text-white border-zinc-950 shadow-xs"
                                 : "bg-white border border-zinc-300 text-zinc-800 hover:border-zinc-500 font-semibold"
                             }`}
                           >
@@ -237,9 +240,9 @@ export function ContactSection() {
                           <button
                             type="button"
                             onClick={() => setFormData({ ...formData, preferredMethod: "sms" })}
-                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border flex items-center justify-center gap-1 cursor-pointer transition-all ${
+                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border flex items-center justify-center gap-1 cursor-pointer transition-all duration-150 active:scale-95 ${
                               formData.preferredMethod === "sms"
-                                ? "bg-zinc-950 text-white border-zinc-950"
+                                ? "bg-zinc-950 text-white border-zinc-950 shadow-xs"
                                 : "bg-white border border-zinc-300 text-zinc-800 hover:border-zinc-500 font-semibold"
                             }`}
                           >

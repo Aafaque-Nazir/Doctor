@@ -52,9 +52,9 @@ export function TestimonialSection() {
               key={idx}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-5 sm:p-6 rounded-2xl bg-white border border-zinc-300 shadow-sm hover:border-zinc-500 transition-all flex flex-col justify-between space-y-5 text-left"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="p-5 sm:p-6 rounded-2xl bg-white border border-zinc-300 shadow-sm hover:border-zinc-950 hover:-translate-y-1 hover:shadow-md transition-all duration-300 ease-out flex flex-col justify-between space-y-5 text-left group cursor-default"
             >
               <p className="text-zinc-800 text-xs sm:text-sm leading-relaxed font-normal">
                 &ldquo;{t.quote}&rdquo;
@@ -67,7 +67,7 @@ export function TestimonialSection() {
                     alt={t.author}
                     fill
                     sizes="36px"
-                    className="object-cover"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                   />
                 </div>
                 <div>

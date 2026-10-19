@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const SERVICES = [
   {
@@ -59,19 +60,23 @@ export function ServicesSection() {
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors group cursor-pointer"
           >
             <span>Explore All Treatments</span>
-            <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+            <span className="material-symbols-outlined text-[15px] group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
           </Link>
         </div>
 
         {/* 2x2 Compact Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
-          {SERVICES.map((service) => (
-            <div
+          {SERVICES.map((service, idx) => (
+            <motion.div
               key={service.id}
-              className="bg-white rounded-2xl border border-zinc-300 overflow-hidden shadow-sm hover:border-zinc-500 transition-all flex flex-col group text-left"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-2xl border border-zinc-300 overflow-hidden shadow-sm hover:border-zinc-950 hover:-translate-y-1 hover:shadow-md transition-all duration-300 ease-out flex flex-col group text-left cursor-default"
             >
               {/* Compact Image Container */}
               <div className="relative h-44 sm:h-48 md:h-52 w-full overflow-hidden bg-zinc-100">
@@ -80,7 +85,7 @@ export function ServicesSection() {
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute top-3 left-3">
                   <span className="px-2.5 py-1 rounded-full bg-zinc-950 text-white text-[9px] font-bold uppercase tracking-wider border border-zinc-900 shadow-sm">
@@ -106,7 +111,7 @@ export function ServicesSection() {
                     {service.features.map((feat, fIdx) => (
                       <span
                         key={fIdx}
-                        className="px-2.5 py-0.5 rounded-full bg-zinc-100 border border-zinc-300 text-[10px] font-semibold text-zinc-800"
+                        className="px-2.5 py-0.5 rounded-full bg-zinc-100 border border-zinc-300 text-[10px] font-semibold text-zinc-800 hover:bg-zinc-200 transition-colors cursor-default"
                       >
                         {feat}
                       </span>
@@ -116,14 +121,14 @@ export function ServicesSection() {
                   <div className="flex items-center justify-between pt-1">
                     <Link
                       href={service.href}
-                      className="text-xs font-bold text-zinc-950 hover:text-zinc-700 transition-colors inline-flex items-center gap-1"
+                      className="text-xs font-bold text-zinc-950 hover:text-zinc-700 transition-colors inline-flex items-center gap-1 group/link cursor-pointer"
                     >
                       <span>Treatment Guide</span>
-                      <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                      <span className="material-symbols-outlined text-[14px] group-hover/link:translate-x-1 transition-transform duration-200">arrow_forward</span>
                     </Link>
                     <Link
                       href="/book"
-                      className="text-xs font-bold text-zinc-800 hover:text-zinc-950 underline underline-offset-2 transition-colors"
+                      className="text-xs font-bold text-zinc-800 hover:text-zinc-950 underline underline-offset-2 transition-colors cursor-pointer"
                     >
                       Book Visit →
                     </Link>
@@ -131,7 +136,7 @@ export function ServicesSection() {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
