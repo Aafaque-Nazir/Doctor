@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -38,6 +39,19 @@ export function Header() {
     return pathname.startsWith(href);
   };
 
+  const handleLinkClick = useCallback((href: string) => {
+    setIsMobileMenuOpen(false);
+    // If user clicked the link of the page they are already on, smooth-scroll to top
+    if (pathname === href) {
+      const lenis = (window as unknown as Window & { __lenis?: { scrollTo: (target: number, options?: object) => void } }).__lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  }, [pathname]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,23 +62,14 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
         
-        {/* Typographic Minimal Logo */}
+        {/* Modern Medical Logo */}
         <Link
           href="/"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="flex items-center gap-3 group"
+          onClick={() => handleLinkClick("/")}
+          className="group focus:outline-hidden"
+          aria-label="Aura Dental Clinic Home"
         >
-          <div className="w-8 h-8 rounded-full border border-zinc-900 bg-white flex items-center justify-center text-zinc-950 group-hover:bg-zinc-950 group-hover:text-white transition-all shadow-xs">
-            <span className="text-[13px] font-bold tracking-tighter">A</span>
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="text-base font-bold tracking-[0.16em] uppercase text-zinc-950 leading-tight">
-              Aura
-            </span>
-            <span className="text-[9px] font-semibold tracking-[0.22em] uppercase text-zinc-600">
-              Dental Clinic · NYC
-            </span>
-          </div>
+          <Logo size="sm" variant="dark" />
         </Link>
 
         {/* Desktop Navigation (Distinct, Non-Redundant Links) */}
@@ -75,6 +80,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => handleLinkClick(link.href)}
                 className={`text-sm tracking-wide transition-colors relative py-1 ${
                   active
                     ? "text-zinc-950 font-bold"
@@ -104,6 +110,7 @@ export function Header() {
           </a>
           <Link
             href="/book"
+            onClick={() => handleLinkClick("/book")}
             className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-semibold tracking-wider uppercase hover:bg-zinc-800 active:scale-[0.97] transition-all duration-200 shadow-xs cursor-pointer"
           >
             Book Appointment
@@ -140,7 +147,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => handleLinkClick(link.href)}
                     className={`text-base tracking-wide transition-colors py-1 ${
                       active ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-zinc-950 font-medium"
                     }`}
@@ -153,7 +160,7 @@ export function Header() {
               <div className="pt-4 border-t border-zinc-300 flex flex-col gap-3">
                 <Link
                   href="/book"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => handleLinkClick("/book")}
                   className="w-full py-3 rounded-full bg-zinc-950 text-white text-xs font-semibold uppercase tracking-wider text-center"
                 >
                   Book Appointment

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,19 +11,9 @@ export function Footer() {
           
           {/* Brand */}
           <div className="space-y-3 text-left">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-white">
-                <span className="text-[13px] font-semibold tracking-tighter">A</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-bold tracking-[0.16em] uppercase text-white leading-tight">
-                  Aura
-                </span>
-                <span className="text-[9px] font-semibold tracking-[0.22em] uppercase text-zinc-400">
-                  Dental Clinic · NYC
-                </span>
-              </div>
-            </div>
+            <Link href="/" className="inline-block group focus:outline-hidden" aria-label="Aura Dental Clinic Home">
+              <Logo size="sm" variant="light" />
+            </Link>
             <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
               Gentle, modern dental care in Flatiron, New York. Focused on your comfort and honest pricing.
             </p>
