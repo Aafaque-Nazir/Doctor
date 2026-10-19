@@ -5,93 +5,81 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 bg-slate-50/50 border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center pt-24 pb-12 md:pt-24 md:pb-12 bg-[#fcfcfb] border-b border-zinc-300">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Clear, Human Copy */}
-          <div className="lg:col-span-7 space-y-7 text-left">
-            <div className="space-y-4">
-              <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
-                Aura Dental & Smile Studio • Midtown Manhattan
+          {/* Left Column: Compact Architectural Typography */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="space-y-3">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
+                Dental Clinic · Midtown Manhattan
               </span>
 
-              <h1 className="text-4xl sm:text-5xl md:text-[54px] font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-                A dentist you will actually <br className="hidden sm:block" />
-                <span className="text-sky-700">feel comfortable visiting.</span>
+              <h1 className="text-3xl sm:text-4xl md:text-[44px] lg:text-[46px] font-extrabold tracking-tight text-zinc-950 leading-[1.14]">
+                A calm, thoughtful approach to dental care.
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal">
-                We know most people dread dental visits. We take the time to listen, explain everything in plain English, and keep you comfortable — from simple cleanings to complete smile makeovers.
+              <p className="text-sm sm:text-base text-zinc-700 max-w-lg leading-relaxed font-normal">
+                We take time to listen, explain everything in plain English, and ensure you feel calm, respected, and completely comfortable—every step of the way.
               </p>
             </div>
 
-            {/* Action Buttons */}
+            {/* Action Buttons: Minimalist Tactile Pills */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 text-white text-sm font-semibold tracking-wide hover:bg-slate-800 transition-colors shadow-xs"
+                href="/book"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-950 text-white text-xs font-bold tracking-wider uppercase hover:bg-zinc-800 transition-all shadow-sm"
               >
-                Book an Appointment
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                <span>Book an Appointment</span>
+                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
               </Link>
               <a
                 href="tel:+15558883368"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm font-semibold tracking-wide hover:bg-slate-50 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:bg-zinc-950 hover:text-white transition-all shadow-xs"
               >
-                <span className="material-symbols-outlined text-[18px] text-slate-500">call</span>
-                <span>Call Us: (555) 888-3368</span>
+                <span className="material-symbols-outlined text-[16px]">call</span>
+                <span>(555) 888-3368</span>
               </a>
             </div>
 
-            {/* Honest, Real Trust Points */}
-            <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 max-w-lg">
+            {/* Architectural Trust Points: Clean Hairline Dividers */}
+            <div className="pt-5 border-t border-zinc-300 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-lg">
               <div>
-                <div className="flex items-center gap-1">
-                  <span className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">4.9</span>
-                  <span className="text-amber-500 text-xs">★★★★★</span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xl font-bold text-zinc-950 tracking-tight">4.9</span>
+                  <span className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Rating</span>
                 </div>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">850+ Google reviews</p>
+                <p className="text-[11px] text-zinc-600 font-medium mt-0.5">850+ verified patient reviews</p>
               </div>
-              <div className="border-l border-slate-200 pl-4">
-                <p className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Gentle Care</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">Painless numbing</p>
+
+              <div className="border-t sm:border-t-0 sm:border-l border-zinc-300 pt-3 sm:pt-0 sm:pl-4">
+                <p className="text-xs font-bold text-zinc-950 tracking-tight">Gentle Care</p>
+                <p className="text-[11px] text-zinc-600 font-medium mt-0.5">Stress-free numbing</p>
               </div>
-              <div className="border-l border-slate-200 pl-4">
-                <p className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Fair Costs</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">No surprise bills</p>
+
+              <div className="border-t sm:border-t-0 sm:border-l border-zinc-300 pt-3 sm:pt-0 sm:pl-4">
+                <p className="text-xs font-bold text-zinc-950 tracking-tight">Clear Pricing</p>
+                <p className="text-[11px] text-zinc-600 font-medium mt-0.5">Insurance checked upfront</p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Clean, Authentic Photo Frame */}
+          {/* Right Column: Compact Architectural Photography Frame */}
           <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-white">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[420px] w-full rounded-2xl overflow-hidden border border-zinc-300 shadow-[0_4px_24px_rgba(0,0,0,0.06)] bg-zinc-100">
               <Image
                 src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80"
-                alt="Patient with a healthy, confident smile"
+                alt="Patient smiling in modern dental clinic"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
-
-              {/* Clean bottom note without AI buzzwords */}
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-sm border border-slate-100 shadow-sm text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">dentistry</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-900 tracking-tight">
-                      Aura Dental & Smile Studio
-                    </h4>
-                    <p className="text-[11px] text-slate-500 font-medium mt-0.5">
-                      124 Precision Ave, New York • Relaxed, friendly dental visits
-                    </p>
-                  </div>
-                </div>
+              <div className="absolute top-3 left-3">
+                <span className="px-2.5 py-1 rounded-full bg-zinc-950 text-white text-[9px] font-bold tracking-wider uppercase border border-zinc-800 shadow-sm">
+                  Room 04 · Natural Light
+                </span>
               </div>
             </div>
           </div>

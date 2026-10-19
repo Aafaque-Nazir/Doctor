@@ -4,64 +4,64 @@ import Link from "next/link";
 
 const REASONS = [
   {
-    icon: "devices",
+    num: "01",
     title: "Digital 3D Scans",
-    desc: "No messy, gaggy impression trays. A small wand scans your teeth in seconds to create an accurate 3D model on screen.",
+    desc: "No messy, uncomfortable impression trays. A discreet handheld scanner maps teeth in seconds with high precision.",
   },
   {
-    icon: "sentiment_satisfied",
-    title: "Gentle & Painless",
-    desc: "We numb the area carefully before touching anything and check in with you constantly so you stay completely comfortable.",
+    num: "02",
+    title: "Gentle & Considerate",
+    desc: "We numb the area thoroughly and check in frequently so you stay completely relaxed and in control.",
   },
   {
-    icon: "emergency",
-    title: "Same-Day Emergency Slots",
-    desc: "Sudden toothache or cracked tooth? Call us immediately. We save slots every day so you don't have to wait in pain.",
+    num: "03",
+    title: "Same-Day Emergency Care",
+    desc: "Sudden tooth pain or chipped tooth? We keep open slots each day so you never have to wait in pain.",
   },
   {
-    icon: "receipt_long",
+    num: "04",
     title: "Clear, Upfront Pricing",
-    desc: "No hidden charges or surprise bills. We check your dental insurance beforehand and give you clear, written estimates.",
+    desc: "No surprises or hidden fees. We verify insurance upfront and provide clear written costs before treatment.",
   },
 ];
 
 export function WhyChooseUsSection() {
   return (
-    <section className="py-20 md:py-24 bg-white border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-14 md:py-18 bg-white border-b border-zinc-300">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 text-left">
+        {/* Section Header: Compact Minimal Editorial Layout */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 text-left">
           <div className="max-w-xl space-y-2">
-            <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
-              Why Patients Choose Us
+            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
+              Why Choose Aura
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              We do things a little differently here.
+            <h2 className="text-2xl sm:text-3xl md:text-[34px] font-extrabold tracking-tight text-zinc-950 leading-snug">
+              A dental clinic designed around your comfort.
             </h2>
           </div>
-          <div className="max-w-md">
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              We take the stress out of dental care with friendly dentists, gentle treatments, and clear communication from day one.
+          <div className="max-w-sm">
+            <p className="text-zinc-700 text-xs sm:text-sm leading-relaxed font-normal">
+              We combine modern dental technology with a calm, patient-first approach. Every appointment is unhurried and clearly explained.
             </p>
           </div>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {REASONS.map((item, idx) => (
+        {/* 4 Architectural Columns with Hairline Dividers */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+          {REASONS.map((item) => (
             <div
-              key={idx}
-              className="p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-slate-300 hover:bg-white transition-all text-left space-y-4"
+              key={item.num}
+              className="text-left space-y-3 pt-4 border-t-2 border-zinc-300 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-800 shadow-2xs">
-                <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
-              </div>
+              <span className="text-[12px] font-mono font-bold text-zinc-900 group-hover:text-zinc-950 transition-colors">
+                {item.num}
+              </span>
               <div className="space-y-1.5">
-                <h3 className="text-base font-bold text-slate-900 tracking-tight">
+                <h3 className="text-base font-bold text-zinc-950 tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
                   {item.desc}
                 </p>
               </div>
@@ -69,21 +69,22 @@ export function WhyChooseUsSection() {
           ))}
         </div>
 
-        {/* Bottom Banner */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-          <div className="space-y-1">
-            <h4 className="text-base sm:text-lg font-bold tracking-tight">
-              Looking for a friendly dentist for you or your family?
+        {/* Compact Invitation Row */}
+        <div className="mt-10 pt-6 border-t border-zinc-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left">
+          <div className="space-y-0.5">
+            <h4 className="text-sm font-bold text-zinc-950 tracking-tight">
+              Welcoming new patients and families this month.
             </h4>
-            <p className="text-xs sm:text-sm text-slate-400">
-              New patient checkups and cleanings are open this week. We accept major dental insurance.
+            <p className="text-xs text-zinc-700 font-medium">
+              Accepting major PPO dental plans and private consultations.
             </p>
           </div>
           <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors shrink-0 shadow-xs"
+            href="/book"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:border-zinc-950 hover:bg-zinc-950 hover:text-white transition-all shrink-0 shadow-xs"
           >
-            Book Your First Visit
+            <span>Book an Appointment</span>
+            <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
           </Link>
         </div>
 

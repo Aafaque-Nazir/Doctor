@@ -3,7 +3,6 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface CaseStudy {
   id: string;
@@ -21,57 +20,57 @@ interface CaseStudy {
 const CASES: CaseStudy[] = [
   {
     id: "veneers",
-    title: "Chipped & Worn Teeth to Natural Translucent Veneers",
+    title: "Chipped & Worn Teeth to Natural Porcelain Veneers",
     category: "Porcelain Veneers",
     treatment: "8 Custom Porcelain Veneers",
-    duration: "2 Visits (2 Weeks Total)",
-    desc: "This patient struggled with chipped, worn enamel edges and mild yellowing. We placed 8 handcrafted porcelain veneers customized to their facial symmetry with lifelike translucency and natural shine.",
+    duration: "2 Visits · 2 Weeks",
+    desc: "Fixed chipped edges, gaps, and dark staining with 8 natural porcelain veneers matched to natural facial features.",
     beforeImg: "/images/gallery/veneers-before.jpg",
     afterImg: "/images/gallery/veneers-after.jpg",
-    beforeNote: "Chipped edges & uneven wear",
-    afterNote: "Seamless porcelain veneers",
+    beforeNote: "Chipped, worn front teeth",
+    afterNote: "Natural white veneers",
   },
   {
     id: "invisalign",
-    title: "Crowded Overlapping Teeth to Straight Dental Arch",
-    category: "Invisalign Aligners",
-    treatment: "Clear Aligners (No Metal Braces)",
-    duration: "9 Months Total",
-    desc: "Corrected overlapping central incisors and rotational crowding without unsightly metal brackets. Clear removable aligners gently aligned the bite into a smooth, aesthetic smile arch.",
+    title: "Crowded Teeth to Straight, Balanced Smile",
+    category: "Clear Aligners",
+    treatment: "Invisalign® Clear Aligners",
+    duration: "9 Months",
+    desc: "Straightened crowded overlapping teeth smoothly using clear, removable Invisalign aligners without metal wires.",
     beforeImg: "/images/gallery/invisalign-before.jpg",
     afterImg: "/images/gallery/invisalign-after.jpg",
-    beforeNote: "Crowded & overlapping incisors",
-    afterNote: "Even, symmetrical arch alignment",
+    beforeNote: "Crowded front teeth",
+    afterNote: "Straight, even smile",
   },
   {
     id: "whitening",
-    title: "Lifting Deep Coffee & Tea Stains (7 Shades Brighter)",
+    title: "Lifting Coffee Stains (7 Shades Brighter)",
     category: "Teeth Whitening",
-    treatment: "1-Hour In-Office Laser Whitening",
-    duration: "Single 60-Minute Visit",
-    desc: "Removed stubborn years of coffee, espresso, and tea stains in a single 60-minute session using medical-grade LED activation and soothing desensitizing enamel serum.",
+    treatment: "In-Office Whitening",
+    duration: "Single 60-Min Visit",
+    desc: "Removed years of tea, coffee, and everyday staining in a gentle 60-minute in-office whitening session.",
     beforeImg: "/images/gallery/whitening-before.jpg",
     afterImg: "/images/gallery/whitening-after.jpg",
-    beforeNote: "Dark yellowing & tea stains",
-    afterNote: "Pearly white & 7 shades brighter",
+    beforeNote: "Yellow tea & coffee stains",
+    afterNote: "Bright, clean white smile",
   },
   {
     id: "implant",
-    title: "Replacing Missing Tooth with Seamless Ceramic Implant",
+    title: "Replacing Missing Front Tooth with Permanent Crown",
     category: "Dental Implant",
-    treatment: "Titanium Post + Custom Porcelain Crown",
-    duration: "Gentle Outpatient Care",
-    desc: "Permanently restored a missing lateral incisor gap with an implant and custom-shaded porcelain crown that matches neighboring natural teeth in contour, shade, and gumline integration.",
+    treatment: "Implant + Custom Crown",
+    duration: "2 Visits",
+    desc: "Replaced a missing front tooth with a permanent implant and natural-looking crown that blends with the other teeth.",
     beforeImg: "/images/gallery/implant-before.jpg",
     afterImg: "/images/gallery/implant-after.jpg",
-    beforeNote: "Noticeable missing tooth gap",
-    afterNote: "Undetectable permanent crown",
+    beforeNote: "Missing front tooth",
+    afterNote: "Permanent natural crown",
   },
 ];
 
 export function SmileGallerySection() {
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [sliderPos, setSliderPos] = useState<number>(50); // 0 to 100 percentage
+  const [sliderPos, setSliderPos] = useState<number>(50);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -97,71 +96,70 @@ export function SmileGallerySection() {
     }
   };
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerUp = () => {
     setIsDragging(false);
-    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
   };
 
   return (
-    <section id="smile-gallery" className="py-20 md:py-28 bg-white border-b border-slate-100 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-14 md:py-18 bg-white border-b border-zinc-300">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-3 max-w-2xl text-left">
-            <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
-              Clinical Transformations
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 md:mb-8 text-left">
+          <div className="space-y-1.5 max-w-lg">
+            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
+              Patient Results
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
-              Real Patients. Real Results.
+            <h2 className="text-2xl sm:text-3xl md:text-[34px] font-extrabold tracking-tight text-zinc-950 leading-snug">
+              Before & After Transformations
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Drag the interactive slider across each case to see the exact before and after transformation from our studio.
+            <p className="text-zinc-700 text-xs sm:text-sm leading-relaxed font-normal">
+              Real results from our Midtown clinic. Drag the slider to compare before and after.
             </p>
           </div>
 
-          {/* Quick Preset Buttons */}
+          {/* Minimalist Segmented Presets */}
           <div className="flex items-center gap-2">
-            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold">
+            <div className="inline-flex p-1 rounded-full bg-zinc-200 border border-zinc-300 text-xs font-medium">
               <button
                 type="button"
                 onClick={() => setSliderPos(100)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer text-xs ${
                   sliderPos === 100
-                    ? "bg-white text-slate-900 shadow-xs"
-                    : "text-slate-500 hover:text-slate-900"
+                    ? "bg-zinc-950 text-white shadow-xs font-bold"
+                    : "text-zinc-800 hover:text-zinc-950 font-semibold"
                 }`}
               >
-                100% Before
+                Before
               </button>
               <button
                 type="button"
                 onClick={() => setSliderPos(50)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer text-xs ${
                   sliderPos === 50
-                    ? "bg-white text-sky-700 shadow-xs"
-                    : "text-slate-500 hover:text-slate-900"
+                    ? "bg-zinc-950 text-white shadow-xs font-bold"
+                    : "text-zinc-800 hover:text-zinc-950 font-semibold"
                 }`}
               >
-                50/50 Split
+                Split
               </button>
               <button
                 type="button"
                 onClick={() => setSliderPos(0)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer text-xs ${
                   sliderPos === 0
-                    ? "bg-sky-600 text-white shadow-xs"
-                    : "text-slate-500 hover:text-slate-900"
+                    ? "bg-zinc-950 text-white shadow-xs font-bold"
+                    : "text-zinc-800 hover:text-zinc-950 font-semibold"
                 }`}
               >
-                100% After
+                After
               </button>
             </div>
           </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+        {/* Minimal Pill Filter Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none">
           {CASES.map((item, idx) => (
             <button
               key={item.id}
@@ -170,10 +168,10 @@ export function SmileGallerySection() {
                 setActiveTab(idx);
                 setSliderPos(50);
               }}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                 activeTab === idx
-                  ? "bg-slate-900 text-white shadow-sm"
-                  : "bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200/80"
+                  ? "bg-zinc-950 text-white shadow-xs font-bold"
+                  : "bg-white text-zinc-800 hover:text-zinc-950 border border-zinc-300 hover:border-zinc-500 font-semibold"
               }`}
             >
               {item.category}
@@ -181,11 +179,11 @@ export function SmileGallerySection() {
           ))}
         </div>
 
-        {/* Featured Transformation Showcase Card */}
-        <div className="bg-slate-50/70 rounded-3xl border border-slate-200/90 overflow-hidden p-6 sm:p-10 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* Featured Interactive Comparison Card */}
+        <div className="bg-[#fbfbf9] rounded-2xl border border-zinc-300 overflow-hidden p-5 sm:p-7 shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             
-            {/* Interactive Before/After Visual Slider */}
+            {/* Interactive Slider */}
             <div className="lg:col-span-7">
               <div 
                 ref={containerRef}
@@ -193,7 +191,7 @@ export function SmileGallerySection() {
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerUp}
-                className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200/90 bg-slate-900 shadow-lg select-none cursor-ew-resize touch-none group"
+                className="relative aspect-[16/10] sm:aspect-[16/11] max-h-[360px] w-full rounded-xl overflow-hidden border-2 border-zinc-300 bg-zinc-900 select-none cursor-ew-resize touch-none group"
               >
                 {/* AFTER IMAGE (Base Layer) */}
                 <div className="absolute inset-0 w-full h-full">
@@ -205,10 +203,9 @@ export function SmileGallerySection() {
                     className="object-cover pointer-events-none"
                     priority
                   />
-                  {/* After Label */}
-                  <div className="absolute top-4 right-4 z-10 pointer-events-none">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-extrabold tracking-wider uppercase bg-emerald-600/95 text-white shadow-md backdrop-blur-xs">
-                      After Result
+                  <div className="absolute top-3 right-3 z-10 pointer-events-none">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-widest uppercase bg-zinc-950 text-white border border-white/30 shadow-sm">
+                      Result
                     </span>
                   </div>
                 </div>
@@ -228,87 +225,81 @@ export function SmileGallerySection() {
                     className="object-cover"
                     priority
                   />
-                  {/* Before Label */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-extrabold tracking-wider uppercase bg-slate-900/90 text-white shadow-md backdrop-blur-xs">
-                      Initial Condition
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-widest uppercase bg-zinc-950 text-white border border-white/30 shadow-sm">
+                      Initial
                     </span>
                   </div>
                 </div>
 
-                {/* Vertical Divider Handle Line */}
+                {/* Hairline Divider Line */}
                 <div 
-                  className="absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.6)] pointer-events-none z-20 transition-opacity"
+                  className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.6)] pointer-events-none z-20"
                   style={{ left: `${sliderPos}%` }}
                 >
-                  {/* Circular Grab Handle */}
-                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-slate-900 shadow-2xl border-2 border-sky-600 flex items-center justify-center font-bold text-xs">
-                    <span className="material-symbols-outlined text-[20px] text-slate-800">
-                      drag_indicator
+                  {/* Clean Minimalist Grab Thumb */}
+                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 text-white shadow-lg border-2 border-white flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[15px]">
+                      code
                     </span>
                   </div>
                 </div>
 
-                {/* Hover / Instruction Hint Banner */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-                  <span className="px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-medium flex items-center gap-1.5 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px] text-sky-400">touch_app</span>
-                    Drag slider to compare before & after
+                {/* Subtle Drag Instruction */}
+                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+                  <span className="px-2.5 py-0.5 rounded-full bg-zinc-950/80 backdrop-blur-md text-white text-[9px] font-semibold tracking-wide border border-white/20">
+                    Drag line to compare
                   </span>
                 </div>
               </div>
 
               {/* Sub-label indicators */}
-              <div className="flex items-center justify-between mt-2.5 px-1 text-xs text-slate-500">
-                <span className="font-medium text-slate-600">
-                  Before: {activeCase.beforeNote}
-                </span>
-                <span className="font-medium text-emerald-700">
-                  After: {activeCase.afterNote}
-                </span>
+              <div className="flex items-center justify-between mt-2.5 px-1 text-xs text-zinc-700">
+                <span className="text-[11px] font-medium text-zinc-700">Before: <strong className="text-zinc-900">{activeCase.beforeNote}</strong></span>
+                <span className="text-zinc-950 font-bold text-[11px]">After: <strong className="text-zinc-950">{activeCase.afterNote}</strong></span>
               </div>
             </div>
 
             {/* Details Panel */}
-            <div className="lg:col-span-5 space-y-6 text-left">
-              <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-sky-700 font-label">
+            <div className="lg:col-span-5 space-y-4 text-left">
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-zinc-700">
                   {activeCase.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight leading-snug">
                   {activeCase.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed pt-1">
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
                   {activeCase.desc}
                 </p>
               </div>
 
-              {/* Clinical Metrics */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4 border-y border-slate-200">
+              {/* Clinical Details */}
+              <div className="grid grid-cols-2 gap-3 py-3 border-y border-zinc-300 text-xs">
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Treatment Performed</p>
-                  <p className="text-sm font-bold text-slate-900 mt-0.5">{activeCase.treatment}</p>
+                  <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Treatment</p>
+                  <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.treatment}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Clinical Timeline</p>
-                  <p className="text-sm font-bold text-slate-900 mt-0.5">{activeCase.duration}</p>
+                  <p className="text-[10px] font-bold text-zinc-700 uppercase tracking-wider">Timeline</p>
+                  <p className="text-xs font-bold text-zinc-950 mt-0.5">{activeCase.duration}</p>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              {/* Action Buttons: Minimalist Pills */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-sm"
+                  href="/book"
+                  className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold tracking-wider uppercase hover:bg-zinc-800 transition-all shadow-sm"
                 >
-                  Book 3D Smile Simulation
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  <span>Book Consultation</span>
+                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                 </Link>
                 <Link
                   href="/services/cosmetic-dentistry"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white border-2 border-zinc-900 text-zinc-950 text-xs font-bold tracking-wider uppercase hover:bg-zinc-950 hover:text-white transition-all shadow-xs"
                 >
-                  Procedure Details
+                  <span>Case Details</span>
                 </Link>
               </div>
             </div>
@@ -316,8 +307,8 @@ export function SmileGallerySection() {
           </div>
         </div>
 
-        {/* 4-Case Quick Thumbnails Strip */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {/* 4-Case Clean Cards Strip */}
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {CASES.map((item, idx) => (
             <button
               key={item.id}
@@ -326,13 +317,13 @@ export function SmileGallerySection() {
                 setActiveTab(idx);
                 setSliderPos(50);
               }}
-              className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                 activeTab === idx
-                  ? "bg-sky-50/70 border-sky-300 ring-2 ring-sky-500/20 shadow-xs"
-                  : "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/50"
+                  ? "bg-white border-2 border-zinc-950 ring-2 ring-zinc-950/10 shadow-sm"
+                  : "bg-white border border-zinc-300 hover:border-zinc-500"
               }`}
             >
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 mb-2">
+              <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-zinc-200 mb-1.5">
                 <Image
                   src={item.afterImg}
                   alt={item.category}
@@ -340,12 +331,9 @@ export function SmileGallerySection() {
                   className="object-cover"
                   sizes="(max-width: 640px) 50vw, 25vw"
                 />
-                <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-slate-900/80 text-[10px] font-bold text-white uppercase">
-                  {item.duration}
-                </span>
               </div>
-              <p className="text-xs font-bold text-slate-900 truncate">{item.category}</p>
-              <p className="text-[11px] text-slate-500 truncate mt-0.5">{item.treatment}</p>
+              <p className="text-xs font-bold text-zinc-950 truncate">{item.category}</p>
+              <p className="text-[10px] text-zinc-700 font-medium truncate">{item.treatment}</p>
             </button>
           ))}
         </div>

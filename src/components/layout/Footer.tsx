@@ -4,42 +4,43 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-14 border-b border-slate-800/80">
-          {/* Brand & Mission */}
-          <div className="space-y-4">
+    <footer className="bg-zinc-950 text-zinc-300 pt-12 pb-8 border-t border-zinc-900">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 pb-10 border-b border-zinc-900">
+          
+          {/* Brand & Philosophy */}
+          <div className="space-y-4 text-left">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white shadow-xs">
-                <span className="material-symbols-outlined text-[20px]">dentistry</span>
+              <div className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-white">
+                <span className="text-[13px] font-semibold tracking-tighter">A</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-white tracking-tight leading-none">
-                  Aura Dental
+                <span className="text-base font-bold tracking-[0.16em] uppercase text-white leading-tight">
+                  Aura
                 </span>
-                <span className="text-[10px] font-semibold tracking-wider uppercase text-sky-400 mt-0.5">
-                  Dental Clinic & Smile Studio
+                <span className="text-[9px] font-semibold tracking-[0.22em] uppercase text-zinc-400">
+                  Dental Clinic · NYC
                 </span>
               </div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Gentle, stress-free dental care in Midtown NYC. We focus on patient comfort, honest treatment advice, and natural-looking smiles.
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+              A calm, gentle approach to modern dental care. Dedicated to patient comfort, honest prices, and quality results.
             </p>
-            <div className="pt-2 text-xs text-slate-400">
-              <p>ADA Member · Licensed NY Dental Practice</p>
+            <div className="pt-2 text-xs text-zinc-300 font-mono font-medium">
+              <p>ADA Member · Licensed NY Practice</p>
             </div>
           </div>
 
           {/* Quick Navigation */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-label">
-              Dental Treatments
+          <div className="space-y-4 text-left">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">
+              Treatments
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <Link
                   href="/services/cosmetic-dentistry"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-zinc-300 hover:text-white transition-colors"
                 >
                   Porcelain Veneers & Makeovers
                 </Link>
@@ -47,7 +48,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-zinc-300 hover:text-white transition-colors"
                 >
                   Invisalign Clear Aligners
                 </Link>
@@ -55,7 +56,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-zinc-300 hover:text-white transition-colors"
                 >
                   Dental Implants & Crowns
                 </Link>
@@ -63,97 +64,96 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-zinc-300 hover:text-white transition-colors"
                 >
-                  Routine Cleanings & Checkups
+                  Routine Cleanings & Exams
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-sky-400 hover:text-sky-300 font-medium transition-colors"
+                  className="text-white hover:text-zinc-200 transition-colors inline-flex items-center gap-1 font-semibold underline underline-offset-4"
                 >
-                  Same-Day Emergency Relief →
+                  Emergency Dental Care →
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Practice Hours */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-label">
-              Studio Hours
+          <div className="space-y-4 text-left">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">
+              Office Hours
             </h4>
-            <div className="space-y-2 text-sm text-slate-400">
-              <div className="flex justify-between pb-1.5 border-b border-slate-800/60">
+            <div className="space-y-2 text-xs sm:text-sm text-zinc-300">
+              <div className="flex justify-between pb-1.5 border-b border-zinc-800">
                 <span>Monday – Thursday</span>
-                <span className="text-white font-medium">8:00 AM – 6:00 PM</span>
+                <span className="text-white font-semibold">8:00 AM – 6:00 PM</span>
               </div>
-              <div className="flex justify-between pb-1.5 border-b border-slate-800/60">
+              <div className="flex justify-between pb-1.5 border-b border-zinc-800">
                 <span>Friday</span>
-                <span className="text-white font-medium">8:00 AM – 4:00 PM</span>
+                <span className="text-white font-semibold">8:00 AM – 4:00 PM</span>
               </div>
-              <div className="flex justify-between pb-1.5 border-b border-slate-800/60">
+              <div className="flex justify-between pb-1.5 border-b border-zinc-800">
                 <span>Saturday</span>
-                <span className="text-white font-medium">9:00 AM – 2:00 PM</span>
+                <span className="text-white font-semibold">9:00 AM – 2:00 PM</span>
               </div>
-              <div className="flex justify-between text-xs text-slate-400 pt-1">
-                <span className="text-emerald-400 font-medium">Emergency Dental</span>
-                <span className="text-white">Same-Day Emergency Care</span>
+              <div className="pt-1 text-xs text-zinc-300 font-medium">
+                Same-day emergency visits available daily.
               </div>
             </div>
           </div>
 
-          {/* Contact Details */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-label">
+          {/* Location & Telephone */}
+          <div className="space-y-4 text-left">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">
               Location & Contact
             </h4>
-            <div className="space-y-3 text-sm text-slate-400">
-              <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-[18px] text-sky-400 mt-0.5">location_on</span>
-                <span>
-                  124 Precision Avenue, Suite 400<br />
-                  Flatiron / Midtown, New York, NY 10001
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[18px] text-sky-400">call</span>
-                <a href="tel:+15558883368" className="hover:text-white font-semibold text-white transition-colors">
+            <div className="space-y-3 text-xs sm:text-sm text-zinc-300">
+              <p className="leading-relaxed">
+                124 Precision Avenue, Suite 400<br />
+                Flatiron / Midtown, New York, NY 10001
+              </p>
+              <div>
+                <a
+                  href="tel:+15558883368"
+                  className="block text-white font-bold hover:text-zinc-200 transition-colors text-base"
+                >
                   (555) 888-3368
                 </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[18px] text-sky-400">mail</span>
-                <a href="mailto:hello@auradental.com" className="hover:text-white transition-colors">
+                <a
+                  href="mailto:hello@auradental.com"
+                  className="block text-zinc-300 hover:text-white transition-colors mt-0.5 text-xs"
+                >
                   hello@auradental.com
                 </a>
               </div>
               <div className="pt-2">
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 hover:text-sky-300 transition-colors"
+                  href="/book"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white hover:text-zinc-300 transition-colors"
                 >
-                  Book an Appointment
+                  <span>Book an Appointment</span>
                   <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                 </Link>
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Bottom Legal Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p suppressHydrationWarning>© {currentYear} Aura Dental & Smile Studio. All rights reserved. Gentle, Aesthetic Dentistry.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/contact" className="hover:text-slate-300 transition-colors">
-              Privacy Policy
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-300">
+          <p suppressHydrationWarning>© {currentYear} Aura Dental Clinic. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-zinc-300">
+            <Link href="/contact" className="hover:text-white transition-colors font-medium">
+              Patient Privacy
             </Link>
-            <Link href="/contact" className="hover:text-slate-300 transition-colors">
-              HIPAA & Patient Rights
+            <Link href="/contact" className="hover:text-white transition-colors font-medium">
+              HIPAA Rights
             </Link>
-            <Link href="/contact" className="hover:text-slate-300 transition-colors">
-              0% Financing & Insurance
+            <Link href="/contact" className="hover:text-white transition-colors font-medium">
+              Insurance & Coverage
             </Link>
           </div>
         </div>

@@ -13,11 +13,11 @@ export function Breadcrumbs({ theme = "light" }: { theme?: "light" | "dark" }) {
   const isDark = theme === "dark";
 
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-xs text-slate-500 font-medium">
+    <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-xs text-zinc-700 font-medium">
       <Link
         href="/"
-        className={`hover:text-slate-900 transition-colors flex items-center gap-1 ${
-          isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
+        className={`hover:text-zinc-950 transition-colors flex items-center gap-1 font-semibold ${
+          isDark ? "text-zinc-300 hover:text-white" : "text-zinc-700 hover:text-zinc-950"
         }`}
       >
         <span>Home</span>
@@ -33,16 +33,16 @@ export function Breadcrumbs({ theme = "light" }: { theme?: "light" | "dark" }) {
 
         return (
           <React.Fragment key={currentPath}>
-            <span className="text-slate-300 select-none">/</span>
+            <span className={isDark ? "text-zinc-500 select-none font-bold" : "text-zinc-500 select-none font-bold"}>/</span>
             {isLast ? (
-              <span className={`font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+              <span className={`font-bold ${isDark ? "text-white" : "text-zinc-950"}`}>
                 {formattedSegment}
               </span>
             ) : (
               <Link
                 href={currentPath}
-                className={`transition-colors ${
-                  isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
+                className={`transition-colors font-semibold ${
+                  isDark ? "text-zinc-300 hover:text-white" : "text-zinc-700 hover:text-zinc-950"
                 }`}
               >
                 {formattedSegment}

@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Aura Dental & Smile Studio | Modern, Pain-Free Dentistry",
-  description: "Experience gentle, aesthetic dentistry in New York. Specializing in porcelain veneers, Invisalign clear aligners, pain-free hygiene cleanings, and same-day dental emergencies.",
+  title: "Aura Dental Clinic | Gentle, Honest Dental Care in New York",
+  description:
+    "Gentle, stress-free dental care in Midtown Manhattan. From routine cleanings and checkups to clear aligners and natural porcelain veneers.",
   keywords: [
     "Dentist New York",
-    "Cosmetic Dentistry",
+    "Gentle Dentist NYC",
     "Porcelain Veneers",
     "Invisalign Provider",
     "Dental Implants",
-    "Pain-Free Dentist",
+    "Routine Cleanings",
     "Emergency Dental Care",
   ],
   openGraph: {
-    title: "Aura Dental & Smile Studio | Modern, Pain-Free Dentistry",
-    description: "Gentle aesthetic dentistry, porcelain veneers, Invisalign, and comprehensive family dental care.",
+    title: "Aura Dental Clinic | Gentle, Honest Dental Care in New York",
+    description:
+      "A calm, welcoming dental clinic in Midtown Manhattan. Gentle cleanings, clear aligners, and natural smile care.",
     type: "website",
     locale: "en_US",
   },
@@ -47,7 +50,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={`${manrope.variable} font-body antialiased min-h-screen flex flex-col bg-surface text-on-surface`}
+        className={`${plusJakartaSans.variable} font-sans antialiased min-h-screen flex flex-col bg-surface text-on-surface`}
       >
         <LenisProvider>{children}</LenisProvider>
       </body>

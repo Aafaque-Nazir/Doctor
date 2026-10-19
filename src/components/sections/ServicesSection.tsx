@@ -6,128 +6,126 @@ import Link from "next/link";
 const SERVICES = [
   {
     id: "cosmetic-dentistry",
-    title: "Porcelain Veneers & Smile Makeovers",
+    title: "Porcelain Veneers & Makeovers",
     category: "Cosmetic",
-    desc: "Fix chipped, stained, or uneven teeth with thin porcelain covers that look and feel just like clean, natural enamel.",
+    desc: "Fix chipped, discolored, or uneven teeth with custom porcelain veneers designed to look completely natural.",
     image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80",
-    features: ["Fix chipped edges", "Close small gaps", "Bright, natural color"],
+    features: ["Natural translucency", "Conservative prep", "Durable porcelain"],
     href: "/services/cosmetic-dentistry",
   },
   {
     id: "invisalign",
     title: "Invisalign® Clear Aligners",
-    category: "Teeth Straightening",
-    desc: "Straighten your teeth without metal wires or brackets. Clear, comfortable plastic trays you take out when eating or brushing.",
+    category: "Orthodontics",
+    desc: "Straighten teeth discreetly without metal wires or brackets. Clear, removable aligners tailored to your routine.",
     image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80",
-    features: ["Nearly invisible", "Eat normally", "See 3D results first"],
+    features: ["Virtually invisible", "No food restrictions", "3D digital scan"],
     href: "/services",
   },
   {
     id: "implants-restorative",
     title: "Dental Implants & Crowns",
-    category: "Tooth Replacement",
-    desc: "A permanent fix for missing or badly damaged teeth. Implants let you smile and chew normally without worrying.",
+    category: "Restorative",
+    desc: "Permanent tooth replacements anchored into the jawbone for natural chewing strength and a lifelike look.",
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80",
-    features: ["Permanent replacement", "Strong bite", "Looks completely real"],
+    features: ["Titanium implant post", "Custom ceramic crown", "Lasts for years"],
     href: "/services",
   },
   {
     id: "preventive-family",
-    title: "Checkups & Gentle Cleanings",
-    category: "Everyday Care",
-    desc: "Gentle plaque cleanings and digital X-rays to protect your gums, keep your breath fresh, and stop cavities early.",
+    title: "Routine Cleanings & Exams",
+    category: "Routine Care",
+    desc: "Gentle plaque cleaning, low-dose digital X-rays, and thorough checks to keep your teeth and gums healthy.",
     image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80",
-    features: ["Painless cleaning", "Low-dose digital X-rays", "Adults & kids welcome"],
+    features: ["Gentle polishing", "Low-radiation scans", "Painless numbing"],
     href: "/services",
   },
 ];
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-20 md:py-24 bg-slate-50/50 border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-14 md:py-18 bg-[#fbfbf9] border-b border-zinc-300">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 text-left">
-          <div className="space-y-2 max-w-2xl">
-            <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
-              What We Do
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-10 text-left">
+          <div className="space-y-1.5 max-w-lg">
+            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
+              Our Treatments
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              Dental care made simple.
+            <h2 className="text-2xl sm:text-3xl md:text-[34px] font-extrabold tracking-tight text-zinc-950 leading-snug">
+              Dental care designed for your comfort.
             </h2>
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-800 hover:text-sky-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors"
           >
-            View All Services
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <span>Explore All Treatments</span>
+            <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
           </Link>
         </div>
 
-        {/* 2x2 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 2x2 Compact Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {SERVICES.map((service) => (
             <div
               key={service.id}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-sm hover:border-slate-300 transition-all flex flex-col group text-left"
+              className="bg-white rounded-2xl border border-zinc-300 overflow-hidden shadow-sm hover:border-zinc-500 transition-all flex flex-col group text-left"
             >
-              {/* Image Container */}
-              <div className="relative h-60 w-full overflow-hidden bg-slate-100">
+              {/* Compact Image Container */}
+              <div className="relative h-44 sm:h-48 md:h-52 w-full overflow-hidden bg-zinc-100">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover group-hover:scale-102 transition-transform duration-500"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-md bg-white/95 text-[11px] font-bold text-slate-800 shadow-2xs">
+                <div className="absolute top-3 left-3">
+                  <span className="px-2.5 py-1 rounded-full bg-zinc-950 text-white text-[9px] font-bold uppercase tracking-wider border border-zinc-900 shadow-sm">
                     {service.category}
                   </span>
                 </div>
               </div>
 
               {/* Body Content */}
-              <div className="p-7 flex flex-col flex-1 justify-between space-y-6">
-                <div className="space-y-2.5">
-                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">
+              <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between space-y-4">
+                <div className="space-y-1.5">
+                  <h3 className="text-lg font-bold text-zinc-950 tracking-tight">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
                     {service.desc}
                   </p>
                 </div>
 
-                {/* Features List */}
-                <div className="space-y-4 pt-4 border-t border-slate-100">
-                  <div className="flex flex-wrap gap-2">
+                {/* Features & Links */}
+                <div className="space-y-3 pt-3 border-t border-zinc-200">
+                  <div className="flex flex-wrap gap-1.5">
                     {service.features.map((feat, fIdx) => (
                       <span
                         key={fIdx}
-                        className="px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200/80 text-[11px] font-medium text-slate-700"
+                        className="px-2.5 py-0.5 rounded-full bg-zinc-100 border border-zinc-300 text-[10px] font-semibold text-zinc-800"
                       >
                         {feat}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center justify-between pt-1">
                     <Link
                       href={service.href}
-                      className="text-xs font-semibold text-slate-900 hover:text-sky-700 transition-colors inline-flex items-center gap-1.5"
+                      className="text-xs font-bold text-zinc-950 hover:text-zinc-700 transition-colors inline-flex items-center gap-1"
                     >
-                      Learn more
-                      <span className="material-symbols-outlined text-[16px]">
-                        arrow_forward
-                      </span>
+                      <span>Treatment Guide</span>
+                      <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                     </Link>
                     <Link
-                      href="/contact"
-                      className="text-xs font-semibold text-sky-700 hover:text-sky-900 transition-colors"
+                      href="/book"
+                      className="text-xs font-bold text-zinc-800 hover:text-zinc-950 underline underline-offset-2 transition-colors"
                     >
-                      Book this visit
+                      Book Visit →
                     </Link>
                   </div>
                 </div>

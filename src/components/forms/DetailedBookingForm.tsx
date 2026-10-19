@@ -10,7 +10,6 @@ interface ServiceOption {
   title: string;
   duration: string;
   desc: string;
-  icon: string;
 }
 
 const SERVICES: ServiceOption[] = [
@@ -19,62 +18,53 @@ const SERVICES: ServiceOption[] = [
     title: "Porcelain Veneers & Smile Makeover",
     duration: "45 Min Consultation",
     desc: "Digital 3D smile scan, mockup preview, and aesthetic assessment.",
-    icon: "auto_awesome",
   },
   {
     id: "Invisalign® Clear Aligners",
     title: "Invisalign® Clear Aligners",
-    duration: "30 Min iTero Scan",
+    duration: "30 Min Scan",
     desc: "Fast digital scan of bite, aligner plan preview, zero metal braces.",
-    icon: "straighten",
   },
   {
     id: "Gentle Cleaning & Regular Checkup",
     title: "Gentle Cleaning & Full Exam",
-    duration: "60 Min Comprehensive",
-    desc: "Ultrasonic scaling, enamel polishing, oral cancer screening, low-dose x-rays.",
-    icon: "clean_hands",
+    duration: "60 Min Visit",
+    desc: "Gentle plaque removal, enamel polish, oral exam, low-dose digital x-rays.",
   },
   {
     id: "Dental Implants & Restorations",
     title: "Dental Implants & Crowns",
     duration: "45 Min Evaluation",
-    desc: "CBCT 3D bone scan, titanium post planning, custom ceramic crown.",
-    icon: "dentistry",
+    desc: "3D digital scans, gentle implant planning, custom ceramic crown.",
   },
   {
     id: "Emergency Toothache Relief",
     title: "Same-Day Emergency Relief",
-    duration: "Immediate Chair Access",
-    desc: "Severe tooth pain, chipped tooth, or loose restoration repair.",
-    icon: "emergency",
+    duration: "Immediate Walk-In",
+    desc: "Severe tooth pain, chipped tooth, or lost filling repair.",
   },
 ];
 
 const DOCTORS = [
   {
     id: "",
-    name: "First Available Specialist",
+    name: "Earliest Available Doctor",
     role: "Fastest appointment scheduling",
-    icon: "schedule",
   },
   {
     id: "dr-sterling",
     name: "Dr. Marcus Sterling, DDS",
-    role: "Cosmetic & Veneers Lead · NYU Graduate",
-    icon: "person",
+    role: "Aesthetics & Veneers · NYU",
   },
   {
     id: "dr-vance",
     name: "Dr. Elena Vance, DMD",
-    role: "Orthodontics & Invisalign · Harvard Dental",
-    icon: "person",
+    role: "Orthodontics & Aligners · Columbia",
   },
   {
     id: "dr-ross",
     name: "Dr. Julian Ross, DDS",
-    role: "Implantology & Surgery · Columbia Dental",
-    icon: "person",
+    role: "Implants & Restorative · Penn Dental",
   },
 ];
 
@@ -96,6 +86,7 @@ export function DetailedBookingForm() {
       anxietyFriendly: false,
     },
     notes: "",
+    botTrap: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,11 +101,30 @@ export function DetailedBookingForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      alert("Please fill in your contact information.");
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      await submitChairBooking(formData);
+      await submitChairBooking({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        doctor: formData.doctor,
+        date: formData.date,
+        timeSlot: formData.timeSlot,
+        insuranceType: formData.insuranceType,
+        insuranceCarrier: formData.insuranceCarrier,
+        amenities: formData.amenities,
+        notes: formData.notes,
+        botTrap: formData.botTrap,
+      });
     } catch (err) {
-      console.error("Error submitting appointment:", err);
+      console.error("Booking submission error:", err);
     } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -129,112 +139,111 @@ export function DetailedBookingForm() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900 transition-colors bg-white";
-  const labelClass = "block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5";
+    "w-full px-4 py-3 rounded-xl border border-zinc-300 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900/10 transition-colors bg-white";
+  const labelClass = "block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5";
 
   return (
     <div className="w-full">
-      {/* Visual Stepper Tracker */}
-      <div className="mb-8 pb-4 border-b border-slate-200/80 flex items-center justify-between">
-        <div className="flex items-center gap-2 sm:gap-4 text-xs font-bold">
+      {/* Visual Stepper Tracker - Minimal Architectural Stepper */}
+      <div className="mb-10 pb-5 border-b border-zinc-300 flex items-center justify-between">
+        <div className="flex items-center gap-4 sm:gap-6 text-xs">
           <button
             type="button"
             onClick={() => setCurrentStep(1)}
-            className={`flex items-center gap-1.5 transition-colors ${
-              currentStep === 1 ? "text-sky-700 font-extrabold" : "text-slate-500 hover:text-slate-800"
+            className={`flex items-baseline gap-2 transition-colors cursor-pointer ${
+              currentStep === 1 ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-zinc-950 font-semibold"
             }`}
           >
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] ${
-              currentStep === 1 ? "bg-sky-600 text-white" : "bg-slate-200 text-slate-700"
-            }`}>1</span>
-            <span>Treatment & Doctor</span>
+            <span className="font-mono text-[11px] text-zinc-700 font-bold">01</span>
+            <span>Treatment</span>
           </button>
 
-          <span className="text-slate-300">/</span>
+          <span className="text-zinc-400 font-bold">/</span>
 
           <button
             type="button"
             onClick={() => setCurrentStep(2)}
-            className={`flex items-center gap-1.5 transition-colors ${
-              currentStep === 2 ? "text-sky-700 font-extrabold" : "text-slate-500 hover:text-slate-800"
+            className={`flex items-baseline gap-2 transition-colors cursor-pointer ${
+              currentStep === 2 ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-zinc-950 font-semibold"
             }`}
           >
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] ${
-              currentStep === 2 ? "bg-sky-600 text-white" : "bg-slate-200 text-slate-700"
-            }`}>2</span>
-            <span>Date & Time</span>
+            <span className="font-mono text-[11px] text-zinc-700 font-bold">02</span>
+            <span>Schedule</span>
           </button>
 
-          <span className="text-slate-300">/</span>
+          <span className="text-zinc-400 font-bold">/</span>
 
           <button
             type="button"
             onClick={() => setCurrentStep(3)}
-            className={`flex items-center gap-1.5 transition-colors ${
-              currentStep === 3 ? "text-sky-700 font-extrabold" : "text-slate-500 hover:text-slate-800"
+            className={`flex items-baseline gap-2 transition-colors cursor-pointer ${
+              currentStep === 3 ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-zinc-950 font-semibold"
             }`}
           >
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] ${
-              currentStep === 3 ? "bg-sky-600 text-white" : "bg-slate-200 text-slate-700"
-            }`}>3</span>
-            <span>Patient & Insurance</span>
+            <span className="font-mono text-[11px] text-zinc-700 font-bold">03</span>
+            <span>Details</span>
           </button>
         </div>
 
-        <span className="hidden md:inline-flex text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-          ● Chair Reservation Portal
+        <span className="text-[11px] text-zinc-700 font-mono font-bold hidden sm:inline">
+          Step {currentStep} of 3
         </span>
       </div>
 
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-8 text-left">
+            {/* Honeypot field for bot protection */}
+            <input
+              type="text"
+              name="bot_trap_booking"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.botTrap}
+              onChange={(e) => setFormData({ ...formData, botTrap: e.target.value })}
+              className="hidden opacity-0 pointer-events-none absolute -left-9999px"
+              aria-hidden="true"
+            />
+
             {/* STEP 1: TREATMENT & DOCTOR SELECTION */}
             {currentStep === 1 && (
               <motion.div
                 key="step1"
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
+                exit={{ opacity: 0, x: 8 }}
                 className="space-y-6"
               >
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                    Step 1: Choose Your Treatment & Specialist
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-zinc-900 tracking-tight">
+                    Select Your Treatment & Doctor
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Select what you would like to have done during your appointment.
+                  <p className="text-xs sm:text-sm text-zinc-500">
+                    Choose the visit category and optionally select an attending specialist.
                   </p>
                 </div>
 
                 {/* Service Cards Grid */}
                 <div className="space-y-2.5">
-                  <label className={labelClass}>Select Dental Procedure *</label>
+                  <label className={labelClass}>Treatment Category *</label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {SERVICES.map((srv) => (
                       <div
                         key={srv.id}
                         onClick={() => setFormData({ ...formData, service: srv.id })}
-                        className={`p-4 rounded-2xl border transition-all cursor-pointer text-left flex flex-col justify-between gap-2 ${
+                        className={`p-4 rounded-2xl border transition-all cursor-pointer text-left flex flex-col justify-between gap-3 ${
                           formData.service === srv.id
-                            ? "border-sky-600 bg-sky-50/60 ring-2 ring-sky-500/20 shadow-xs"
-                            : "border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 bg-white"
+                            ? "border-zinc-950 bg-[#fcfcfb] ring-1 ring-zinc-950/20 shadow-xs"
+                            : "border-zinc-300 hover:border-zinc-950 bg-white"
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2">
-                          <span className={`material-symbols-outlined text-[20px] ${
-                            formData.service === srv.id ? "text-sky-700" : "text-slate-400"
-                          }`}>
-                            {srv.icon}
-                          </span>
-                          <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-bold">
+                          <p className="text-xs font-bold text-zinc-950">{srv.title}</p>
+                          <span className="px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-800 text-[10px] font-mono shrink-0 font-semibold border border-zinc-200">
                             {srv.duration}
                           </span>
                         </div>
-                        <div>
-                          <p className="text-xs font-bold text-slate-900">{srv.title}</p>
-                          <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2">{srv.desc}</p>
-                        </div>
+                        <p className="text-[11px] text-zinc-700 leading-relaxed font-normal">{srv.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -242,31 +251,24 @@ export function DetailedBookingForm() {
 
                 {/* Doctor Selection Cards */}
                 <div className="space-y-2.5 pt-2">
-                  <label className={labelClass}>Preferred Specialist (Optional)</label>
+                  <label className={labelClass}>Preferred Doctor (Optional)</label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {DOCTORS.map((doc) => (
                       <div
                         key={doc.id}
                         onClick={() => setFormData({ ...formData, doctor: doc.id })}
-                        className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
+                        className={`p-4 rounded-xl border transition-all cursor-pointer text-left space-y-1 ${
                           formData.doctor === doc.id
-                            ? "border-slate-900 bg-slate-900 text-white shadow-xs"
-                            : "border-slate-200 hover:border-slate-300 bg-white text-slate-900"
+                            ? "border-zinc-950 bg-zinc-950 text-white shadow-xs"
+                            : "border-zinc-300 hover:border-zinc-950 bg-white text-zinc-950"
                         }`}
                       >
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                          formData.doctor === doc.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
+                        <p className="text-xs font-bold truncate">{doc.name}</p>
+                        <p className={`text-[11px] truncate ${
+                          formData.doctor === doc.id ? "text-zinc-200 font-medium" : "text-zinc-600 font-medium"
                         }`}>
-                          <span className="material-symbols-outlined text-[18px]">{doc.icon}</span>
-                        </div>
-                        <div className="truncate">
-                          <p className="text-xs font-bold truncate">{doc.name}</p>
-                          <p className={`text-[10px] truncate ${
-                            formData.doctor === doc.id ? "text-slate-300" : "text-slate-500"
-                          }`}>
-                            {doc.role}
-                          </p>
-                        </div>
+                          {doc.role}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -277,9 +279,9 @@ export function DetailedBookingForm() {
                   <button
                     type="button"
                     onClick={() => setCurrentStep(2)}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-sm cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-zinc-900 text-white text-xs font-semibold tracking-wider uppercase hover:bg-zinc-800 transition-all shadow-xs cursor-pointer"
                   >
-                    <span>Proceed to Date & Time</span>
+                    <span>Proceed to Schedule</span>
                     <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                   </button>
                 </div>
@@ -290,23 +292,23 @@ export function DetailedBookingForm() {
             {currentStep === 2 && (
               <motion.div
                 key="step2"
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
+                exit={{ opacity: 0, x: 8 }}
                 className="space-y-6"
               >
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                    Step 2: Choose Date & Chair Time Window
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-zinc-900 tracking-tight">
+                    Date & Time Preferences
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Pick your ideal appointment day and chair window.
+                  <p className="text-xs sm:text-sm text-zinc-500">
+                    Select your preferred day and arrival window.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className={labelClass}>Preferred Date *</label>
+                    <label className={labelClass}>Consultation Date *</label>
                     <input
                       type="date"
                       required
@@ -315,33 +317,30 @@ export function DetailedBookingForm() {
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                       className={inputClass}
                     />
-                    <p className="text-[11px] text-slate-400 mt-1">Open Mon–Sat. Sunday is on-call emergency care.</p>
+                    <p className="text-[11px] text-zinc-700 font-medium mt-1">Open Monday – Saturday from 8:00 AM.</p>
                   </div>
 
                   <div>
-                    <label className={labelClass}>Chair Time Window *</label>
+                    <label className={labelClass}>Arrival Window *</label>
                     <div className="space-y-2">
                       {[
-                        { id: "morning", label: "Morning", time: "8:00 AM – 12:00 PM", icon: "wb_sunny" },
-                        { id: "afternoon", label: "Afternoon", time: "12:00 PM – 4:00 PM", icon: "wb_twilight" },
-                        { id: "evening", label: "Late Afternoon", time: "4:00 PM – 6:00 PM", icon: "nights_stay" },
+                        { id: "morning", label: "Morning Window", time: "8:00 AM – 12:00 PM" },
+                        { id: "afternoon", label: "Afternoon Window", time: "12:00 PM – 4:00 PM" },
+                        { id: "evening", label: "Late Afternoon Window", time: "4:00 PM – 6:00 PM" },
                       ].map((slot) => (
                         <div
                           key={slot.id}
                           onClick={() => setFormData({ ...formData, timeSlot: slot.id })}
-                          className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
+                          className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                             formData.timeSlot === slot.id
-                              ? "border-sky-600 bg-sky-50 text-sky-900 font-bold"
-                              : "border-slate-200 hover:border-slate-300 bg-white text-slate-700"
+                              ? "border-zinc-950 bg-zinc-950 text-white font-bold shadow-sm"
+                              : "border-zinc-300 hover:border-zinc-950 bg-white text-zinc-800"
                           }`}
                         >
-                          <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-[16px] text-sky-600">
-                              {slot.icon}
-                            </span>
-                            <span className="text-xs">{slot.label}</span>
-                          </div>
-                          <span className="text-[11px] text-slate-500 font-mono">{slot.time}</span>
+                          <span className="text-xs font-bold">{slot.label}</span>
+                          <span className={`text-[11px] font-mono ${
+                            formData.timeSlot === slot.id ? "text-zinc-200" : "text-zinc-600 font-medium"
+                          }`}>{slot.time}</span>
                         </div>
                       ))}
                     </div>
@@ -349,19 +348,19 @@ export function DetailedBookingForm() {
                 </div>
 
                 {/* Step 2 Nav Buttons */}
-                <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+                <div className="pt-4 flex items-center justify-between border-t border-zinc-200">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(1)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-zinc-700 hover:text-zinc-950 cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-                    <span>Back to Treatment</span>
+                    <span>Back</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setCurrentStep(3)}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-sm cursor-pointer"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-zinc-900 text-white text-xs font-semibold tracking-wider uppercase hover:bg-zinc-800 transition-all shadow-xs cursor-pointer"
                   >
                     <span>Proceed to Patient Info</span>
                     <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -374,17 +373,17 @@ export function DetailedBookingForm() {
             {currentStep === 3 && (
               <motion.div
                 key="step3"
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
+                exit={{ opacity: 0, x: 8 }}
                 className="space-y-6"
               >
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">
-                    Step 3: Patient Information & Comfort Preferences
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-zinc-900 tracking-tight">
+                    Patient Details & Insurance
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Your details are protected by medical confidentiality standards.
+                  <p className="text-xs sm:text-sm text-zinc-500">
+                    Your medical privacy is strictly protected under clinical guidelines.
                   </p>
                 </div>
 
@@ -395,6 +394,7 @@ export function DetailedBookingForm() {
                     <input
                       type="text"
                       required
+                      autoComplete="given-name"
                       placeholder="e.g. Maya"
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -406,6 +406,7 @@ export function DetailedBookingForm() {
                     <input
                       type="text"
                       required
+                      autoComplete="family-name"
                       placeholder="e.g. Harrison"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -417,6 +418,7 @@ export function DetailedBookingForm() {
                     <input
                       type="email"
                       required
+                      autoComplete="email"
                       placeholder="maya@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -428,6 +430,7 @@ export function DetailedBookingForm() {
                     <input
                       type="tel"
                       required
+                      autoComplete="tel"
                       placeholder="+1 (555) 000-0000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -438,24 +441,24 @@ export function DetailedBookingForm() {
 
                 {/* Insurance & Payment Preference */}
                 <div className="space-y-3 pt-2">
-                  <label className={labelClass}>Insurance & Billing Preference</label>
+                  <label className={labelClass}>Billing & Insurance Option</label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {[
-                      { id: "ppo", title: "Dental PPO Insurance", desc: "Delta, Cigna, MetLife, Aetna, Guardian" },
-                      { id: "membership", title: "Aura Studio Plan", desc: "In-house membership (No deductibles)" },
-                      { id: "self-pay", title: "Self-Pay & Financing", desc: "0% APR monthly installments" },
+                      { id: "ppo", title: "Dental Insurance (PPO)", desc: "Delta, Cigna, MetLife, Aetna, Guardian" },
+                      { id: "membership", title: "Aura Membership", desc: "Direct annual plan with no deductibles" },
+                      { id: "self-pay", title: "Direct Self-Pay", desc: "Itemized receipts & 0% APR financing" },
                     ].map((opt) => (
                       <div
                         key={opt.id}
                         onClick={() => setFormData({ ...formData, insuranceType: opt.id })}
-                        className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
+                        className={`p-4 rounded-xl border text-left cursor-pointer transition-all ${
                           formData.insuranceType === opt.id
-                            ? "border-sky-600 bg-sky-50 text-sky-950 font-semibold"
-                            : "border-slate-200 bg-white text-slate-700 hover:border-slate-300"
+                            ? "border-zinc-950 bg-[#fcfcfb] ring-1 ring-zinc-950/20 font-bold"
+                            : "border-zinc-300 bg-white text-zinc-800 hover:border-zinc-950"
                         }`}
                       >
-                        <p className="text-xs font-bold">{opt.title}</p>
-                        <p className="text-[10px] text-slate-500 mt-0.5">{opt.desc}</p>
+                        <p className="text-xs font-bold text-zinc-950">{opt.title}</p>
+                        <p className="text-[11px] text-zinc-600 mt-1 font-medium">{opt.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -463,9 +466,9 @@ export function DetailedBookingForm() {
 
                 {/* Comfort Amenities */}
                 <div className="space-y-2 pt-1">
-                  <label className={labelClass}>Complimentary Studio Amenities</label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                    <label className="flex items-center gap-2 p-3 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50">
+                  <label className={labelClass}>Comfort Preferences</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <label className="flex items-center gap-3 p-3.5 rounded-xl border border-zinc-300 bg-white cursor-pointer hover:border-zinc-950">
                       <input
                         type="checkbox"
                         checked={formData.amenities.headphones}
@@ -475,12 +478,12 @@ export function DetailedBookingForm() {
                             amenities: { ...formData.amenities, headphones: e.target.checked },
                           })
                         }
-                        className="rounded text-sky-600 focus:ring-sky-500 w-4 h-4"
+                        className="rounded accent-zinc-950 w-4 h-4 cursor-pointer"
                       />
-                      <span>Noise-canceling headphones & Netflix glasses</span>
+                      <span className="text-zinc-800 font-medium">Noise-canceling headphones & streaming screen</span>
                     </label>
 
-                    <label className="flex items-center gap-2 p-3 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50">
+                    <label className="flex items-center gap-3 p-3.5 rounded-xl border border-zinc-300 bg-white cursor-pointer hover:border-zinc-950">
                       <input
                         type="checkbox"
                         checked={formData.amenities.anxietyFriendly}
@@ -490,19 +493,19 @@ export function DetailedBookingForm() {
                             amenities: { ...formData.amenities, anxietyFriendly: e.target.checked },
                           })
                         }
-                        className="rounded text-sky-600 focus:ring-sky-500 w-4 h-4"
+                        className="rounded accent-zinc-950 w-4 h-4 cursor-pointer"
                       />
-                      <span>I experience dental anxiety (extra gentle numbing)</span>
+                      <span className="text-zinc-800 font-medium">Anxious patient protocol (gentle, unhurried pace)</span>
                     </label>
                   </div>
                 </div>
 
                 {/* Additional Clinical Notes */}
                 <div>
-                  <label className={labelClass}>Special Requests or Symptoms (Optional)</label>
+                  <label className={labelClass}>Notes or Tooth Concerns (Optional)</label>
                   <textarea
                     rows={2}
-                    placeholder="Tell us what you want to achieve or any tooth sensitivity you feel..."
+                    placeholder="Tell us what you would like evaluated or if any specific tooth is sensitive..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className={`${inputClass} resize-none`}
@@ -510,31 +513,28 @@ export function DetailedBookingForm() {
                 </div>
 
                 {/* Step 3 Nav & Final Submit */}
-                <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+                <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-zinc-200">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(2)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold text-zinc-700 hover:text-zinc-950 cursor-pointer order-2 sm:order-1"
                   >
                     <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-                    <span>Back to Date</span>
+                    <span>Back</span>
                   </button>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md disabled:opacity-50 cursor-pointer flex items-center gap-2"
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold tracking-wider uppercase transition-all shadow-sm disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 order-1 sm:order-2"
                   >
                     {isSubmitting ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span>Reserving Your Chair...</span>
+                        <span>Submitting Request...</span>
                       </>
                     ) : (
-                      <>
-                        <span className="material-symbols-outlined text-[17px]">event_available</span>
-                        <span>Confirm & Reserve Appointment</span>
-                      </>
+                      <span>Submit Appointment Request</span>
                     )}
                   </button>
                 </div>
@@ -546,16 +546,16 @@ export function DetailedBookingForm() {
             key="success-screen"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-16 px-6 space-y-4 bg-slate-50/70 rounded-3xl border border-slate-200"
+            className="text-center py-16 px-6 space-y-4 bg-white rounded-3xl border border-zinc-300 shadow-sm"
           >
-            <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto shadow-xs">
-              <span className="material-symbols-outlined text-[28px]">check_circle</span>
+            <div className="w-12 h-12 rounded-full bg-zinc-100 border border-zinc-300 text-zinc-950 flex items-center justify-center mx-auto">
+              <span className="material-symbols-outlined text-[22px] font-bold">check</span>
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
-              Appointment Chair Reserved
+            <h3 className="text-2xl font-extrabold text-zinc-950 tracking-tight">
+              Appointment Request Submitted
             </h3>
-            <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-              Thank you, {submittedDetails.name}! Your visit for <strong className="text-slate-900">{submittedDetails.service}</strong> on <strong className="text-slate-900">{submittedDetails.date}</strong> is recorded.
+            <p className="text-sm text-zinc-800 max-w-md mx-auto leading-relaxed">
+              Thank you, {submittedDetails.name}. Your schedule request for <strong className="text-zinc-950 font-bold">{submittedDetails.service}</strong> on <strong className="text-zinc-950 font-bold">{submittedDetails.date}</strong> has been received by our clinic.
             </p>
             <button
               type="button"
@@ -563,15 +563,15 @@ export function DetailedBookingForm() {
                 setIsSubmitted(false);
                 setCurrentStep(1);
               }}
-              className="text-xs font-semibold text-sky-700 hover:underline pt-2 inline-block cursor-pointer"
+              className="text-xs font-bold text-zinc-950 underline pt-2 inline-block cursor-pointer hover:text-zinc-800"
             >
-              Reserve Another Appointment Slot
+              Book Another Appointment
             </button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Success Modal Popup with Digital Pass Ticket */}
+      {/* Success Modal Popup */}
       <BookingSuccessModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

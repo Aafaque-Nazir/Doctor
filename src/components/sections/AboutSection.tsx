@@ -6,19 +6,19 @@ import { motion } from "framer-motion";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-white border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section id="about" className="py-14 md:py-18 bg-white border-b border-zinc-300">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Natural Portrait Frame */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="lg:col-span-5"
           >
-            <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm">
+            <div className="relative aspect-[4/4] sm:aspect-[4/5] max-h-[380px] w-full rounded-2xl overflow-hidden border border-zinc-300 bg-zinc-100 shadow-md">
               <Image
                 src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80"
                 alt="Dr. Marcus Sterling, DDS"
@@ -27,66 +27,66 @@ export function AboutSection() {
                 className="object-cover object-top"
               />
             </div>
-            <div className="mt-4 flex items-center justify-between text-xs text-slate-500 font-medium">
-              <span className="font-bold text-slate-900">Dr. Marcus Sterling, DDS</span>
-              <span className="text-sky-700 font-semibold">Lead Dentist & Practice Founder</span>
+            <div className="mt-2.5 flex items-baseline justify-between text-xs text-zinc-700">
+              <span className="font-bold text-zinc-950">Dr. Marcus Sterling, DDS</span>
+              <span className="text-zinc-700 font-semibold text-[11px]">Lead Dentist · NYU</span>
             </div>
           </motion.div>
 
-          {/* Right Column: Grounded Story & Credentials */}
+          {/* Right Column: Grounded Editorial Story & Credentials */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-7 space-y-6 text-left"
+            className="lg:col-span-7 space-y-5 text-left"
           >
-            <div className="space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-sky-700 font-label">
-                How We Treat You
+            <div className="space-y-1.5">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-zinc-800 block">
+                About Our Doctor
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-[34px] font-extrabold tracking-tight text-zinc-950 leading-snug">
                 Dentistry should be simple, gentle, and honest.
               </h2>
             </div>
 
-            <div className="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+            <div className="space-y-3 text-zinc-700 text-sm sm:text-base leading-relaxed font-normal">
               <p>
-                Aura Dental was started because going to the dentist shouldn&apos;t feel stressful or scary. So many people put off dental care for years simply because they had a bad, painful experience in the past.
+                Aura Dental was founded on a simple principle: receiving healthcare should never feel stressful, rushed, or intimidating. Many individuals postpone care for years solely because of a past painful experience.
               </p>
               <p>
-                Here, you are always in control. We take the time to walk you through your 3D digital scans, answer all your questions without rushing, and make sure you are completely numb and comfortable before doing any work. No judgment, no surprise fees—just honest care.
+                In our clinic, you remain entirely in control. We review 3D imaging together on screen, answer every question candidly, and confirm you are completely numb before any procedure begins.
               </p>
             </div>
 
             {/* Clean Credentials Grid */}
-            <div className="pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div className="pt-4 border-t border-zinc-300 grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div>
-                <p className="text-xs font-semibold text-slate-900">Member</p>
-                <p className="text-xs text-slate-500 mt-0.5">American Dental Association (ADA)</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Affiliation</p>
+                <p className="text-xs font-bold text-zinc-950 mt-0.5">ADA Member</p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-900">Education</p>
-                <p className="text-xs text-slate-500 mt-0.5">NYU College of Dentistry</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Education</p>
+                <p className="text-xs font-bold text-zinc-950 mt-0.5">NYU Dentistry</p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-900">Focus</p>
-                <p className="text-xs text-slate-500 mt-0.5">Veneers, Aligners & Cleanings</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Focus</p>
+                <p className="text-xs font-bold text-zinc-950 mt-0.5">Veneers & Aligners</p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-slate-900">Experience</p>
-                <p className="text-xs text-slate-500 mt-0.5">18+ Years Caring for Patients</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-700">Experience</p>
+                <p className="text-xs font-bold text-zinc-950 mt-0.5">18+ Years In Practice</p>
               </div>
             </div>
 
             {/* Read More Link */}
-            <div className="pt-4">
+            <div className="pt-1">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-900 hover:text-sky-700 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:text-zinc-700 transition-colors"
               >
-                Learn More About Our Team
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                <span>Meet Our Dental Team</span>
+                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
               </Link>
             </div>
 
